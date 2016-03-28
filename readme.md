@@ -7,7 +7,7 @@
  - 3. 访问 https://api.ioliu.cn/bing/json , 返回bing每日最新壁纸的相关(介绍、图片地址等)信息(json格式).  
  - 4. 提供分辨率接口(w=宽度, h=高度).  
  
-https://api.ioliu.cn/bing?w=1920&h=1200    //返回Bing每日最新宽`1920`高`1200`的分辨率背景图片
+https://api.ioliu.cn/bing?w=1920&h=1200    //返回Bing每日最新宽`1920`高`1200`的分辨率背景图片  
 https://api.ioliu.cn/bing?d=1&w=1920&h=1200  //返回以当日为起点1天前的宽`1920`高`1200`的分辨率背景图片
 ### 目前已知分辨率
 ```   
