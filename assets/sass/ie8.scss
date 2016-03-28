@@ -1,0 +1,54 @@
+@import 'libs/vars';
+@import 'libs/functions';
+@import 'libs/mixins';
+@import 'libs/skel';
+
+/*
+	Multiverse by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+
+/* Button */
+
+	input[type="submit"],
+	input[type="reset"],
+	input[type="button"],
+	button,
+	.button {
+		border: solid 2px _palette(border);
+
+		&.special {
+			border: 0;
+		}
+	}
+
+/* Panel */
+
+	.panel {
+		background: _palette(bg);
+		display: none;
+
+		&.active {
+			display: block;
+		}
+
+		> .closer {
+			&:before {
+				content: '\00d7';
+				font-size: 42px;
+			}
+		}
+	}
+
+/* Main */
+
+	#main {
+		.thumb {
+			> h2 {
+				text-align: center;
+				width: 100%;
+				left: 0;
+			}
+		}
+	}
