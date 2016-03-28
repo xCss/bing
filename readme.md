@@ -1,6 +1,4 @@
-<center>
-![](http://ww4.sinaimg.cn/large/0060lm7Tgw1f2crburwnij31400n97lx.jpg)
-</center>
+![](http://ww1.sinaimg.cn/large/0060lm7Tgw1f2crjs3pxmj31400n64h6.jpg)
 
 
 ## BING 壁纸 API 用法  
