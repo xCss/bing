@@ -74,7 +74,8 @@ $pics = $api -> getPicsByPagin($p);
 									<h2>Bing 壁纸 api 用法</h2>
 									<p>1. 访问 <a href="/bing" target="_blank" >http://api.ioliu.cn/bing</a>, 返回bing每日最新首张背景图. </p>
 									<p>2. 访问 <a href="/bing?d=1" target="_blank" >http://api.ioliu.cn/bing?d=n</a> (n>=0, max=<span class="max">00</span>), 返回以当日为起点第n天前的壁纸.</p>
-								</section>
+									<p>3. 访问 <a href="/bing/json" target="_blank" >http://api.ioliu.cn/bing/json</a> , 返回bing每日最新壁纸的相关(介绍、图片地址等)信息(json格式).</p>
+                                </section>
 								<section>
 									<h2>Follow me on ...</h2>
 									<ul class="icons">
