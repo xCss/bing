@@ -78,17 +78,7 @@ $pics = $api -> getPicsByPagin($p);
 								    <p>4. 提供分辨率访问接口(w=宽度,h=高度)
                                         <br>访问 <a href="/bing?w=1920&h=1200" target="_blank" >https://api.ioliu.cn/bing?w=1920&h=1200</a> ,返回Bing每日最新 宽1920 高1200 的分辨率背景图片.
                                         <br>访问 <a href="/bing?d=1&w=1920&h=1200" target="_blank" >https://api.ioliu.cn/bing?d=n&w=1920&h=1200</a> , 返回以当日为起点n天前的 宽1920高1200 的分辨率背景图片.
-                                        <br>//目前已知分辨率  
-                                        <br>1920x1200  
-                                        <br>1920x1080  
-                                        <br>1366x768  
-                                        <br>1280x768
-                                        <br>1024x768
-                                        <br>800x600
-                                        <br>800x480
-                                        <br>640x480
-                                        <br>400x240 
-                                        <br>320x240
+                                        <br>更多分辨率请点击 → <a href="https://github.com/Eary/bing#目前已知分辨率">https://github.com/Eary/bing</a> 
                                     </p>
                                 </section>
 								<section>
