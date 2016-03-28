@@ -5,7 +5,7 @@
 * Link https://api.ioliu.cn 
 * Follow https://github.com/eary/bing
 */
-require('../lib/base.php');
+require('../../lib/base.php');
 $base = new Base();
 $array = $base->getLastPic();
 
