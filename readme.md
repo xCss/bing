@@ -1,5 +1,7 @@
-[![Bitmoe](https://img.shields.io/badge/Powered%20By-Bitmoe-blue.svg?style=flat-square)](https://github.com/bitmoe) 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)]()  
+<center>
+![](http://ww4.sinaimg.cn/large/0060lm7Tgw1f2crburwnij31400n97lx.jpg)
+</center>
+
 
 ## BING 壁纸 API 用法  
  - 1. 访问 https://api.ioliu.cn/bing , 返回bing每日最新背景图.  
@@ -28,4 +30,10 @@ https://api.ioliu.cn/bing?d=1&w=1920&h=1200  //返回以当日为起点1天前�
 ```   
  
 <a href="https://api.ioliu.cn" target="_blank">预览地址</a> 
+
+--------------------------
+
+[![Bitmoe](https://img.shields.io/badge/Powered%20By-Bitmoe-blue.svg?style=flat-square)](https://github.com/bitmoe) 
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)]()  
+
 
