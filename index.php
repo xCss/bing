@@ -72,9 +72,24 @@ $pics = $api -> getPicsByPagin($p);
 							<div>
 								<section>
 									<h2>Bing 壁纸 api 用法</h2>
-									<p>1. 访问 <a href="/bing" target="_blank" >http://api.ioliu.cn/bing</a>, 返回bing每日最新首张背景图. </p>
-									<p>2. 访问 <a href="/bing?d=1" target="_blank" >http://api.ioliu.cn/bing?d=n</a> (n>=0, max=<span class="max">00</span>), 返回以当日为起点第n天前的壁纸.</p>
-									<p>3. 访问 <a href="/bing/json" target="_blank" >http://api.ioliu.cn/bing/json</a> , 返回bing每日最新壁纸的相关(介绍、图片地址等)信息(json格式).</p>
+									<p>1. 访问 <a href="/bing" target="_blank" >https://api.ioliu.cn/bing</a>, 返回bing每日最新背景图. </p>
+									<p>2. 访问 <a href="/bing?d=1" target="_blank" >https://api.ioliu.cn/bing?d=n</a> (n>=0, max=<span class="max">00</span>), 返回以当日为起点n天前的壁纸.</p>
+									<p>3. 访问 <a href="/bing/json" target="_blank" >https://api.ioliu.cn/bing/json</a> , 返回bing每日最新壁纸的相关(介绍、图片地址等)信息(json格式).</p>
+								    <p>4. 提供分辨率访问接口(w=宽度,h=高度)
+                                        <br>访问 <a href="/bing?w=1920&h=1200" target="_blank" >https://api.ioliu.cn/bing?w=1920&h=1200</a> ,返回Bing每日最新 宽1920 高1200 的分辨率背景图片.
+                                        <br>访问 <a href="/bing?d=1&w=1920&h=1200" target="_blank" >https://api.ioliu.cn/bing?d=n&w=1920&h=1200</a> , 返回以当日为起点n天前的 宽1920高1200 的分辨率背景图片.
+                                        <br>//目前已知分辨率  
+                                        <br>1920x1200  
+                                        <br>1920x1080  
+                                        <br>1366x768  
+                                        <br>1280x768
+                                        <br>1024x768
+                                        <br>800x600
+                                        <br>800x480
+                                        <br>640x480
+                                        <br>400x240 
+                                        <br>320x240
+                                    </p>
                                 </section>
 								<section>
 									<h2>Follow me on ...</h2>
@@ -83,7 +98,7 @@ $pics = $api -> getPicsByPagin($p);
 										<li><a target="_blank" href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
 										<li><a target="_blank" href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
 										<li><a target="_blank" href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>-->
-										<li><a target="_blank" href="http://github.com/eary" class="icon fa-github"><span class="label">GitHub</span></a></li>
+										<li><a target="_blank" href="http://github.com/eary/bing" class="icon fa-github"><span class="label">GitHub</span></a></li>
 										<li><a target="_blank" href="http://weibo.com/1842336184" class="icon fa-weibo"><span class="label">Weibo</span></a></li>
 										<li><a target="_blank" href="mailto:yy.liu@foxmail.com" class="icon fa-envelope"><span class="label">Mail</span></a></li>
 									</ul>
