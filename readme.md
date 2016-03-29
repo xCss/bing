@@ -1,7 +1,18 @@
-![](http://ww1.sinaimg.cn/large/0060lm7Tgw1f2crjs3pxmj31400n64h6.jpg)
+## 预览地址  
+===============
+<a href="https://api.ioliu.cn" target="_blank">Demo</a> 
 
+## 部署到自己的服务器
+===================
+```
+1. `下载` 或 `clone` 到本地  
+2. 打开文件 `\lib\db.php` , 修改成你自己的数据库信息(`数据库连接`、`用户名`、`密码`、`目标数据库`)
+3. 上传到你自己的服务器(Over)
 
-## BING 壁纸 API 用法  
+```
+
+## BING 壁纸 API 用法
+====================
  - 1. 访问 https://api.ioliu.cn/bing , 返回bing每日最新背景图.  
  - 2. 访问 https://api.ioliu.cn/bing?d=n (n>=0), 返回以当日为起点第n天前的壁纸.  
  - 3. 访问 https://api.ioliu.cn/bing/json , 返回bing每日最新壁纸的相关(介绍、图片地址等)信息(json格式).  
@@ -10,6 +21,7 @@
 https://api.ioliu.cn/bing?w=1920&h=1200    //返回Bing每日最新宽`1920`高`1200`的分辨率背景图片  
 https://api.ioliu.cn/bing?d=1&w=1920&h=1200  //返回以当日为起点1天前的宽`1920`高`1200`的分辨率背景图片
 ### 目前已知分辨率
+=================
 ```   
 1920x1200   
 1920x1080    
@@ -27,9 +39,12 @@ https://api.ioliu.cn/bing?d=1&w=1920&h=1200  //返回以当日为起点1天前�
 240x320  
 ```   
  
-<a href="https://api.ioliu.cn" target="_blank">预览地址</a> 
 
---------------------------
+![](http://ww1.sinaimg.cn/large/0060lm7Tgw1f2crjs3pxmj31400n64h6.jpg)
+
+
+
+--------------------------  
 
 [![Bitmoe](https://img.shields.io/badge/Powered%20By-Bitmoe-blue.svg?style=flat-square)](https://github.com/bitmoe) 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)]()  
