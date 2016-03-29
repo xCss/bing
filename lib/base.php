@@ -109,7 +109,7 @@ class Base{
         
         $img = $obj['images'][0];
         
-        if(!self::existsLocalPic($img['hsh'])){
+        if(!self::existsLocalOnUrlBase($img['urlbase'])){
             
             self::putLocalPic($img);
             
@@ -125,7 +125,7 @@ class Base{
     */
     function getPicAtAll(){
         
-        $url = 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=21&n=100';
+        $url = 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=16&n=100';
         
         $html = file_get_contents($url);
         //字符串转码
@@ -140,7 +140,7 @@ class Base{
         
         foreach($imgs as $key=>$value){
             
-            if(!self::existsLocalOnHash($value['hsh'])){
+            if(!self::existsLocalOnUrlBase($value['urlbase'])){
                 
                 self::putLocalPic($value);
                 //$url .= $value['url'].'<br>';
@@ -185,11 +185,11 @@ class Base{
     }
     
     /**
-    * 根据hash值判断是否存在
+    * 根据UrlBase值判断是否存在
     */
-    function existsLocalOnHash($hsh){
+    function existsLocalOnUrlBase($urlbase){
         
-        $sql = 'select count(id) as num from bing where hsh="'.$hsh.'"';
+        $sql = 'select count(id) as num from bing where urlbase="'.$urlbase.'"';
         //print_r($sql);
         $data = array();
         
