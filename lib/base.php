@@ -38,7 +38,7 @@ class Base{
     /**
     * 分页查询
     */
-    function getPicsByPagin($pageNo=1,$pageSize=12){
+    function getPicsByPagin($pageNo=1,$pageSize=9){
         
         self::checkNewOnBing();
         

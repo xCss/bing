@@ -73,11 +73,11 @@ $pics = $api -> getPicsByPagin($p);
 								<section>
 									<h2>Bing 壁纸 api 用法</h2>
 									<p>1. 访问 <a href="/bing" target="_blank" >https://api.ioliu.cn/bing</a>, 返回bing每日最新背景图. </p>
-									<p>2. 访问 <a href="/bing?d=1" target="_blank" >https://api.ioliu.cn/bing?d=n</a> (n>=0, max=<span class="max">00</span>), 返回以当日为起点n天前的壁纸.</p>
+									<p>2. 访问 <a href="/bing?d=0" target="_blank" >https://api.ioliu.cn/bing?d=n</a> (n>=0, max=<span class="max">00</span>), 返回以当日为起点n天前的壁纸.</p>
 									<p>3. 访问 <a href="/bing/json" target="_blank" >https://api.ioliu.cn/bing/json</a> , 返回bing每日最新壁纸的相关(介绍、图片地址等)信息(json格式).</p>
 								    <p>4. 提供分辨率访问接口(w=宽度,h=高度)
                                         <br>访问 <a href="/bing?w=1920&h=1200" target="_blank" >https://api.ioliu.cn/bing?w=1920&h=1200</a> ,返回Bing每日最新 宽1920 高1200 的分辨率背景图片.
-                                        <br>访问 <a href="/bing?d=1&w=1920&h=1200" target="_blank" >https://api.ioliu.cn/bing?d=n&w=1920&h=1200</a> , 返回以当日为起点n天前的 宽1920高1200 的分辨率背景图片.
+                                        <br>访问 <a href="/bing?d=0&w=1920&h=1200" target="_blank" >https://api.ioliu.cn/bing?d=n&w=1920&h=1200</a> , 返回以当日为起点n天前的 宽1920高1200 的分辨率背景图片.
                                         <br>更多分辨率请点击 → <a href="https://github.com/Eary/bing#目前已知分辨率">https://github.com/Eary/bing</a> 
                                     </p>
                                 </section>
@@ -94,10 +94,8 @@ $pics = $api -> getPicsByPagin($p);
 									</ul>
 								</section>
 								<p class="copyright">
-									<a href="http://www.miitbeian.gov.cn/">粤ICP备15050037号</a> <br>
-                                    &copy; 2016. <a href="/">ioliu.cn</a>.
-								    <br>
-                                    POWERED BY Bing.
+									<a href="http://www.miitbeian.gov.cn/">粤ICP备15050037号</a>
+                                    &copy; 2016. <a href="/">ioliu.cn</a>. POWERED BY Bing.
                                 </p>
 							</div>
 						</div>
