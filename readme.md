@@ -1,6 +1,6 @@
-## 预览地址  
-<a href="https://api.ioliu.cn" target="_blank">Demo</a> 
 
+
+![](http://ww1.sinaimg.cn/large/0060lm7Tgw1f2crjs3pxmj31400n64h6.jpg)
 
 ## BING 壁纸 API 用法
  - 1. 访问 https://api.ioliu.cn/bing , 返回bing每日最新背景图.  
@@ -28,8 +28,6 @@ https://api.ioliu.cn/bing?d=1&w=1920&h=1200  //返回以当日为起点1天前�
 240x320  
 ```   
  
-
-![](http://ww1.sinaimg.cn/large/0060lm7Tgw1f2crjs3pxmj31400n64h6.jpg)
 
 
 
