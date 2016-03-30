@@ -8,7 +8,31 @@ require('db.php');
 
 class Base{
     
-    var $result = array();
+    /**
+    * 随机获取图片
+    */
+    function getRandPic(){
+        
+        $max = date("Ymd") - 20160304;
+        
+        $rand = mt_rand(1,$max);
+        
+        $sql = "select * from bing where id=".$rand;
+        
+        $rs = DBHelper::opearting($sql);
+        
+        $data = array();
+        
+        while($row = mysqli_fetch_assoc($rs)){
+            
+            $data[] = $row;
+            
+        }
+        
+        return $data[0];
+        
+    }
+    
     /**
     * 获取最新张照片
     */
@@ -236,6 +260,28 @@ class Base{
         $end = date("Ymd");
         
         if(!self::existsLocalOnDate($end)) self::getPicAtAll();
+        
+    }
+    
+    /*
+    * 直接输出图片到页面
+    */
+    function outputPic($url){
+    
+        if($w&&$h){
+            $url = str_replace('1920x1080',$w.'x'.$h,$url);
+        }
+        header('Content-Type:image/png');
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 0);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'User-Agent: Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.137 Safari/537.36'
+        ));
+        curl_setopt($ch, CURLOPT_TIMEOUT,0);//忽略超时
+        curl_setopt($ch, CURLOPT_NOBODY, false);
+        $str = curl_exec($ch);
+        curl_close($ch);
         
     }
     

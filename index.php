@@ -75,7 +75,8 @@ $pics = $api -> getPicsByPagin($p);
 									<p>1. 访问 <a href="/bing" target="_blank" >https://api.ioliu.cn/bing</a>, 返回bing每日最新背景图. </p>
 									<p>2. 访问 <a href="/bing?d=0" target="_blank" >https://api.ioliu.cn/bing?d=n</a> (n>=0, max=<span class="max">00</span>), 返回以当日为起点n天前的壁纸.</p>
 									<p>3. 访问 <a href="/bing/json" target="_blank" >https://api.ioliu.cn/bing/json</a> , 返回bing每日最新壁纸的相关(介绍、图片地址等)信息(json格式).</p>
-								    <p>4. 提供分辨率访问接口(w=宽度,h=高度)
+                                    <p>4. 提供随机图片接口, 请访问 <a href="/bing/rand" target="_blank" >https://api.ioliu.cn/bing/rand</a> , 可选参数[w,h]</p>
+                                    <p>5. 提供分辨率访问接口(w=宽度,h=高度)
                                         <br>访问 <a href="/bing?w=1920&h=1200" target="_blank" >https://api.ioliu.cn/bing?w=1920&h=1200</a> ,返回Bing每日最新 宽1920 高1200 的分辨率背景图片.
                                         <br>访问 <a href="/bing?d=0&w=1920&h=1200" target="_blank" >https://api.ioliu.cn/bing?d=n&w=1920&h=1200</a> , 返回以当日为起点n天前的 宽1920高1200 的分辨率背景图片.
                                         <br>更多分辨率请点击 → <a href="https://github.com/Eary/bing#目前已知分辨率">https://github.com/Eary/bing</a> 
@@ -127,16 +128,17 @@ $(function(){
     
     $('.max').html(calc);
     
+    
+    //百度统计
+    var _hmt = _hmt || [];
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?99d1e1ee6b085485bc6ec3e23b821b49";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+    
 });
     
 
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?99d1e1ee6b085485bc6ec3e23b821b49";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
 </script>
 
 
