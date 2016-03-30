@@ -3,12 +3,11 @@
 ![](http://ww1.sinaimg.cn/large/0060lm7Tgw1f2crjs3pxmj31400n64h6.jpg)
 
 ## BING 壁纸 API 用法
- - 1. 访问 https://api.ioliu.cn/bing , 返回bing每日最新背景图.  
- - 2. 访问 https://api.ioliu.cn/bing?d=n (n>=0), 返回以当日为起点第n天前的壁纸.  
+ - 1. 访问 https://api.ioliu.cn/bing , 返回bing每日最新背景图, 可选参数`[w,h]`
+ - 2. 访问 https://api.ioliu.cn/bing?d=n (n>=0), 返回以当日为起点第n天前的壁纸, 可选参数`[w,h]`
  - 3. 访问 https://api.ioliu.cn/bing/json , 返回bing每日最新壁纸的相关(介绍、图片地址等)信息(json格式).  
  - 4. 访问 https://api.ioliu.cn/bing/rand , 返回随机图片, 可选参数`[w,h]`
- - 5. 提供分辨率接口(w=宽度, h=高度).  
- 
+ - 5. 提供分辨率接口, 可选参数`[w,h]`.  
 https://api.ioliu.cn/bing?w=1920&h=1200    //返回Bing每日最新宽`1920`高`1200`的分辨率背景图片  
 https://api.ioliu.cn/bing?d=1&w=1920&h=1200  //返回以当日为起点1天前的宽`1920`高`1200`的分辨率背景图片
 ### 目前已知分辨率
