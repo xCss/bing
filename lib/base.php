@@ -80,7 +80,10 @@ class Base{
     */
     function getPicOnDay($day=0){
         
-        $sql = 'select * from bing where id='.$day;
+        
+        $start = date("Ymd")-$day;
+        
+        $sql = 'select * from bing where enddate='.$start.' order by enddate desc';
         
         $rs = DBHelper::opearting($sql);
         
