@@ -1,7 +1,7 @@
 <?php
 
 /**
-* CopyRight Bitmoe · Hero
+* CopyRight Bitmoe · Eary
 * Link https://api.ioliu.cn 
 * Follow https://github.com/eary/bing
 */
