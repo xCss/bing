@@ -1,6 +1,6 @@
 <?php 
 /**
-* CopyRight Bitmoe · Hero
+* CopyRight Bitmoe · eary
 * Link https://api.ioliu.cn 
 * Follow https://github.com/eary/bing
 */
@@ -266,7 +266,7 @@ class Base{
     /*
     * 直接输出图片到页面
     */
-    function outputPic($url){
+    function outputPic($url,$w,$h){
     
         if($w&&$h){
             $url = str_replace('1920x1080',$w.'x'.$h,$url);

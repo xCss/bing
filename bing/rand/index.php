@@ -1,6 +1,6 @@
 <?php
 /**
-* CopyRight Bitmoe · Hero
+* CopyRight Bitmoe · eary
 * Link https://api.ioliu.cn 
 * Follow https://github.com/eary/bing
 */
@@ -16,11 +16,7 @@ $img = $base->getRandPic();
 
 $url = $img['url'];
 
-if($w&&$h){
-    $url = str_replace('1920x1080',$w.'x'.$h,$url);
-}
-
-$base -> outputPic($url);
+$base -> outputPic($url,$w,$h);
 
 
 ?>

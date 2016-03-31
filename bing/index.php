@@ -1,7 +1,7 @@
 <?php
 
 /**
-* CopyRight Bitmoe · Hero
+* CopyRight Bitmoe · eary
 * Link https://api.ioliu.cn 
 * Follow https://github.com/eary/bing
 */
@@ -17,11 +17,11 @@ $base = new Base();
 if($d){
     $img = $base->getPicOnDay($d);
     $url = $img['url'];
-    $base -> outputPic($url);
+    $base -> outputPic($url,$w,$h);
 }else{
     $img = $base->getLastPic();
     $url = $img['url'];
-    $base -> outputPic($url);
+    $base -> outputPic($url,$w,$h);
 }
 
 
