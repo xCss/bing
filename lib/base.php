@@ -13,11 +13,14 @@ class Base{
     */
     function getRandPic(){
         
-        $max = date("Ymd") - 20160304;
+        
+        $max = round((time() - strtotime('20160305')) / 3600 /24);
         
         $rand = mt_rand(1,$max);
         
         $sql = "select * from bing where id=".$rand;
+        
+        //echo $sql;exit;
         
         $rs = DBHelper::opearting($sql);
         
@@ -38,7 +41,7 @@ class Base{
     */
     function getLastPic(){
         
-        $start = date("Ymd")-1;
+        $start = date("Ymd",strtotime("-1 day"));
         $end = date("Ymd");
         
         self::checkNewOnBing();
@@ -48,6 +51,9 @@ class Base{
         $rs = DBHelper::opearting($sql);
         
         $data = array();
+        
+        
+        //echo $sql;exit;
         
         while($row = mysqli_fetch_assoc($rs)){
             
@@ -111,9 +117,9 @@ class Base{
     function getPicOnDay($day=0){
         
         
-        $start = date("Ymd")-$day;
+        $start = date("Ymd",strtotime("-$day day"));
         
-        $sql = 'select * from bing where enddate='.$start.' order by enddate desc';
+        $sql = 'select * from bing where startdate='.$start.' order by startdate desc';
         
         $rs = DBHelper::opearting($sql);
         

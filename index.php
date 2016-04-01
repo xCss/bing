@@ -16,18 +16,19 @@ $pics = $api -> getPicsByPagin($p);
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>壁纸分享</title>
+		<title>Pictrues | Bing Inc.</title>
 		<meta charset="utf-8" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-        <meta name="keywords" content="Bing,Bing壁纸,bing壁纸api,Bing每日壁纸整合,壁纸分享,壁纸下载">
+        <meta name="keywords" content="Bing,Bing壁纸,bing壁纸api,Bing每日壁纸整合,Bing最新壁纸,壁纸分享,壁纸下载">
         <meta name="description" content="Bing每日壁纸整合">
 	    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
         <meta name="author" content="Bitmoe · eary">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="renderer" content="webkit">
+        <meta name="theme-color" content="#4F4F4F"/><link href="/assets/css/images/bing.ico" rel="shortcut icon"/>
     </head>
 	<body>
 
