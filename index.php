@@ -25,7 +25,7 @@ $pics = $api -> getPicsByPagin($p);
         <meta name="keywords" content="Bing,Bing壁纸,bing壁纸api,Bing每日壁纸整合">
         <meta name="description" content="Bing每日壁纸整合">
 	    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
-        <meta name="author" content="Bitmoe · Hero">
+        <meta name="author" content="Bitmoe · eary">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="renderer" content="webkit">
     </head>
