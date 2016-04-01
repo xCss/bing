@@ -16,13 +16,13 @@ $pics = $api -> getPicsByPagin($p);
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Pictures | Bing Inc.</title>
+		<title>壁纸分享</title>
 		<meta charset="utf-8" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-        <meta name="keywords" content="Bing,Bing壁纸,bing壁纸api,Bing每日壁纸整合">
+        <meta name="keywords" content="Bing,Bing壁纸,bing壁纸api,Bing每日壁纸整合,壁纸分享,壁纸下载">
         <meta name="description" content="Bing每日壁纸整合">
 	    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
         <meta name="author" content="Bitmoe · eary">
@@ -53,7 +53,7 @@ $pics = $api -> getPicsByPagin($p);
                         foreach($pics['images'] as $key=>$value){
                             
                             echo '<article class="thumb">
-                                <a href="'.$value['url'].'" class="image"><img src="'.$value['url'].'" alt="" /></a>
+                                <a href="'.$value['img_url'].'" class="image"><img src="'.$value['img_url'].'" alt="" /></a>
                                 <h2>'.$value['copyright'].'</h2>
                                 <p>
                                     <a target="_blank" href="'.$value['copyrightlink'].'" class="button">查看详细</a>

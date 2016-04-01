@@ -32,7 +32,7 @@
 
 
 --------------------------  
-如果觉得还不错，请点击 Star ，反正又不花钱<(￣︶￣)↗[GO!]
+    如果您觉得还不错，请点击右上角的 Star ，反正又不花钱<(￣︶￣)↗[GO!]
 --------------------------
 
 [![Bitmoe](https://img.shields.io/badge/Powered%20By-Bitmoe-blue.svg?style=flat-square)](https://github.com/bitmoe) 

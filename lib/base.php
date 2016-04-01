@@ -74,9 +74,15 @@ class Base{
         
         $data = array();
         
+        $i = 0;
+        
         while($row = mysqli_fetch_assoc($rs)){
             
-            $data[] = $row;
+            $data[$i] = $row;
+            
+            $data[$i]['img_url'] = str_replace('1920x1080','1280x768',$row['url']);
+            
+            $i++;
             
         }
         
