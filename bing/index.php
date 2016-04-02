@@ -8,7 +8,6 @@
 require('../lib/base.php');
 
 $d = $_REQUEST['d'];
-$r = $_REQUEST['r'];
 $w = $_REQUEST['w'];
 $h = $_REQUEST['h'];
 $base = new Base();

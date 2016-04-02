@@ -31,6 +31,9 @@ class Base{
             $data[] = $row;
             
         }
+        if(count($data) == 0){
+            echo '<center style="color:#928E8E;font-family: Courier, monospace;margin-top:100px;"><h1>Sorry, No more Pictures of</h1></center>';exit;
+        }
         
         return $data[0];
         
@@ -59,6 +62,10 @@ class Base{
             
             $data[] = $row;
             
+        }
+        
+        if(count($data) == 0){
+            echo '<center style="color:#928E8E;font-family: Courier, monospace;margin-top:100px;"><h1>Sorry, No more Pictures of</h1></center>';exit;
         }
         
         return $data[0];
@@ -127,6 +134,9 @@ class Base{
             
             $data[] = $row;
             
+        }
+        if(count($data) == 0){
+            echo '<center style="color:#928E8E;font-family: Courier, monospace;margin-top:100px;"><h1>Sorry, No more Pictures.</h1></center>';exit;
         }
         
         return $data[0];
@@ -283,7 +293,7 @@ class Base{
         if($w&&$h){
             $url = str_replace('1920x1080',$w.'x'.$h,$url);
         }
-        header('Content-Type:image/png');
+        header('Content-Type:image/jpeg');
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 0);
@@ -294,6 +304,9 @@ class Base{
         curl_setopt($ch, CURLOPT_NOBODY, false);
         $str = curl_exec($ch);
         curl_close($ch);
+        
+        echo $str;
+        
         
     }
     

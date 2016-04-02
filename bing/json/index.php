@@ -8,6 +8,5 @@
 require('../../lib/base.php');
 $base = new Base();
 $array = $base->getLastPic();
-
 echo json_encode($array);
 ?>

@@ -5,7 +5,6 @@
 * Follow https://github.com/eary/bing
 */
 require('../../lib/base.php');
-
 $r = $_REQUEST['r'];
 $w = $_REQUEST['w'];
 $h = $_REQUEST['h'];
