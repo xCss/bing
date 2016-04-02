@@ -305,9 +305,6 @@ class Base{
         $str = curl_exec($ch);
         curl_close($ch);
         
-        echo $str;
-        
-        
     }
     
 }
