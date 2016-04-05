@@ -70,12 +70,11 @@ $pics = $api -> getPicsByPagin($p);
                                 <p>
                                     <a target="_blank" href="'.$value['copyrightlink'].'" class="button">查看</a>
                                     <a target="_blank" href="'.$value['url'].'" class="button">下载</a>
-                                    <a target="_blank" href="'.$value['url'].'" class="button">分享</a>
+                                    <a target="_blank" href="http://service.weibo.com/share/share.php?url=https%3A%2F%2Fapi.ioliu.cn&title='.urlencode('#Bing每日壁纸#'.$value['copyright'].',#'.$value['enddate'].'#').'&appkey=1833831541&pic='.urlencode($value['url']).'" class="button">分享</a>
                                 </p>
                             </article>';
                             
                         }
-                        
                         ?>
 					</div>
 
