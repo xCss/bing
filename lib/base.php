@@ -213,7 +213,7 @@ class Base{
 
         $obj = json_decode($html,true);
         
-        echo $obj;exit;
+        print_r( $obj);exit;
     }
     
     
