@@ -209,7 +209,7 @@ class Base{
         
         $sql = "insert into bing(startdate,enddate,fullstartdate,hsh,url,urlbase,copyright,copyrightlink) values('".$obj['startdate']."','".$obj['enddate']."','".$obj['fullstartdate']."','".$obj['hsh']."','".$obj['url']."','".$obj['urlbase']."','".$obj['copyright']."','".$obj['copyrightlink']."')";
         
-        return DBHelper::opearting($sql) > 0;
+        return DBHelper::opearting($sql);
         
     }
     
