@@ -16,7 +16,7 @@ $pic = $api -> getPicById($id);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $pic['title'].' - 必应壁纸'; ?></title>
+    <title><?php echo $pic['title'].','.$pic['attribute']' - 必应壁纸'; ?></title>
     <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
     <link rel="stylesheet" href="/assets/css/main.css" />
     <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
