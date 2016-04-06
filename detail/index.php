@@ -39,7 +39,7 @@ $pic = $api -> getPicById($id);
             <p>
                 <a target="_blank" href="<?php echo $pic['copyrightlink']; ?>" class="button">搜索</a>
                 <a target="_blank" href="<?php echo $pic['url']; ?>" class="button">下载</a>
-                <a target="_blank" href="http://service.weibo.com/share/share.php?url=<?php echo urlencode('https://api.ioliu.cn/detail?id='.$pic['id']); ?>&title=<?php echo urlencode('#必应壁纸# '.$pic['date'].' / #'.$pic['title'].'# '.$pic['description']); ?>&appkey=1833831541&pic=<?php echo urlencode($pic['url']);?>" class="button">分享</a>
+                <a target="_blank" href="http://service.weibo.com/share/share.php?url=<?php echo urlencode('http://'.$_SERVER['HTTP_HOST'].'/detail?id='.$pic['id']); ?>&title=<?php echo urlencode('#必应壁纸# '.$pic['date'].' / #'.$pic['title'].'# '.$pic['description']); ?>&appkey=1833831541&pic=<?php echo urlencode($pic['url']);?>" class="button">分享</a>
             </p>
         </div>
     </div>
@@ -49,8 +49,6 @@ $pic = $api -> getPicById($id);
             <nav>
                 <ul>
                     <li><a href="#footer" class="icon fa-info-circle">About</a></li>
-                    <li><a href="?id=<?php echo $pics['id']-1 ?>" class=""><i class="icon fa-chevron-circle-left"></i> PREV</a></li>
-                    <li><a href="?id=<?php echo $pics['id']+1 ?>" class="">NEXT <i class="icon fa-chevron-circle-right"></i></a></li>
                 </ul>
             </nav>
         </header>
