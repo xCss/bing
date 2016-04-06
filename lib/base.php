@@ -206,6 +206,8 @@ class Base{
     
     function getMoreInfo(){
         
+        //$param = '?d='.date('Ymd',strtotime("-$d day"));
+                
         $url = 'http://cn.bing.com/cnhp/coverstory/';
         
         $end = date('Ymd');
@@ -230,7 +232,7 @@ class Base{
         if($data['num']>0) exit;
         
         else {
-            $sql = 'update bing set title="'.$obj['title'].'",attribute="'.$obj['attribute'].'",description="'.$obj['para1'].'",country="'.$obj['Country'].'",city="'.$obj['City'].'" where enddate='.$end;
+            $sql = 'update bing set title="'.$obj['title'].'",attribute="'.$obj['attribute'].'",description="'.$obj['para1'].'",country="'.$obj['Country'].'",city="'.$obj['City'].'",longitude='.$obj['Longitude'].',latitude='.$obj['Latitude'].' where enddate='.$end;
             DBHelper::opearting($sql);
         
         }
