@@ -49,8 +49,8 @@ $pic = $api -> getPicById($id);
             <nav>
                 <ul>
                     <li><a href="#footer" class="icon fa-info-circle">About</a></li>
-                    <li><a href="?p=<?php echo $pics['id']-1 ?>" class=""><i class="icon fa-chevron-circle-left"></i> PREV</a></li>
-                    <li><a href="?p=<?php echo $pics['id']+1 ?>" class="">NEXT <i class="icon fa-chevron-circle-right"></i></a></li>
+                    <li><a href="?id=<?php echo $pics['id']-1 ?>" class=""><i class="icon fa-chevron-circle-left"></i> PREV</a></li>
+                    <li><a href="?id=<?php echo $pics['id']+1 ?>" class="">NEXT <i class="icon fa-chevron-circle-right"></i></a></li>
                 </ul>
             </nav>
         </header>
