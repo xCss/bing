@@ -74,6 +74,42 @@ class Base{
         
     }
     
+    /**根据id查询**/
+    function getPicById($id){
+        
+        $sum = self::getCount();
+        
+        if($id<=0) $id = 1;
+        
+        if($id>=$sum) $id = $sum;
+        
+        self::checkNewOnBing();
+        
+        $sql = "select * from bing where id=".$id."";
+        
+        $rs = DBHelper::opearting($sql);
+        
+        $data = array();
+        
+        
+        //echo $sql;exit;
+        $i=0;
+        while($row = mysqli_fetch_assoc($rs)){
+            
+            $data[$i] = $row;
+            $data[$i]['date'] = date('Y-m-d',strtotime($row['enddate']));
+            
+            $i++;
+            
+        }
+        
+        if(count($data) == 0){
+            echo '<center style="color:#928E8E;font-family: Courier, monospace;margin-top:100px;"><h1>Sorry, No more Pictures of</h1></center>';exit;
+        }
+        
+        return $data[0];
+    }
+    
     /**
     * 分页查询
     */
@@ -232,7 +268,7 @@ class Base{
         if($data['num']>0) exit;
         
         else {
-            $sql = 'update bing set title="'.$obj['title'].'",attribute="'.$obj['attribute'].'",description="'.$obj['para1'].'",country="'.$obj['Country'].'",city="'.$obj['City'].'",longitude='.$obj['Longitude'].',latitude='.$obj['Latitude'].' where enddate='.$end;
+            $sql = 'update bing set title="'.$obj['title'].'",attribute="'.$obj['attribute'].'",description="'.$obj['para1'].' where enddate='.$end;
             DBHelper::opearting($sql);
         
         }

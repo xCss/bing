@@ -1,6 +1,6 @@
 @import url(font-awesome.min.css);
 @import url(gs.css);/*http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic*/
-
+html,body{height:100%;}
 /*
 	Multiverse by HTML5 UP
 	html5up.net | @n33co
@@ -1976,11 +1976,14 @@
 
 /* Footer */
 
-	#footer .copyright {
-		color: #505051;
-		font-size: 0.9em;
-	}
+#footer .copyright {
+    color: #505051;
+    font-size: 0.9em;
+}
 
-		#footer .copyright a {
-			color: inherit;
-		}
+#footer .copyright a {
+    color: inherit;
+}
+
+.overlay{height:90%;width:100%;background-size:cover !important;position:relative;}
+.overlay .caption{position:absolute;bottom:0;width:100%;text-align:center;background:rgba(1,1,1,.4);}
