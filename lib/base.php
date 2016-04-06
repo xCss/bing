@@ -104,10 +104,10 @@ class Base{
         $page = array();
         
         //$page['sum'] = $sum;
-        $page['pageNo'] = $pageNo;
         $page['lastNo'] = ceil($sum/$pageSize);
         $page['nextNo'] = $pageNo + 1 >= $page['lastNo'] ? $page['lastNo'] : $pageNo + 1;
         $page['prevNo'] = $pageNo - 1 <= 1 ? 1 : $pageNo - 1;
+        $page['pageNo'] = $pageNo > $page['lastNo'] ? $page['lastNo'] : $pageNo;
         
         $result = array();
         
@@ -199,6 +199,21 @@ class Base{
         }
         //return $url;
         
+    }
+    
+    function getMoreInfo(){
+        
+        $url = 'http://cn.bing.com/cnhp/coverstory/';
+        
+        $end = date('Ymd');
+        
+        $html = file_get_contents($url);
+        //字符串转码
+        $html = mb_convert_encoding( $html, 'UTF-8', 'UTF-8,GBK,GB2312,BIG5' );
+
+        $obj = json_decode($html,true);
+        
+        echo $obj;exit;
     }
     
     
