@@ -96,18 +96,19 @@ $pic = $api -> getPicById($id);
 $(function(){
     
     var start = "2016-03-04";
-    
     var startDate = (new Date(start)).getTime();
-    
     var now = new Date();
-    
     var today = now.getFullYear() + '-' + (now.getMonth()+1) + '-' + now.getDate();
-    
     now = (new Date(today)).getTime();
-    
     var calc = Math.floor((new Date(now - startDate)) / 1000 / 60 / 60 / 24);
-    
     $('.max').html(calc);
+    
+    //百度统计
+    var _hmt = _hmt || [];
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?99d1e1ee6b085485bc6ec3e23b821b49";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
     
 });
 </script>
