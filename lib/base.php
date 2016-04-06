@@ -57,10 +57,12 @@ class Base{
         
         
         //echo $sql;exit;
-        
+        $i=0;
         while($row = mysqli_fetch_assoc($rs)){
+            $data[$i] = $row;
+            $data[$i]['date'] = date('Y-m-d',strtotime($row['enddate']));
             
-            $data[] = $row;
+            $i++;
             
         }
         
@@ -197,6 +199,7 @@ class Base{
             }
             
         }
+        self::getMoreInfo();
         //return $url;
         
     }
@@ -213,7 +216,25 @@ class Base{
 
         $obj = json_decode($html,true);
         
-        print_r( $obj);exit;
+        $exists_sql = 'select count(id) as num from bing where title="'.$obj['title'].'"';
+        $data = array();
+        
+        $rs = DBHelper::opearting($exists_sql);
+        
+        while($row = mysqli_fetch_assoc($rs)){
+            
+            $data = $row;
+            
+        }
+        
+        if($data['num']>0) exit;
+        
+        else {
+            $sql = 'update bing set title="'.$obj['title'].'",attribute="'.$obj['attribute'].'",description="'.$obj['para1'].'",country="'.$obj['Country'].'",city="'.$obj['City'].'" where enddate='.$end;
+            DBHelper::opearting($sql);
+        
+        }
+        
     }
     
     

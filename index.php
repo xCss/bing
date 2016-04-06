@@ -11,11 +11,6 @@ $p = $_REQUEST['p'];
 $api = new Base();
 $pics = $api -> getPicsByPagin($p);
 
-$s = $_REQUEST['s'];
-if($s == 1){
-   $pics = $api -> getMoreInfo();
-}
-
 ?>
 
 <!DOCTYPE HTML>
