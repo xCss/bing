@@ -174,7 +174,7 @@ class Base{
     */
     function getPicAtAll(){
         
-        $url = 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=16&n=100';
+        $url = 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=100';
         
         $html = file_get_contents($url);
         //字符串转码
