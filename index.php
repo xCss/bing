@@ -66,7 +66,7 @@ $pics = $api -> getPicsByPagin($p);
                             
                             echo '<article class="thumb">
                                 <a href="'.$value['img_url'].'" class="image"><img src="'.$value['img_url'].'" alt="" /></a>
-                                <h2>'.$value['copyright'].'</h2>
+                                <h2>#'.$value['date'].'# '.$value['copyright'].'</h2>
                                 <p>
                                     <a target="_blank" href="'.$value['copyrightlink'].'" class="button">查看</a>
                                     <a target="_blank" href="'.$value['url'].'" class="button">下载</a>

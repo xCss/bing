@@ -92,7 +92,7 @@ class Base{
         while($row = mysqli_fetch_assoc($rs)){
             
             $data[$i] = $row;
-            
+            $data[$i]['date'] = date('Y-m-d',$row['enddate']);
             $data[$i]['img_url'] = str_replace('1920x1080','1280x768',$row['url']);
             
             $i++;
