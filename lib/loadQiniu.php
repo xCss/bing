@@ -9,8 +9,8 @@ use Qiniu\Storage\BucketManager;
 
 class LoadQiniu{
     // 需要填写你的 Access Key 和 Secret Key
-    var $accessKey = 'IuDKM4c-08H6FTvvxr9UAS3RV6-ILsDowpu0a_r3';
-    var $secretKey = 'E6N95oHDlyNbLgmHZCPuBUE28pHwEoSTVVjj0YH7';
+    var $accessKey = 'e8qjVjHZTMUgNFKV6FevcjIRy8Ld99V-z2Io0trS';
+    var $secretKey = 'L6_wdVZEcU_Krf8aF6f9g8hfeFDfliWBhX-AGfLi';
     /*****
     // 要上传文件的本地路径
     //$filePath = './php-logo.png';
@@ -29,7 +29,7 @@ class LoadQiniu{
         // 调用 BucketManager 的 fetch 方法进行文件的上传
         $items = $bucketMgr->fetch($filePath,$bucket, $key);
         
-        print_r(var_dump($items));
+        print_r($items);
     }
     
 }
