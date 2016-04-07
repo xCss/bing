@@ -1,10 +1,10 @@
 <?php
 require_once 'autoload.php';
 // 引入鉴权类
-use Qiniu\Auth as AUTH;
+use Qiniu\Auth;
 
 // 引入上传类
-use Qiniu\Storage\BucketManager as BKM;
+use Qiniu\Storage\BucketManager;
     
 
 class LoadQiniu{
@@ -19,12 +19,12 @@ class LoadQiniu{
     */
     function upload($filePath,$key){
         // 构建鉴权对象
-        $auth = new AUTH\Auth($accessKey, $secretKey);
+        $auth = new Auth($accessKey, $secretKey);
 
         // 要上传的空间
         $bucket = 'ioliu';
 
-        $bucketMgr = new BKM\BucketManager($auth);
+        $bucketMgr = new BucketManager($auth);
         
         // 调用 BucketManager 的 fetch 方法进行文件的上传
         $items = $bucketMgr->fetch($filePath,$bucket, $key);
