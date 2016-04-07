@@ -10,7 +10,6 @@ require('./lib/base.php');
 $p = $_REQUEST['p'];
 $api = new Base();
 $pics = $api -> getPicsByPagin($p);
-
 ?>
 
 <!DOCTYPE HTML>
@@ -19,7 +18,7 @@ $pics = $api -> getPicsByPagin($p);
 		<title>
             <?php
             if($p>1){
-                echo '第'.$p.'页 - 必应壁纸 ';
+                echo '第'.$pics['page']['pageNo'].'页 - 必应壁纸 ';
             }else {
                 echo '首页 - 必应壁纸 ';
             }

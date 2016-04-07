@@ -117,7 +117,21 @@ class Base{
         
         self::checkNewOnBing();
         
-        if($pageNo == 0) $pageNo = 1;
+        $sum = self::getCount();
+        
+        if($pageNo <= 0) $pageNo = 1;
+        
+        $lastNo = ceil($sum/$pageSize);
+        
+        if($pageNo >= $lastNo) $pageNo = $lastNo;
+        
+        //$page['sum'] = $sum;
+        
+        $page = array();
+        $page['lastNo'] = $lastNo;
+        $page['nextNo'] = $pageNo + 1 >= $lastNo ? $lastNo : $pageNo + 1;
+        $page['prevNo'] = $pageNo - 1 <= 1 ? 1 : $pageNo - 1;
+        $page['pageNo'] = $pageNo;
                 
         $sql = "select * from bing order by enddate desc limit ".($pageNo-1)*$pageSize.",".$pageSize;
         
@@ -136,16 +150,6 @@ class Base{
             $i++;
             
         }
-        
-        $sum = self::getCount();
-        
-        $page = array();
-        
-        //$page['sum'] = $sum;
-        $page['lastNo'] = ceil($sum/$pageSize);
-        $page['nextNo'] = $pageNo + 1 >= $page['lastNo'] ? $page['lastNo'] : $pageNo + 1;
-        $page['prevNo'] = $pageNo - 1 <= 1 ? 1 : $pageNo - 1;
-        $page['pageNo'] = $pageNo > $page['lastNo'] ? $page['lastNo'] : $pageNo;
         
         $result = array();
         
@@ -264,11 +268,14 @@ class Base{
             $data = $row;
             
         }
-        
-        if($data['num']>0) exit;
-        
-        else {
-            $sql = 'update bing set title="'.$obj['title'].'",attribute="'.$obj['attribute'].'",description="'.$obj['para1'].' where enddate='.$end;
+        //echo $data['num']>0;exit;
+        if($data['num']>0) {
+            exit;
+        }else {
+            
+            $sql = 'update bing set title="'.$obj['title'].'",attribute="'.$obj['attribute'].'",description="'.$obj['para1'].'" where enddate='.$end;
+            
+            //print_r($sql);
             DBHelper::opearting($sql);
         
         }

@@ -10,7 +10,6 @@ require('../lib/base.php');
 $id = $_REQUEST['id'];
 $api = new Base();
 $pic = $api -> getPicById($id);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
