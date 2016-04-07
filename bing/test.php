@@ -1,3 +1,11 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
 <?php
 
 require_once('../lib/loadQiniu.php');
@@ -6,14 +14,5 @@ $qiniu->upload('http://s.cn.bing.net/az/hprichbg/rb/RabbitIsland_ZH-CN1032004720
 
 //phpinfo();
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>test</title>
-</head>
-<body>
-<script>
-</script>
 </body>
 </html>
