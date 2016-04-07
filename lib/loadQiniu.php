@@ -24,17 +24,12 @@ class LoadQiniu{
         // 要上传的空间
         $bucket = 'ioliu';
 
-        // 生成上传 Token
         $bucketMgr = $auth->BucketManager($auth);
         
-        // 调用 UploadManager 的 putFile 方法进行文件的上传
-        list($ret, $err) = $uploadMgr->fetch($filePath,$bucket, $key);
-        echo "\n====> putFile result: \n";
-        if ($err !== null) {
-            var_dump($err);
-        } else {
-            var_dump($ret);
-        }
+        // 调用 BucketManager 的 fetch 方法进行文件的上传
+        $items = $bucketMgr->fetch($filePath,$bucket, $key);
+        
+        print_r(var_dump($err));
     }
     
 }
