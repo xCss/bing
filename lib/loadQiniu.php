@@ -29,7 +29,7 @@ class LoadQiniu{
         // 调用 BucketManager 的 fetch 方法进行文件的上传
         $items = $bucketMgr->fetch($filePath,$bucket, $key);
         
-        print_r(var_dump($err));
+        print_r(var_dump($items));
     }
     
 }
