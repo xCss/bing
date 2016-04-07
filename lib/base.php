@@ -270,7 +270,6 @@ class Base{
         }
         //echo $data['num']>0;exit;
         if($data['num']>0) {
-            exit;
         }else {
             
             $sql = 'update bing set title="'.$obj['title'].'",attribute="'.$obj['attribute'].'",description="'.$obj['para1'].'" where enddate='.$end;
