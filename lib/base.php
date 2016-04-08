@@ -350,7 +350,7 @@ class Base{
             $data = $row;
         
         }
-        
+        $i=0;
         if(count($data)>0){
             
             foreach($data as $key=>$value){
@@ -362,9 +362,12 @@ class Base{
                 }
                 $update_sql = 'update bing set qiniu_url="'.$$qiniu_prefix.'" where id='.$value['id'];
                 DBHelper::opearting($update_sql);
+                $i++;
             }
             
         }
+        echo $i;
+        
     }
     
     
