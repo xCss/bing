@@ -339,7 +339,7 @@ class Base{
             '240x320'
         );
         
-        $sql = 'select id,url,urlbase from bing where ISNULL(qiniu_url) || qiniu_url="" order by id limit 7';
+        $sql = 'select id,url,urlbase from bing where ISNULL(qiniu_url) || qiniu_url="" order by id limit 10';
         
         $rs = DBHelper::opearting($sql);
         
@@ -364,8 +364,7 @@ class Base{
                     $items = $this->fetchToQiniu($value['url'],$img_name);
                     //array_push($somes,$items);
                 }
-                sleep(1);
-                $update_sql = 'update bing set qiniu_url="'.$$qiniu_prefix.'" where id='.$value['id'];
+                $update_sql = 'update bing set qiniu_url="'.$qiniu_prefix.'" where id='.$value['id'];
                 $somes[] = $update_sql;
                 DBHelper::opearting($update_sql);
                 //$i++;
