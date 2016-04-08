@@ -15,7 +15,7 @@ use Qiniu\Storage\BucketManager;
     
 
 class Base{
-    public $qiniuCDN = 'https://dn-ioliu.qbox.me/';
+    public $qiniuCDN = 'https://dn-ioliu.qbox.me/bing/';
     public $accessKey = 'e8qjVjHZTMUgNFKV6FevcjIRy8Ld99V-z2Io0trS';
     public $secretKey = 'L6_wdVZEcU_Krf8aF6f9g8hfeFDfliWBhX-AGfLi';
     
