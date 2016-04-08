@@ -4,9 +4,41 @@
 * Link https://api.ioliu.cn 
 * Follow https://github.com/eary/bing
 */
-require('db.php');
+require_once 'autoload.php';
+require_once 'db.php';
+
+// 引入鉴权类
+use Qiniu\Auth;
+
+// 引入上传类
+use Qiniu\Storage\BucketManager;
+    
 
 class Base{
+    
+    public $accessKey = 'e8qjVjHZTMUgNFKV6FevcjIRy8Ld99V-z2Io0trS';
+    public $secretKey = 'L6_wdVZEcU_Krf8aF6f9g8hfeFDfliWBhX-AGfLi';
+    
+    /**
+     * 上传到七牛
+     * @param [[Type]] $imgurl  远程图片路径
+     * @param [[Type]] $imgname 图片名字
+     */
+    function fetchToQiniu($imgurl,$imgname){
+        // 构建鉴权对象
+        $auth = new Auth($this->accessKey, $this->secretKey);
+        //echo $auth;
+        // 要上传的空间
+        $bucket = 'ioliu';
+
+        $bucketMgr = new BucketManager($auth);
+        
+        // 调用 BucketManager 的 fetch 方法进行文件的上传
+        $items = $bucketMgr->fetch($imgurl,$bucket, $imgname);
+        
+        return $items;
+        
+    }
     
     /**
     * 随机获取图片
@@ -241,9 +273,13 @@ class Base{
         }
         self::getMoreInfo();
         //return $url;
-        
+        self::putQiniu();
     }
     
+    
+    /**
+     * 得到更多信息
+     */
     function getMoreInfo(){
         
         //$param = '?d='.date('Ymd',strtotime("-$d day"));
@@ -280,6 +316,57 @@ class Base{
         }
         
     }
+    
+    /**
+     * 上传到七牛
+     */
+    function putQiniu(){
+        
+        $sql = 'select id,url,urlbase from bing where ISNULL(qiniu_url) || qiniu_url=""';
+        
+        $resolution = array(
+            '1920x1200',
+            '1920x1080',
+            '1366x768',
+            '1280x768',
+            '1024x768',
+            '800x600',
+            '800x480',
+            '768x1280',
+            '720x1280',
+            '640x480',
+            '480x800',
+            '400x240',
+            '320x240',
+            '240x320'
+        );
+        
+        $rs = DBHelper::opearting($sql);
+        
+        $data = array();
+        
+        while($row = mysqli_fetch_assoc($rs)){
+            
+            $data = $row;
+        
+        }
+        
+        if(count($data)>0){
+            
+            foreach($data as $key=>$value){
+                $qiniu_prefix = substr(strrchr($value['urlbase'], "/"),1);
+                foreach($resolution as $res){
+                    //substr(strrchr($str, "|"), 1);
+                    $img_name = 'bing/'.$qiniu_prefix.'_'.$res.'.jpg';
+                    self::fetchToQiniu($value['url'],$img_name);
+                }
+                $update_sql = 'update bing set qiniu_url="'.$$qiniu_prefix.'" where id='.$value['id'];
+                DBHelper::opearting($update_sql);
+            }
+            
+        }
+    }
+    
     
     
     /**
