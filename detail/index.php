@@ -15,12 +15,12 @@ $pic = $api -> getPicById($id);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $pic['title'].','.$pic['attribute'].' - 必应壁纸'; ?></title>
+    <title><?php echo $pic['title'].','.$pic['attribute'].' - 壁纸那些事儿'; ?></title>
     <!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
     <link rel="stylesheet" href="/assets/css/main.css" />
     <!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
     <!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
-    <meta name="keywords" content="<?php echo $pic['title'].','.$pic['attribute']; ?>">
+    <meta name="keywords" content="<?php echo $pic['title'].','.$pic['attribute']; ?>,壁纸那些事儿">
     <meta name="description" content="<?php echo $pic['description']; ?>">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
     <meta name="author" content="Bitmoe · eary">
