@@ -359,7 +359,7 @@ class Base{
                 foreach($resolution as $res){
                     //substr(strrchr($str, "|"), 1);
                     $img_name = 'bing/'.$qiniu_prefix.'_'.$res.'.jpg';
-                    $items = self::fetchToQiniu($value['url'],$img_name);
+                    $items = $this->fetchToQiniu($value['url'],$img_name);
                     array_push($somes,$items);
                 }
                 $update_sql = 'update bing set qiniu_url="'.$$qiniu_prefix.'" where id='.$value['id'];
