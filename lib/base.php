@@ -4,6 +4,8 @@
 * Link https://api.ioliu.cn 
 * Follow https://github.com/eary/bing
 */
+date_default_timezone_set('Asia/Shanghai');//'Asia/Shanghai'   亚洲/上海
+
 require_once 'autoload.php';
 require_once 'db.php';
 
