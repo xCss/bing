@@ -20,7 +20,7 @@ class LoadQiniu{
     function upload($filePath,$key){
         // 构建鉴权对象
         $auth = new Auth($this->accessKey, $this->secretKey);
-        echo $auth;
+        //echo $auth;
         // 要上传的空间
         $bucket = 'ioliu';
 
