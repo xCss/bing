@@ -18,9 +18,9 @@ $pics = $api -> getPicsByPagin($p);
 		<title>
             <?php
             if($p>1){
-                echo '第'.$pics['page']['pageNo'].'页 - 壁纸那些事儿 ';
+                echo '第'.$pics['page']['pageNo'].'页 - 缤纷壁纸 ';
             }else {
-                echo '首页 - 壁纸那些事儿 ';
+                echo '首页 - 缤纷壁纸 ';
             }
             ?>
               
@@ -31,7 +31,7 @@ $pics = $api -> getPicsByPagin($p);
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-        <meta name="keywords" content="Bing,必应壁纸,bing壁纸api,Bing最新壁纸,壁纸分享,高清壁纸下载,壁纸那些事儿">
+        <meta name="keywords" content="Bing,必应壁纸,bing壁纸api,Bing最新壁纸,壁纸分享,高清壁纸下载,缤纷壁纸">
         <meta name="description" content="风景, 这边独好。">
 	    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
         <meta name="author" content="Bitmoe · eary">
