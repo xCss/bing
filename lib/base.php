@@ -351,9 +351,9 @@ class Base{
         
         }
         
-        var_dump($data);exit;
-        $i=0;
-        $somes = array();
+//        var_dump($data);exit;
+//        $i=0;
+//        $somes = array();
         if(count($data)>0){
             
             foreach($data as $key=>$value){
@@ -362,15 +362,15 @@ class Base{
                     //substr(strrchr($str, "|"), 1);
                     $img_name = 'bing/'.$qiniu_prefix.'_'.$res.'.jpg';
                     $items = $this->fetchToQiniu($value['url'],$img_name);
-                    array_push($somes,$items);
+                    //array_push($somes,$items);
                 }
                 $update_sql = 'update bing set qiniu_url="'.$$qiniu_prefix.'" where id='.$value['id'];
                 DBHelper::opearting($update_sql);
-                $i++;
+                //$i++;
             }
             
         }
-        var_dump($somes);
+        //var_dump($somes);
         
     }
     
