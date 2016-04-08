@@ -15,7 +15,7 @@ use Qiniu\Storage\BucketManager;
     
 
 class Base{
-    
+    public $qiniuCDN = 'https://dn-ioliu.qbox.me/';
     public $accessKey = 'e8qjVjHZTMUgNFKV6FevcjIRy8Ld99V-z2Io0trS';
     public $secretKey = 'L6_wdVZEcU_Krf8aF6f9g8hfeFDfliWBhX-AGfLi';
     
@@ -177,7 +177,7 @@ class Base{
             
             $data[$i] = $row;
             $data[$i]['date'] = date('Y-m-d',strtotime($row['enddate']));
-            $data[$i]['img_url'] = str_replace('1920x1080','1280x768',$row['url']);
+            $data[$i]['img_url'] = $this->qiniuCDN.$row['qiniu_url'].'_1280x768.jpg';
             
             $i++;
             
@@ -365,13 +365,13 @@ class Base{
                     //array_push($somes,$items);
                 }
                 $update_sql = 'update bing set qiniu_url="'.$qiniu_prefix.'" where id='.$value['id'];
-                $somes[] = $update_sql;
+                //$somes[] = $update_sql;
                 DBHelper::opearting($update_sql);
                 //$i++;
             }
             
         }
-        print_r($somes);
+        //print_r($somes);
         
     }
     
