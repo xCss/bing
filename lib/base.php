@@ -322,8 +322,6 @@ class Base{
      */
     function putQiniu(){
         
-        $sql = 'select id,url,urlbase from bing where ISNULL(qiniu_url) || qiniu_url=""';
-        
         $resolution = array(
             '1920x1200',
             '1920x1080',
@@ -341,6 +339,8 @@ class Base{
             '240x320'
         );
         
+        $sql = 'select id,url,urlbase from bing where ISNULL(qiniu_url) || qiniu_url=""';
+        
         $rs = DBHelper::opearting($sql);
         
         $data = array();
@@ -351,6 +351,7 @@ class Base{
         
         }
         $i=0;
+        $somes = array();
         if(count($data)>0){
             
             foreach($data as $key=>$value){
@@ -358,7 +359,8 @@ class Base{
                 foreach($resolution as $res){
                     //substr(strrchr($str, "|"), 1);
                     $img_name = 'bing/'.$qiniu_prefix.'_'.$res.'.jpg';
-                    self::fetchToQiniu($value['url'],$img_name);
+                    $items = self::fetchToQiniu($value['url'],$img_name);
+                    array_push($somes,$items);
                 }
                 $update_sql = 'update bing set qiniu_url="'.$$qiniu_prefix.'" where id='.$value['id'];
                 DBHelper::opearting($update_sql);
@@ -366,7 +368,7 @@ class Base{
             }
             
         }
-        echo $i;
+        var_dump($somes);
         
     }
     
