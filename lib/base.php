@@ -339,7 +339,7 @@ class Base{
             '240x320'
         );
         
-        $sql = 'select id,url,urlbase from bing where ISNULL(qiniu_url) || qiniu_url=""';
+        $sql = 'select id,url,urlbase from bing where ISNULL(qiniu_url) || qiniu_url="" order by id limit 7';
         
         $rs = DBHelper::opearting($sql);
         
