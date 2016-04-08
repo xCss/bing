@@ -363,6 +363,7 @@ class Base{
                     $items = $this->fetchToQiniu($value['url'],$img_name);
                     //array_push($somes,$items);
                 }
+                sleep(10);
                 $update_sql = 'update bing set qiniu_url="'.$$qiniu_prefix.'" where id='.$value['id'];
                 $somes[] = $update_sql;
                 DBHelper::opearting($update_sql);
