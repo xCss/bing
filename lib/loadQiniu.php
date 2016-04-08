@@ -19,7 +19,7 @@ class LoadQiniu{
     */
     function upload($filePath,$key){
         // 构建鉴权对象
-        $auth = new Auth($accessKey, $secretKey);
+        $auth = new Auth(self::$accessKey, self::$secretKey);
         echo $auth;
         // 要上传的空间
         $bucket = 'ioliu';
@@ -29,7 +29,8 @@ class LoadQiniu{
         // 调用 BucketManager 的 fetch 方法进行文件的上传
         $items = $bucketMgr->fetch($filePath,$bucket, $key);
         
-        print_r($items);
+        print_r(var_dump($items));
+        
     }
     
 }
