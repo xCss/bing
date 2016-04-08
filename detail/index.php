@@ -30,7 +30,7 @@ $pic = $api -> getPicById($id);
 </head>
 <body>
     
-    <div class="overlay" style="background:url(<?php echo $pic['url']; ?>) center no-repeat;">
+    <div class="overlay" style="background:url(<?php echo $pic['img_url']; ?>) center no-repeat;">
         
         <div class="caption" style="display: block;">
             <h2>#<?php echo $pic['date']; ?># <?php echo $pic['copyright']; ?></h2>

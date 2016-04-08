@@ -130,6 +130,7 @@ class Base{
             
             $data[$i] = $row;
             $data[$i]['date'] = date('Y-m-d',strtotime($row['enddate']));
+            $data[$i]['img_url'] = $this->qiniuCDN.$row['qiniu_url'].'_1920x1080.jpg';
             
             $i++;
             
