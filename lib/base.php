@@ -347,7 +347,7 @@ class Base{
         
         while($row = mysqli_fetch_assoc($rs)){
             
-            $data = $row;
+            $data[] = $row;
         
         }
         
