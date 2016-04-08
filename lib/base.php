@@ -359,12 +359,12 @@ class Base{
                 $qiniu_prefix = substr(strrchr($value['urlbase'], "/"),1);
                 foreach($resolution as $res){
                     //substr(strrchr($str, "|"), 1);
-                    print_r(i++);
+                    echo i++;
                     $img_name = 'bing/'.$qiniu_prefix.'_'.$res.'.jpg';
                     $items = $this->fetchToQiniu($value['url'],$img_name);
                     //array_push($somes,$items);
                 }
-                sleep(10);
+                sleep(1);
                 $update_sql = 'update bing set qiniu_url="'.$$qiniu_prefix.'" where id='.$value['id'];
                 //$somes[] = $update_sql;
                 DBHelper::opearting($update_sql);
