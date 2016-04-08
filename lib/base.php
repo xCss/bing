@@ -350,6 +350,8 @@ class Base{
             $data = $row;
         
         }
+        
+        var_dump($data);exit;
         $i=0;
         $somes = array();
         if(count($data)>0){
