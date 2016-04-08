@@ -352,26 +352,27 @@ class Base{
         }
         
 //        var_dump($data);exit;
-        //$i='';
+        $i=0;
         if(count($data)>0){
             
             foreach($data as $key=>$value){
                 $qiniu_prefix = substr(strrchr($value['urlbase'], "/"),1);
                 foreach($resolution as $res){
                     //substr(strrchr($str, "|"), 1);
+                    print_r(i++);
                     $img_name = 'bing/'.$qiniu_prefix.'_'.$res.'.jpg';
                     $items = $this->fetchToQiniu($value['url'],$img_name);
                     //array_push($somes,$items);
                 }
                 sleep(10);
                 $update_sql = 'update bing set qiniu_url="'.$$qiniu_prefix.'" where id='.$value['id'];
-                $somes[] = $update_sql;
+                //$somes[] = $update_sql;
                 DBHelper::opearting($update_sql);
                 //$i++;
             }
             
         }
-        var_dump($somes);
+        //var_dump($somes);
         
     }
     
