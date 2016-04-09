@@ -16,9 +16,9 @@ use Qiniu\Auth;
 // 引入上传类
 use Qiniu\Storage\BucketManager;
     
-
+echo 1;exit;
 class Base{
-    
+
     /**
      * 上传到七牛
      * @param [[Type]] $imgurl  远程图片路径
