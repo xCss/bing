@@ -7,6 +7,7 @@
 date_default_timezone_set('Asia/Shanghai');//'Asia/Shanghai'   亚洲/上海
 
 require_once 'autoload.php';
+require_once 'config.php'
 require_once 'db.php';
 
 // 引入鉴权类
@@ -17,9 +18,6 @@ use Qiniu\Storage\BucketManager;
     
 
 class Base{
-    public $qiniuCDN = 'https://dn-ioliu.qbox.me/bing/';
-    public $qiniuAK = '*******************************';
-    public $qiniuSK = '*******************************';
     
     /**
      * 上传到七牛
@@ -28,7 +26,7 @@ class Base{
      */
     function fetchToQiniu($imgurl,$imgname){
         // 构建鉴权对象
-        $auth = new Auth($this->qiniuAK, $this->qiniuSK);
+        $auth = new Auth(QINIUAK,QINIUSK);
         //echo $auth;
         // 要上传的空间
         $bucket = 'ioliu';
@@ -132,7 +130,7 @@ class Base{
             
             $data[$i] = $row;
             $data[$i]['date'] = date('Y-m-d',strtotime($row['enddate']));
-            $data[$i]['img_url'] = $this->qiniuCDN.$row['qiniu_url'].'_1920x1080.jpg';
+            $data[$i]['img_url'] = QINIUCDN.$row['qiniu_url'].'_1920x1080.jpg';
             
             $i++;
             
@@ -180,7 +178,7 @@ class Base{
             
             $data[$i] = $row;
             $data[$i]['date'] = date('Y-m-d',strtotime($row['enddate']));
-            $data[$i]['img_url'] = $this->qiniuCDN.$row['qiniu_url'].'_1280x768.jpg';
+            $data[$i]['img_url'] = QINIUCDN.$row['qiniu_url'].'_1280x768.jpg';
             
             $i++;
             
