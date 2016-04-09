@@ -18,8 +18,8 @@ use Qiniu\Storage\BucketManager;
 
 class Base{
     public $qiniuCDN = 'https://dn-ioliu.qbox.me/bing/';
-    public $accessKey = 'e8qjVjHZTMUgNFKV6FevcjIRy8Ld99V-z2Io0trS';
-    public $secretKey = 'L6_wdVZEcU_Krf8aF6f9g8hfeFDfliWBhX-AGfLi';
+    public $qiniuAK = '*******************************';
+    public $qiniuSK = '*******************************';
     
     /**
      * 上传到七牛
@@ -28,7 +28,7 @@ class Base{
      */
     function fetchToQiniu($imgurl,$imgname){
         // 构建鉴权对象
-        $auth = new Auth($this->accessKey, $this->secretKey);
+        $auth = new Auth($this->qiniuAK, $this->qiniuSK);
         //echo $auth;
         // 要上传的空间
         $bucket = 'ioliu';
