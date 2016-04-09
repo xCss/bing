@@ -7,7 +7,7 @@
 date_default_timezone_set('Asia/Shanghai');//'Asia/Shanghai'   亚洲/上海
 
 require_once 'autoload.php';
-require_once 'config.php'
+require_once 'config.php';
 require_once 'db.php';
 
 // 引入鉴权类
@@ -16,7 +16,6 @@ use Qiniu\Auth;
 // 引入上传类
 use Qiniu\Storage\BucketManager;
     
-echo 1;exit;
 class Base{
 
     /**
