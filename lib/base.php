@@ -384,8 +384,9 @@ class Base{
         $sql = "insert into bing(startdate,enddate,fullstartdate,hsh,url,urlbase,copyright,copyrightlink) values('".$obj['startdate']."','".$obj['enddate']."','".$obj['fullstartdate']."','".$obj['hsh']."','".$obj['url']."','".$obj['urlbase']."','".$obj['copyright']."','".$obj['copyrightlink']."')";
         
         DBHelper::opearting($sql);
-        
-        self::putQiniu();
+        if(mysqli_affected_rows()>0){
+            self::putQiniu();
+        }
         
     }
     
