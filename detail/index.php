@@ -36,9 +36,9 @@ $pic = $api -> getPicById($id);
             <h2>#<?php echo $pic['date']; ?># <?php echo $pic['copyright']; ?></h2>
             <p><?php echo $pic['description']?></p>
             <p>
-                <a target="_blank" href="<?php echo $pic['copyrightlink']; ?>" class="button">搜索</a>
-                <a target="_blank" href="<?php echo $pic['url']; ?>" class="button">下载</a>
-                <a target="_blank" href="http://service.weibo.com/share/share.php?url=<?php echo urlencode('http://'.$_SERVER['HTTP_HOST'].'/detail?id='.$pic['id']); ?>&title=<?php echo urlencode('#必应壁纸# '.$pic['date'].' / #'.$pic['title'].'# '.$pic['description']); ?>&appkey=1833831541&pic=<?php echo urlencode($pic['url']);?>" class="button">分享</a>
+                <a target="_blank" rel='nofollow' href="<?php echo $pic['copyrightlink']; ?>" class="button">搜索</a>
+                <a target="_blank" rel='nofollow' href="<?php echo $pic['url']; ?>" class="button">下载</a>
+                <a target="_blank" rel='nofollow' href="http://service.weibo.com/share/share.php?url=<?php echo urlencode('http://'.$_SERVER['HTTP_HOST'].'/detail?id='.$pic['id']); ?>&title=<?php echo urlencode('#必应壁纸# '.$pic['date'].' / #'.$pic['title'].'# '.$pic['description']); ?>&appkey=1833831541&pic=<?php echo urlencode($pic['url']);?>" class="button">分享</a>
             </p>
         </div>
     </div>
@@ -60,7 +60,7 @@ $pic = $api -> getPicById($id);
                         <p>2. 访问 <a href="/bing?d=0" target="_blank" >https://api.ioliu.cn/bing?d=n</a> (n>=0, max=<span class="max">00</span>), 返回以当日为起点n天前的壁纸. 可选参数[w,h] </p>
                         <p>3. 访问 <a href="/bing/json" target="_blank" >https://api.ioliu.cn/bing/json</a> , 返回bing每日最新壁纸的相关(介绍、图片地址等)信息(json格式).</p>
                         <p>4. 访问 <a href="/bing/rand" target="_blank" >https://api.ioliu.cn/bing/rand</a> , 返回随机图片. 可选参数[w,h]</p>
-                        <p>目前已知分辨率[w,h]请点击 → <a href="https://github.com/Eary/bing#目前已知分辨率">https://github.com/Eary/bing</a> </p>
+                        <p>目前已知分辨率[w,h]请点击 → <a rel='nofollow' href="https://github.com/Eary/bing#目前已知分辨率">https://github.com/Eary/bing</a> </p>
                     </section>
                     <section>
                         <h2>Follow me on ...</h2>
@@ -69,13 +69,13 @@ $pic = $api -> getPicById($id);
                             <li><a target="_blank" href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
                             <li><a target="_blank" href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
                             <li><a target="_blank" href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>-->
-                            <li><a target="_blank" href="http://github.com/eary/bing" class="icon fa-github"><span class="label">GitHub</span></a></li>
-                            <li><a target="_blank" href="http://weibo.com/1842336184" class="icon fa-weibo"><span class="label">Weibo</span></a></li>
-                            <li><a target="_blank" href="mailto:yy.liu@foxmail.com" class="icon fa-envelope"><span class="label">Mail</span></a></li>
+                            <li><a target="_blank" rel='nofollow' href="http://github.com/eary/bing" class="icon fa-github"><span class="label">GitHub</span></a></li>
+                            <li><a target="_blank" rel='nofollow' href="http://weibo.com/1842336184" class="icon fa-weibo"><span class="label">Weibo</span></a></li>
+                            <li><a target="_blank" rel='nofollow' href="mailto:yy.liu@foxmail.com" class="icon fa-envelope"><span class="label">Mail</span></a></li>
                         </ul>
                     </section>
                     <p class="copyright">
-                        <a href="http://www.miitbeian.gov.cn/">粤ICP备15050037号</a>
+                        <a rel='nofollow' href="http://www.miitbeian.gov.cn/">粤ICP备15050037号</a>
                         &copy; 2016. <a href="/">ioliu.cn</a>. POWERED BY Bing.
                     </p>
                 </div>
