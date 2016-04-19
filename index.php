@@ -18,9 +18,9 @@ $pics = $api -> getPicsByPagin($p);
 		<title>
             <?php
             if($p>1){
-                echo '第'.$pics['page']['pageNo'].'页 - 缤纷壁纸 ';
+                echo '第'.$pics['page']['pageNo'].'页 - 必应壁纸 ';
             }else {
-                echo '首页 - 缤纷壁纸 ';
+                echo '首页 - 必应壁纸 ';
             }
             ?>
               
@@ -31,7 +31,7 @@ $pics = $api -> getPicsByPagin($p);
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-        <meta name="keywords" content="Bing,必应壁纸,bing壁纸api,Bing最新壁纸,壁纸分享,高清壁纸下载,缤纷壁纸">
+        <meta name="keywords" content="Bing,必应壁纸,bing壁纸api,Bing最新壁纸,壁纸分享,高清壁纸下载,必应壁纸">
         <meta name="description" content="风景, 这边独好。">
 	    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
         <meta name="author" content="Bitmoe · eary">
@@ -52,8 +52,8 @@ $pics = $api -> getPicsByPagin($p);
 						<nav>
 							<ul>
 								<li><a href="#footer" class="icon fa-info-circle">About</a></li>
-								<li><a href="?p=<?php echo $pics['page']['prevNo'] ?>" class=""><i class="icon fa-chevron-circle-left"></i> PREV</a></li>
-								<li><a href="?p=<?php echo $pics['page']['nextNo'] ?>" class="">NEXT <i class="icon fa-chevron-circle-right"></i></a></li>
+								<li><a href="/<?php echo $pics['page']['prevNo'] ?>" class=""><i class="icon fa-chevron-circle-left"></i> PREV</a></li>
+								<li><a href="/<?php echo $pics['page']['nextNo'] ?>" class="">NEXT <i class="icon fa-chevron-circle-right"></i></a></li>
 							</ul>
 						</nav>
 					</header>
@@ -67,7 +67,7 @@ $pics = $api -> getPicsByPagin($p);
                                 <a href="'.$value['img_url'].'" class="image"><img src="'.$value['img_url'].'" alt="" /></a>
                                 <h2>#'.$value['date'].'# '.$value['copyright'].'</h2>
                                 <p>
-                                    <a target="_blank" href="'.'http://'.$_SERVER['HTTP_HOST'].'/detail/?id='.$value['id'].'" class="button">详情</a>
+                                    <a target="_blank" href="'.'http://'.$_SERVER['HTTP_HOST'].'/detail/'.$value['id'].'" class="button">详情</a>
                                     <a target="_blank" rel="nofollow" href="'.$value['url'].'" class="button">下载</a>
                                     <a target="_blank" rel="nofollow" href="http://service.weibo.com/share/share.php?url='.urlencode('http://'.$_SERVER['HTTP_HOST'].'/detail?id='.$value['id']).'&title='.urlencode('#必应壁纸# '.$value['date'].' / #'.$value['title'].'# '.$value['description']).'&appkey=1833831541&pic='.urlencode($value['url']).'" class="button">分享</a>
                                 </p>

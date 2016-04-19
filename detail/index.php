@@ -6,7 +6,6 @@
 * Follow https://github.com/eary/bing
 */
 require('../lib/base.php');
-echo $_SERVER['PHP_SELF'];exit;
 $id = $_REQUEST['id'];
 $api = new Base();
 $pic = $api -> getPicById($id);
@@ -38,7 +37,7 @@ $pic = $api -> getPicById($id);
             <p>
                 <a target="_blank" rel='nofollow' href="<?php echo $pic['copyrightlink']; ?>" class="button">搜索</a>
                 <a target="_blank" rel='nofollow' href="<?php echo $pic['url']; ?>" class="button">下载</a>
-                <a target="_blank" rel='nofollow' href="http://service.weibo.com/share/share.php?url=<?php echo urlencode('http://'.$_SERVER['HTTP_HOST'].'/detail?id='.$pic['id']); ?>&title=<?php echo urlencode('#必应壁纸# '.$pic['date'].' / #'.$pic['title'].'# '.$pic['description']); ?>&appkey=1833831541&pic=<?php echo urlencode($pic['url']);?>" class="button">分享</a>
+                <a target="_blank" rel='nofollow' href="http://service.weibo.com/share/share.php?url=<?php echo urlencode('http://'.$_SERVER['HTTP_HOST'].'/detail/'.$pic['id']); ?>&title=<?php echo urlencode('#必应壁纸# '.$pic['date'].' / #'.$pic['title'].'# '.$pic['description']); ?>&appkey=1833831541&pic=<?php echo urlencode($pic['url']);?>" class="button">分享</a>
             </p>
         </div>
     </div>
