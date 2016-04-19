@@ -6,7 +6,7 @@
 * Follow https://github.com/eary/bing
 */
 require('../lib/base.php');
-echo $_SERVER['SCRIPT_URI'];exit;
+echo $_SERVER['PHP_SELF'];exit;
 $id = $_REQUEST['id'];
 $api = new Base();
 $pic = $api -> getPicById($id);
