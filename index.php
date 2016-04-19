@@ -69,7 +69,7 @@ $pics = $api -> getPicsByPagin($p);
                                 <p>
                                     <a target="_blank" href="'.'http://'.$_SERVER['HTTP_HOST'].'/detail/'.$value['id'].'" class="button">详情</a>
                                     <a target="_blank" rel="nofollow" href="'.$value['url'].'" class="button">下载</a>
-                                    <a target="_blank" rel="nofollow" href="http://service.weibo.com/share/share.php?url='.urlencode('http://'.$_SERVER['HTTP_HOST'].'/detail?id='.$value['id']).'&title='.urlencode('#必应壁纸# '.$value['date'].' / #'.$value['title'].'# '.$value['description']).'&appkey=1833831541&pic='.urlencode($value['url']).'" class="button">分享</a>
+                                    <a target="_blank" rel="nofollow" href="http://service.weibo.com/share/share.php?url='.urlencode('http://'.$_SERVER['HTTP_HOST'].'/detail/'.$value['id']).'&title='.urlencode('#必应壁纸# '.$value['date'].' / #'.$value['title'].'# '.$value['description']).'&appkey=1833831541&pic='.urlencode($value['url']).'" class="button">分享</a>
                                 </p>
                             </article>';
                             
