@@ -350,27 +350,19 @@ class Base{
         
         }
         
-//        var_dump($data);exit;
-        //$i=0;
         if(count($data)>0){
             
             foreach($data as $key=>$value){
                 $qiniu_prefix = substr(strrchr($value['urlbase'], "/"),1);
                 foreach($resolution as $res){
-                    //substr(strrchr($str, "|"), 1);
-                    //echo i++;
                     $img_name = 'bing/'.$qiniu_prefix.'_'.$res.'.jpg';
                     $items = $this->fetchToQiniu($value['url'],$img_name);
-                    //array_push($somes,$items);
                 }
                 $update_sql = 'update bing set qiniu_url="'.$qiniu_prefix.'" where id='.$value['id'];
-                //$somes[] = $update_sql;
                 DBHelper::opearting($update_sql);
-                //$i++;
             }
             
         }
-        //print_r($somes);
         
     }
     
@@ -457,6 +449,9 @@ class Base{
         $end = date("Ymd");
         
         if(!self::existsLocalOnDate($end)) self::getPicAtAll();
+        
+        //检查是否有新图片的同时检查数据库中是否有未上传到七牛的图片
+        self::putQiniu();
         
     }
     
