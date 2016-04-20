@@ -5,10 +5,10 @@
  * 
  * Specific usage:
  * 
- * tools.get('https://api.ioliu.cn/daily/api.php',function(res){
+ * tools.get('https://api.ioliu.cn/bing/json',function(res){
  *     console.log(res);
  *     if(res){
- *         tools.getSelector('.daily').innerHTML = res['text'];
+ *         tools.getSelector('.bing').innerHTML = "<a target='_blank' href='"+res['copyrightlink']+"' >"+res['copyright']+"</a>";
  *     }
  * },'json');
  * 
@@ -16,12 +16,17 @@
  */
 
 (function(win,doc){
+    
     "use strict";
+    
     var tools = {
-        ajax:function(method,url,params,callback,ctype,sync){
+        
+        ajax: function(method,url,params,callback,ctype,sync){
             method = method.toUpperCase();
-            if(method!=='POST'&&method!=='GET') method = 'GET';
-            if(!sync) sync = true;
+            if(method !== 'POST' && method !=='GET' ) 
+                method = 'GET';
+            if(!sync) 
+                sync = true;
             if(typeof params === 'function'){
                 ctype = callback;
                 callback = params;
@@ -34,7 +39,7 @@
             }
             xhr.onreadystatechange = function(){
                 if(xhr.readyState === 4 && xhr.status === 200){
-                    if(ctype==='json'){
+                    if(ctype === 'json'){
                         callback && callback(JSON.parse(xhr.responseText));
                     }else{
                         callback && callback(xhr.responseText);
@@ -55,15 +60,20 @@
                 xhr.send(param.slice(1,param.length));
             }else xhr.send();
         },
-        post:function(url,params,callback,ctype,sync){
+        
+        post: function(url,params,callback,ctype,sync){
             tools.ajax('POST',url,params,callback,ctype,sync);
         },
-        get:function(url,params,callback,ctype,sync){
+        
+        get: function(url,params,callback,ctype,sync){
             tools.ajax('GET',url,params,callback,ctype,sync);
         },
-        getSelector:function(selector){
+        
+        getSelector: function(selector){
             return doc.querySelector(selector);
         }
     };
+    
     win.tools = tools;
+    
 })(window,document);
