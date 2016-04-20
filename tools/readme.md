@@ -4,6 +4,8 @@
 # tools.js 使用方法  
 1. 引入 `<script src="https://api.ioliu.cn/tools/tools.js"></script>` 到页面最底部`</body>`之前。
 2. 使用方式和`$.ajax`/`$.get`/`$.post` 完全一样, 直接调用`tools.ajax`/`tools.get`/`tools.post`。  
+
+# example
 ```js
 tools.get('https://api.ioliu.cn/bing/json',function(res){
     console.log(res);
