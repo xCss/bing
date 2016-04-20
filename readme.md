@@ -47,7 +47,7 @@
     date: "2016-04-20"
 }
 ```  
-可以配合 [tools.js](/tools/tools.js) 使用 (不依赖jQuery)
+可以配合 [tools.js](https://github.com/eary/tools) 使用 (不依赖jQuery)
  
 ## [更新日志 / Changelog](https://github.com/Eary/bing/wiki/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97---Changelog )
 
