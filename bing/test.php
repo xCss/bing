@@ -1,9 +1,3 @@
-
 <?php
-
-require_once('../lib/base.php');
-$base = new Base();
-$base->putQiniu();
-
-//phpinfo();
+   echo  date('Y-m-d H:i:s')."from ioliu.cn \n";
 ?>
