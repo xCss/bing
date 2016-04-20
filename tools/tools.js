@@ -20,7 +20,15 @@
     "use strict";
     
     var tools = {
-        
+        /***
+         * Ajax Method
+         * @param method    [request method: get / post]
+         * @param url       [request url]
+         * @param params    [request params: {'name':'zhangsan',...}]
+         * @param callback  [callback function]
+         * @param ctype     [result type: json / other]
+         * @param sync      [asynchronous call: true / false]
+         */
         ajax: function(method,url,params,callback,ctype,sync){
             method = method.toUpperCase();
             if(method !== 'POST' && method !=='GET' ) 
