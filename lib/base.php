@@ -477,5 +477,19 @@ class Base{
         
     }
     
+    /*
+    * 高斯模糊
+    */
+    function imageBlur($url,$w,$h){
+        if($w&&$h){
+            $url = str_replace('1920x1080',$w.'x'.$h,$url);
+        }
+        $img = imagecreatefromjpeg($url);
+        imagefilter($img,IMG_FILTER_GAUSSIAN_BLUR);
+        header('Content-Type: image/jpeg');
+        imagejpeg($img);
+        imagedestroy($img);
+    }
+    
 }
 ?>
