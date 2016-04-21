@@ -11,6 +11,7 @@ $w = $_REQUEST['w'];
 $h = $_REQUEST['h'];
 $base = new Base();
 
+    echo 1;exit;
 
 if($d){
     $img = $base->getPicOnDay($d);
