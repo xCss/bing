@@ -4,6 +4,8 @@
 * Link https://api.ioliu.cn 
 * Follow https://github.com/eary/bing
 */
+phpinfo();exit;
+
 require('../lib/base.php');
 
 $d = $_REQUEST['d'];
