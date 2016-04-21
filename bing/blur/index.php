@@ -4,8 +4,6 @@
 * Link https://api.ioliu.cn 
 * Follow https://github.com/eary/bing
 */
-
-
 require('../lib/base.php');
 
 $d = $_REQUEST['d'];
@@ -21,6 +19,7 @@ if($d){
 }else{
     $img = $base->getLastPic();
     $url = $img['url'];
+    echo $url;exit;
     $base -> imageBlur($url,$w,$h);
 }
 
