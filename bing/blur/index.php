@@ -15,6 +15,7 @@ $base = new Base();
 if($d){
     $img = $base->getPicOnDay($d);
     $url = $img['url'];
+    echo $url.'0';exit;
     $base -> imageBlur($url,$w,$h);
 }else{
     $img = $base->getLastPic();
