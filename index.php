@@ -31,7 +31,7 @@ $pics = $api -> getPicsByPagin($p);
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-        <meta name="keywords" content="Bing,必应壁纸,bing壁纸api,Bing最新壁纸,壁纸分享,高清壁纸下载,必应壁纸">
+        <meta name="keywords" content="Bing,必应壁纸,bing壁纸api,Bing每日壁纸,壁纸分享,高清壁纸下载,必应壁纸">
         <meta name="description" content="风景, 这边独好。">
 	    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
         <meta name="author" content="Bitmoe · eary">
@@ -47,8 +47,7 @@ $pics = $api -> getPicsByPagin($p);
 
 				<!-- Header -->
 					<header id="header">
-						<!--<h1><a href="index.html"><strong>Bing Pictures.</strong> by ioliu.cn</a></h1>-->
-						<h1><a href="/"><strong>&copy; Bing.</strong></a></h1>
+						<h1><a href="/"><strong>&copy; ioliu.cn.</strong></a></h1>
 						<nav>
 							<ul>
 								<li><a href="#footer" class="icon fa-info-circle">About</a></li>
