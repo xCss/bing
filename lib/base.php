@@ -9,7 +9,6 @@ date_default_timezone_set('Asia/Shanghai');//'Asia/Shanghai'   亚洲/上海
 require_once 'autoload.php';
 require_once 'config.php';
 require_once 'db.php';
-
 // 引入鉴权类
 use Qiniu\Auth;
 
@@ -481,14 +480,16 @@ class Base{
     * 高斯模糊
     */
     function imageBlur($url,$w,$h){
+        ini_set('display_errors',1);  
         if($w&&$h){
             $url = str_replace('1920x1080',$w.'x'.$h,$url);
-        }
-        $img = imagecreatefromjpeg($url);
-        imagefilter($img,IMG_FILTER_GAUSSIAN_BLUR);
-        header('Content-Type: image/jpeg');
-        imagejpeg($img);
-        imagedestroy($img);
+        }  
+        $image = new Imagick();
+        $image -> readImageBlob(file_get_contents($url));
+        $image -> gaussianBlurImage(15,5);
+        header('Content-type: image/jpeg');
+        echo $image->getImageBlob();
+        
     }
     
 }
