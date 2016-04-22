@@ -7,10 +7,11 @@
  - 2. 访问 https://api.ioliu.cn/bing?d=n (n>=0), 返回以当日为起点第n天前的壁纸, 可选参数`[w,h]`
  - 3. 访问 https://api.ioliu.cn/bing/json , 返回bing每日最新壁纸的相关(介绍、图片地址等)信息(json格式).  
  - 4. 访问 https://api.ioliu.cn/bing/rand , 返回随机图片, 可选参数`[w,h]`
+ - 5. 访问 https://api.ioliu.cn/bing/blur/ , 返回`高斯模糊`图片, 可选参数`[d,w,h]`
  
 带`[w,h]`用法： https://api.ioliu.cn/bing/rand?w=1920&h=1200  
 
-### 目前已知分辨率[w,h]
+### 目前已知分辨率`[w,h]`
 ```   
 1920x1200   
 1920x1080    
