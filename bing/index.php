@@ -5,6 +5,7 @@
 * Link https://api.ioliu.cn 
 * Follow https://github.com/eary/bing
 */
+header('Access-Control-Allow-Origin:*');  
 require('../lib/base.php');
 
 $d = $_REQUEST['d'];

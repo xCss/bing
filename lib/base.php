@@ -4,6 +4,7 @@
 * Link https://api.ioliu.cn 
 * Follow https://github.com/eary/bing
 */
+
 date_default_timezone_set('Asia/Shanghai');//'Asia/Shanghai'   亚洲/上海
 
 require_once 'autoload.php';
@@ -486,9 +487,10 @@ class Base{
         }  
         $image = new Imagick();
         $image -> readImageBlob(file_get_contents($url));
-        $image -> gaussianBlurImage(15,5);
-        header('Content-type: image/jpeg');
-        echo $image->getImageBlob();
+        $image -> gaussianBlurImage(5,3);
+        
+        header('Content-type: image/jpg');
+        echo $image->getImageBlob;
         
     }
     
