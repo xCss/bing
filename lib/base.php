@@ -147,7 +147,7 @@ class Base{
     */
     function getPicsByPagin($pageNo=1,$pageSize=9){
         
-        self::checkNewOnBing();
+        //self::checkNewOnBing();
         
         $sum = self::getCount();
         
@@ -177,7 +177,7 @@ class Base{
             
             $data[$i] = $row;
             $data[$i]['date'] = date('Y-m-d',strtotime($row['enddate']));
-            $data[$i]['img_url'] = QINIUCDN.$row['qiniu_url'].'_1280x768.jpg';
+            $data[$i]['img_url'] = QINIUCDN.$row['qiniu_url'].'_1920x1080.jpg';
             
             $i++;
             
@@ -338,7 +338,7 @@ class Base{
             '240x320'
         );
         
-        $sql = 'select id,url,urlbase from bing where ISNULL(qiniu_url) || qiniu_url="" order by id limit 10';
+        $sql = 'select id,url,urlbase from bing where ISNULL(qiniu_url) || qiniu_url="" || qiniu_url="0" order by id limit 3';
         
         $rs = DBHelper::opearting($sql);
         
@@ -350,18 +350,19 @@ class Base{
         
         }
         
+        
         if(count($data)>0){
-            
             foreach($data as $key=>$value){
                 $qiniu_prefix = substr(strrchr($value['urlbase'], "/"),1);
                 foreach($resolution as $res){
                     $img_name = 'bing/'.$qiniu_prefix.'_'.$res.'.jpg';
-                    $items = $this->fetchToQiniu($value['url'],$img_name);
+                    $fetch_url =  str_replace('1920x1080',$res,$value['url']);
+                    $items = $this->fetchToQiniu($fetch_url,$img_name);
                 }
                 $update_sql = 'update bing set qiniu_url="'.$qiniu_prefix.'" where id='.$value['id'];
                 DBHelper::opearting($update_sql);
             }
-            
+            echo '<script>window.location.reload();</script>';
         }
         
     }

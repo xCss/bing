@@ -133,6 +133,11 @@ $(function(){
     var calc = Math.floor((new Date(now - startDate)) / 1000 / 60 / 60 / 24);
     
     $('.max').html(calc);
+	console.time('loadJson');
+	$.get('./bing/json/index.php',function(data){
+		console.log(data);
+		console.timeEnd('loadJson');
+	},'json');
     
     
     //百度统计
