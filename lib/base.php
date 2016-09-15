@@ -93,7 +93,7 @@ class Base{
             $data[$i] = $row;
             $data[$i]['date'] = date('Y-m-d',strtotime($row['enddate']));
             
-            $i++;
+            $i++; 
             
         }
         
