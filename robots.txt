@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /daily/
-Disallow: /bing/test.php
-
-Sitemap: /sitemap.xml
