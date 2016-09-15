@@ -1,9 +1,9 @@
 <?php
 
 /**
-* CopyRight Bitmoe · eary
+* CopyRight Bitmoe · xCss
 * Link https://api.ioliu.cn 
-* Follow https://github.com/eary/bing
+* Follow https://github.com/xCss/bing
 */
 class DBHelper{
     

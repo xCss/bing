@@ -1,8 +1,8 @@
 <?php 
 /**
-* CopyRight Bitmoe · eary
+* CopyRight Bitmoe · xCss
 * Link https://api.ioliu.cn 
-* Follow https://github.com/eary/bing
+* Follow https://github.com/xCss/bing
 */
 
 date_default_timezone_set('Asia/Shanghai');//'Asia/Shanghai'   亚洲/上海

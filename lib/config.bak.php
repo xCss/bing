@@ -1,8 +1,8 @@
 <?php
 /**
-* CopyRight Bitmoe · eary
+* CopyRight Bitmoe · xCss
 * Link https://api.ioliu.cn 
-* Follow https://github.com/eary/bing
+* Follow https://github.com/xCss/bing
 */
 /*******************七牛相关********************/
 define( 'QINIUCDN' , 'https://dn-ioliu.qbox.me/bing/');
