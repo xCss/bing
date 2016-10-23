@@ -33,7 +33,7 @@ passport.use(new WeiboStrategy({
 
 
 router.get('/', passport.authenticate('weibo'), function(req, res) {
-
+    console.log(res.cookie());
 });
 
 router.get('/callback', passport.authenticate('weibo', {

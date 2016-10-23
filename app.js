@@ -8,6 +8,8 @@ var sassMiddleware = require('node-sass-middleware');
 var index = require('./routes/index');
 var weibo = require('./routes/weibo');
 var request = require('superagent');
+var session = require('express-session');
+var methodOverride = require('method-override');
 // 设置与安全相关的HTTP头的中间件
 var helmet = require('helmet');
 //
@@ -32,13 +34,19 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.enable('trust proxy');
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: true
 }));
+app.use(methodOverride());
+app.use(session({
+    secret: 'bing.ioliu.cn',
+    cookie: {
+        maxAge: 60000,
+        secure: true
+    }
+}));
+app.use(logger('dev'));
 app.use(cookieParser('sefaalsfNLjKXklasflnNLKNJLJFNlnknlkjfsLFSN'));
 // 启用 passport 组件
 app.use(passport.initialize());
