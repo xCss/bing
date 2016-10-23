@@ -572,8 +572,8 @@ input[type="radio"] {
     z-index: -1;
 }
 
-input[type="checkbox"] + label,
-input[type="radio"] + label {
+input[type="checkbox"]+label,
+input[type="radio"]+label {
     text-decoration: none;
     color: #aaa;
     cursor: pointer;
@@ -586,8 +586,8 @@ input[type="radio"] + label {
     position: relative;
 }
 
-input[type="checkbox"] + label:before,
-input[type="radio"] + label:before {
+input[type="checkbox"]+label:before,
+input[type="radio"]+label:before {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     font-family: FontAwesome;
@@ -596,8 +596,8 @@ input[type="radio"] + label:before {
     text-transform: none !important;
 }
 
-input[type="checkbox"] + label:before,
-input[type="radio"] + label:before {
+input[type="checkbox"]+label:before,
+input[type="radio"]+label:before {
     background: transparent;
     border: solid 1px #ccc;
     content: '';
@@ -611,22 +611,22 @@ input[type="radio"] + label:before {
     width: 1.65em;
 }
 
-input[type="checkbox"]:checked + label:before,
-input[type="radio"]:checked + label:before {
+input[type="checkbox"]:checked+label:before,
+input[type="radio"]:checked+label:before {
     background-color: #555;
     border-color: #555;
     color: #fff;
     content: '\f00c';
 }
 
-input[type="checkbox"]:focus + label:before,
-input[type="radio"]:focus + label:before {
+input[type="checkbox"]:focus+label:before,
+input[type="radio"]:focus+label:before {
     border-color: #00D3B7;
 }
 
-input[type="checkbox"] + label:before {}
+input[type="checkbox"]+label:before {}
 
-input[type="radio"] + label:before {
+input[type="radio"]+label:before {
     border-radius: 100%;
 }
 
@@ -677,7 +677,7 @@ input[type="radio"] + label:before {
     text-transform: none !important;
 }
 
-.icon > .label {
+.icon>.label {
     display: none;
 }
 
@@ -768,7 +768,7 @@ ul.actions.vertical li:first-child {
     padding-top: 0;
 }
 
-ul.actions.vertical li > * {
+ul.actions.vertical li>* {
     margin-bottom: 0;
 }
 
@@ -793,7 +793,7 @@ ul.actions.fit li {
     padding: 0 0 0 0.625em;
 }
 
-ul.actions.fit li > * {
+ul.actions.fit li>* {
     margin-bottom: 0;
 }
 
@@ -1061,7 +1061,7 @@ body.is-loading-1 #main {
     z-index: 2;
 }
 
-#viewer .inner > * {
+#viewer .inner>* {
     -moz-pointer-events: auto;
     -webkit-pointer-events: auto;
     -ms-pointer-events: auto;
