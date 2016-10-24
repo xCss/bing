@@ -3,5 +3,5 @@ Thumbs.db
 db.json
 *.log
 node_modules/
-static/css/*.css
+static/css/style.css
 static/css/*.map
