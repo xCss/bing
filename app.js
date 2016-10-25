@@ -21,11 +21,11 @@ console.log(new Date().toLocaleString());
 
 function scheduleCancel() {
     var counter = 1;
-    var t = schedule.scheduleJob('* * * * * *', function () {
+    var t = schedule.scheduleJob('* * * * * *', function() {
         console.log('定时器触发次数：' + counter);
         counter++;
     });
-    setTimeout(function () {
+    setTimeout(function() {
         console.log('定时器取消！');
         t.cancel();
     }, 5000);
@@ -44,10 +44,11 @@ app.use(cookieParser('bing.ioliu.cn'));
 app.use(session({
     secret: 'bing app', //secret的值建议使用随机字符串
     cookie: {
+        secure: true,
         maxAge: 60 * 30 * 1000 // 过期时间（毫秒）
-    }
-    , resave: true 
-    , saveUninitiarlized: false 
+    },
+    resave: false,
+    saveUninitiarlized: false
 }));
 app.use(logger('dev'));
 // 启用 passport 组件
@@ -68,7 +69,7 @@ app.use('/static', express.static(path.join(__dirname, 'static')));
 app.use('/', index);
 app.use('/weibo', weibo);
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
@@ -77,21 +78,21 @@ app.use(function (req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function (err, req, res, next) {
+    app.use(function(err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {
-            message: err.message
-            , error: err
+            message: err.message,
+            error: err
         });
     });
 }
 // production error handler
 // no stacktraces leaked to user
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
-        message: err.message
-        , error: {}
+        message: err.message,
+        error: {}
     });
 });
 module.exports = app;
