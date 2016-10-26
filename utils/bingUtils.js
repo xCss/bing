@@ -42,7 +42,7 @@ module.exports = {
                                 copyrightlink: data.copyrightlink,
                                 hsh: data.hsh,
                                 title: data.title,
-                                description: data.para1 || data.para2,
+                                description: data.para1 || data.para2 || '',
                                 attribute: data.attribute,
                                 country: data.Country,
                                 city: data.City,
@@ -81,6 +81,12 @@ module.exports = {
             .query(options)
             .end(function(err, res) {
                 commonUtils.convert(err, res, function(data) {
+                    data['description'] = data.para1 || data.para2 || '';
+                    data['country'] = data.Country;
+                    data['city'] = data.City;
+                    data['longitude'] = data.Longitude;
+                    data['latitude'] = data.Latitude;
+                    data['continent'] = data.Continen;
                     callback && callback(data);
                 });
             });

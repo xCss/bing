@@ -2,6 +2,7 @@
 var mysql = require('mysql');
 // 获取数据库配置
 var config = require('../configs/config').mysql_dev;
+var objectAssign = require('object-assign');
 // 使用连接池
 var pool = mysql.createPool(config);
 // 公共连接设置
@@ -24,13 +25,14 @@ module.exports = {
             size: 10
         }
         var condition = [];
-        var body = params.body;
-        var page = params.page;
+        var body = params.body || {};
+        var page = params.page || {};
+        page = objectAssign(defaultPage, page);
         for (var i in params.body) {
             condition.push(i + '="' + body[i] + '"')
         }
 
-        var sql = 'select * from ' + table + ' where ' + condition.join(' and ') + 'order by id limit ' + (page.no - 1) * page.size + ',' + page.size;
+        var sql = 'select * from ' + table + ' where ' + condition.join(' and ') + 'order by id desc limit ' + (page.no - 1) * page.size + ',' + page.size;
         pool.getConnection(function(err, connection) {
             connection.query(sql, function(err, rows) {
                 console.log(rows);

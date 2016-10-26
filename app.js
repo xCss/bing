@@ -17,7 +17,6 @@ var passport = require('passport');
 var schedule = require('node-schedule');
 // express的消息提示中间件
 var flash = require('express-flash');
-console.log(new Date().toLocaleString());
 
 function scheduleCancel() {
     var counter = 1;

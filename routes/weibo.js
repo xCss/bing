@@ -47,7 +47,7 @@ router.get('/send', function(req, res, next) {
     if (weibo.ACCESS_TOKEN === '') {
         res.redirect('/weibo');
     }
-    weiboUtils.update(req, res, next, function() {
+    weiboUtils.update(function() {
         res.redirect('/');
     });
 });
@@ -55,6 +55,9 @@ router.get('/send', function(req, res, next) {
  * 获取短链
  */
 router.get('/shorten', function(req, res, next) {
+    if (weibo.ACCESS_TOKEN === '') {
+        res.redirect('/weibo');
+    }
     var url = req.query.url;
     weiboUtils.shorten(url, function(data) {
         res.send(data);
