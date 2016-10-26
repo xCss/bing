@@ -6,5 +6,5 @@ module.exports = {
         MASTER_ACCESS_TOKEN: '',
         MASTER_UID: '5893653736',
         USER_UID: ''
-    }
+    },
 }

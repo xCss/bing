@@ -27,24 +27,36 @@ passport.use(new WeiboStrategy({
         return done(null, profile);
     });
 }));
+/**
+ * 微博认证
+ */
 router.get('/', passport.authenticate('weibo'), function(req, res) {});
+/**
+ * 认证回调
+ */
 router.get('/callback', passport.authenticate('weibo', {
     failureRedirect: '/'
 }), function(req, res, next) {
     req.session.weibo = weibo;
     res.redirect('/');
 });
+/**
+ * 发送微博
+ */
 router.get('/send', function(req, res, next) {
     if (weibo.ACCESS_TOKEN === '') {
         res.redirect('/weibo');
     }
-    weiboUtils.update(req, res, next, weibo);
+    weiboUtils.update(req, res, next, function() {
+        res.redirect('/');
+    });
 });
-router.get('/login', function(req, res) {
-    weiboUtils.login();
-});
+/**
+ * 获取短链
+ */
 router.get('/shorten', function(req, res, next) {
-    weiboUtils.shorten('http://bing.ioliu.cn', function(data) {
+    var url = req.query.url;
+    weiboUtils.shorten(url, function(data) {
         res.send(data);
     });
 });

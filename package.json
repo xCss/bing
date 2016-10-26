@@ -27,7 +27,6 @@
         "passport-weibo": "^0.1.2",
         "pug": "^2.0.0-beta6",
         "serve-favicon": "~2.3.0",
-        "sinalogin": "0.0.3",
         "superagent": "^2.3.0"
     }
 }

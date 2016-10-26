@@ -5,10 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var sassMiddleware = require('node-sass-middleware');
-var index = require('./routes/index');
-var weibo = require('./routes/weibo');
 var request = require('superagent');
 var session = require('express-session');
+var index = require('./routes/index');
+var weibo = require('./routes/weibo');
 // 设置与安全相关的HTTP头的中间件
 var helmet = require('helmet');
 // passport
@@ -28,7 +28,7 @@ function scheduleCancel() {
     setTimeout(function() {
         console.log('定时器取消！');
         t.cancel();
-    }, 5000);
+    }, 3000);
 }
 scheduleCancel();
 var app = express();
@@ -68,6 +68,16 @@ app.use(flash());
 app.use('/static', express.static(path.join(__dirname, 'static')));
 app.use('/', index);
 app.use('/weibo', weibo);
+app.get('/test', function(req, res, next) {
+    var bingUtils = require('./utils/bingUtils');
+    var dbUtils = require('./utils/dbUtils');
+    var images = [];
+    bingUtils.fetchPicture(function(data) {
+        dbUtils.get('bing', data, function(data) {
+            res.send(data);
+        });
+    });
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
