@@ -11,25 +11,26 @@ var index = require('./routes/index');
 var weibo = require('./routes/weibo');
 // 设置与安全相关的HTTP头的中间件
 var helmet = require('helmet');
-// passport
-var passport = require('passport');
-// 定时器
-var schedule = require('node-schedule');
 // express的消息提示中间件
 var flash = require('express-flash');
 
-function scheduleCancel() {
-    var counter = 1;
-    var t = schedule.scheduleJob('* * * * * *', function() {
-        console.log('定时器触发次数：' + counter);
-        counter++;
+// 定时器
+var schedule = require('node-schedule');
+var weiboUtils = require('./utils/weiboUtils');
+
+var rule = new schedule.RecurrenceRule();
+rule.minute = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
+var counter = 1;
+var t = schedule.scheduleJob(rule, function() {
+    weiboUtils.update(function(data) {
+        if (data && data.id) {
+            console.log(new Date().toLocaleString() + '发送成功！' + counter);
+            counter++;
+        } else {
+            console.log(data);
+        }
     });
-    setTimeout(function() {
-        console.log('定时器取消！');
-        t.cancel();
-    }, 3000);
-}
-scheduleCancel();
+});
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -49,10 +50,10 @@ app.use(session({
     resave: false,
     saveUninitiarlized: false
 }));
-app.use(logger('dev'));
-// 启用 passport 组件
-app.use(passport.initialize());
-app.use(passport.session());
+// 设置日志
+app.use(logger('combined', {
+    skip: function(req, res) { return res.statusCode < 400 }
+}));
 // 启用 helmet 
 app.use(helmet());
 app.use(flash());

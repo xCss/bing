@@ -4,46 +4,89 @@ var router = require('express').Router(),
     request = require('superagent'),
     weibo = require('../configs/config').weibo,
     weiboUtils = require('../utils/weiboUtils');
-// passport 组件所需要实现的接口
-passport.serializeUser(function(user, done) {
-    done(null, user);
-});
-passport.deserializeUser(function(obj, done) {
-    //console.log(done);
-    done(null, obj);
-});
-// passport 的 WeiboStrategy 所必须设置的参数
-passport.use(new WeiboStrategy({
-    clientID: weibo.CLIENT_ID,
-    clientSecret: weibo.CLIENT_SECRET,
-    forcelogin: true,
-    callbackURL: 'http://127.0.0.1:3000/weibo/callback'
-}, function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function() {
-        // 此处在服务端存储 ACCESSTOKEN 是为了后续发送微博所需要的必要参数
-        weibo.USER_UID = profile.id;
-        profile.id === weibo.MASTER_UID ? weibo.MASTER_ACCESS_TOKEN = accessToken : '';
-        weibo.ACCESS_TOKEN = accessToken;
-        return done(null, profile);
-    });
-}));
+var dbUtils = require('../utils/dbUtils');
+var cookie = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36' };
+var redirect_uri = 'http://127.0.0.1:3000/weibo/callback';
 /**
  * 微博认证
  */
-router.get('/', passport.authenticate('weibo'), function(req, res) {});
+router.get('/', function(req, res) {
+    res.redirect('https://api.weibo.com/oauth2/authorize?client_id=' + weibo.CLIENT_ID + '&redirect_uri=' + redirect_uri);
+});
+
 /**
  * 认证回调
  */
-router.get('/callback', passport.authenticate('weibo', {
-    failureRedirect: '/'
-}), function(req, res, next) {
-    req.session.weibo = weibo;
-    res.redirect('/');
+router.get('/callback', function(req, res, next) {
+    var code = req.query.code;
+    request
+        .post('https://api.weibo.com/oauth2/access_token')
+        .set(cookie)
+        .type('form')
+        .send({
+            client_id: weibo.CLIENT_ID,
+            client_secret: weibo.CLIENT_SECRET,
+            grant_type: 'authorization_code',
+            code: code,
+            redirect_uri: redirect_uri
+        })
+        .end(function(err, response) {
+            if (!err && response.status === 200) {
+                var text = JSON.parse(response.text);
+                dbUtils.get('bing_session', {
+                    uid: text.uid
+                }, function(rows) {
+                    if (rows.length === 0) {
+                        dbUtils.set('bing_session', {
+                            token: text.access_token,
+                            expires_in: text.expires_in,
+                            insertdate: Date.now(),
+                            uid: text.uid
+                        }, function(rows) {
+                            if (rows.length > 0) {
+                                var data = rows[0];
+                                if (data.uid === weibo.MASTER_UID && !weibo.MASTER_ACCESS_TOKEN) {
+                                    weibo.MASTER_ACCESS_TOKEN = data.access_token;
+                                } else {
+                                    weibo.ACCESS_TOKEN = data.access_token;
+                                    weibo.USER_UID = data.uid;
+                                }
+                                req.session['weibo'] = weibo;
+                                res.redirect('/');
+                            }
+                        });
+                    } else {
+                        var data = rows[0];
+                        dbUtils.update('bing_session', {
+                            body: {
+                                token: text.access_token,
+                                expires_in: text.expires_in,
+                            },
+                            condition: {
+                                uid: text.uid
+                            }
+                        }, function(r) {
+                            if (data.uid === weibo.MASTER_UID && !weibo.MASTER_ACCESS_TOKEN) {
+                                weibo.MASTER_ACCESS_TOKEN = data.access_token;
+                            } else {
+                                weibo.ACCESS_TOKEN = data.access_token;
+                                weibo.USER_UID = data.uid;
+                            }
+                            req.session['weibo'] = weibo;
+                            res.redirect('/');
+                        });
+                    }
+                });
+            }
+        });
 });
 /**
  * 发送微博
  */
 router.get('/send', function(req, res, next) {
+    if (req.session && req.session['weibo']) {
+        weibo = req.session['weibo'];
+    }
     if (weibo.ACCESS_TOKEN === '') {
         res.redirect('/weibo');
     }
@@ -55,6 +98,9 @@ router.get('/send', function(req, res, next) {
  * 获取短链
  */
 router.get('/shorten', function(req, res, next) {
+    if (req.session && req.session['weibo']) {
+        weibo = req.session['weibo'];
+    }
     if (weibo.ACCESS_TOKEN === '') {
         res.redirect('/weibo');
     }

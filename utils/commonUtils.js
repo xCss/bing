@@ -12,23 +12,21 @@ module.exports = {
                 var body = null;
                 if (res && res.text) {
                     body = res.text;
-                } else if (res && res.body) {
-                    body = res.body;
-                } else {
-                    body = {}
                 }
                 if (typeof body === 'string') {
                     try {
                         body = JSON.parse(body);
                     } catch (error) {
-                        console.log(error);
+                        throw new Error(error);
                     }
                 }
-                if (body.result && body.error_code && body.error) {
+                if (body.error_code || body.error) {
                     throw new Error(body);
                 } else {
                     callback && callback(body);
                 }
+            } else {
+                throw new Error(err);
             }
         } catch (error) {
             // send mail

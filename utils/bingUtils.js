@@ -42,13 +42,13 @@ module.exports = {
                                 copyrightlink: data.copyrightlink,
                                 hsh: data.hsh,
                                 title: data.title,
-                                description: data.para1 || data.para2 || '',
+                                description: description,
                                 attribute: data.attribute,
-                                country: data.Country,
-                                city: data.City,
-                                longitude: data.Longitude,
-                                latitude: data.Latitude,
-                                continent: data.Continent
+                                country: data.country,
+                                city: data.city,
+                                longitude: data.longitude,
+                                latitude: data.latitude,
+                                continent: data.continent
                             }
                             callback && callback(newData);
                         });
@@ -82,11 +82,11 @@ module.exports = {
             .end(function(err, res) {
                 commonUtils.convert(err, res, function(data) {
                     data['description'] = data.para1 || data.para2 || '';
-                    data['country'] = data.Country;
-                    data['city'] = data.City;
-                    data['longitude'] = data.Longitude;
-                    data['latitude'] = data.Latitude;
-                    data['continent'] = data.Continen;
+                    data['country'] = data.Country || '';
+                    data['city'] = data.City || '';
+                    data['longitude'] = data.Longitude || '';
+                    data['latitude'] = data.Latitude || '';
+                    data['continent'] = data.Continent || '';
                     callback && callback(data);
                 });
             });
