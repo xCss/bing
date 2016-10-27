@@ -42,7 +42,7 @@ module.exports = {
                                 copyrightlink: data.copyrightlink,
                                 hsh: data.hsh,
                                 title: data.title,
-                                description: description,
+                                description: data.description,
                                 attribute: data.attribute,
                                 country: data.country,
                                 city: data.city,

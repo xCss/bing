@@ -24,7 +24,7 @@ var counter = 1;
 var t = schedule.scheduleJob(rule, function() {
     weiboUtils.update(function(data) {
         if (data && data.id) {
-            console.log(new Date().toLocaleString() + '发送成功！' + counter);
+            console.log(new Date().toLocaleString() + ' 发送成功！' + counter);
             counter++;
         } else {
             console.log(data);

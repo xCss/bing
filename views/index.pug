@@ -16,43 +16,24 @@ block content
                 a.icon.fa-envelope(href='mail:xioveliu@gmail.com',target="_blank")
                     span.label Mail
     section#thumbnails
-        article 
-            a.thumbnail(href='http://s.cn.bing.net/az/hprichbg/rb/VaranasiBoat_ZH-CN8290748524_1920x1080.jpg')
-                img(src='http://s.cn.bing.net/az/hprichbg/rb/VaranasiBoat_ZH-CN8290748524_1920x1080.jpg')
-            h2 Diam tempus accumsan
-            p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            ul.actions
-                li
-                    a.button.small SHARE
-        article 
-            a.thumbnail(href='http://s.cn.bing.net/az/hprichbg/rb/VaranasiBoat_ZH-CN8290748524_1920x1080.jpg')
-                img(src='http://s.cn.bing.net/az/hprichbg/rb/VaranasiBoat_ZH-CN8290748524_1920x1080.jpg')
-            h2 Diam tempus accumsan
-            p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        article 
-            a.thumbnail(href='http://s.cn.bing.net/az/hprichbg/rb/VaranasiBoat_ZH-CN8290748524_1920x1080.jpg')
-                img(src='http://s.cn.bing.net/az/hprichbg/rb/VaranasiBoat_ZH-CN8290748524_1920x1080.jpg')
-            h2 Diam tempus accumsan
-            p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        article 
-            a.thumbnail(href='http://s.cn.bing.net/az/hprichbg/rb/VaranasiBoat_ZH-CN8290748524_1920x1080.jpg')
-                img(src='http://s.cn.bing.net/az/hprichbg/rb/VaranasiBoat_ZH-CN8290748524_1920x1080.jpg')
-            h2 Diam tempus accumsan
-            p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        article 
-            a.thumbnail(href='http://s.cn.bing.net/az/hprichbg/rb/VaranasiBoat_ZH-CN8290748524_1920x1080.jpg')
-                img(src='http://s.cn.bing.net/az/hprichbg/rb/VaranasiBoat_ZH-CN8290748524_1920x1080.jpg')
-            h2 Diam tempus accumsan
-            p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        article 
-            a.thumbnail(href='http://s.cn.bing.net/az/hprichbg/rb/VaranasiBoat_ZH-CN8290748524_1920x1080.jpg')
-                img(src='http://s.cn.bing.net/az/hprichbg/rb/VaranasiBoat_ZH-CN8290748524_1920x1080.jpg')
-            h2 Diam tempus accumsan
-            p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            each val in data
+                article
+                    a.thumbnail(href= val.original_pic   )
+                        img(src=val.thumbnail_pic )
+                    h2 ##{val.date}# #{val.copyright}
+                    p #{val.description}
+                    ul.actions
+                        li
+                        - var url = 'http://service.weibo.com/share/share.php?url='+encodeURIComponent('http://bing.ioliu.cn')+'&title='+encodeURIComponent('#必应壁纸# '+ val.date + '/ #'+ val.title +'# '+ val.description + '&appkey=1833831541&pic='+encodeURIComponent(val.original_pic));
+                            a.button.small(href=url,target="_blank",rel="nofollow") SHARE
+
     ul.actions.align-center
         li
             a.button.small &lt;&lt; 上页
             a.button.small 下页 &gt;&gt;
     footer#footer
         ul.copyright
-            li 2016 <b>&copy;</b> Bing Pictures.
+            li 
+                span.copy 2016 
+                b &copy; 
+                a(href='/') Bing Pictures.

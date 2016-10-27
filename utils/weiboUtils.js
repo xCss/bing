@@ -3,6 +3,7 @@ var bingUtils = require('./bingUtils');
 var commonUtils = require('./commonUtils');
 var dbUtils = require('./dbUtils');
 var weibo = require('../configs/config').weibo;
+var mailUtils = require('./mailUtils');
 var cookie = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36' };
 var update_url_text = 'https://api.weibo.com/2/statuses/upload_url_text.json';
 module.exports = {
@@ -104,10 +105,10 @@ module.exports = {
      */
     commonSend: function(data, callback) {
         module.exports.checkOauth(function(token) {
-            var date = new Date();
-            var y = date.getFullYear();
-            var m = Number(date.getMonth()) + 1 < 10 ? '0' + (Number(date.getMonth()) + 1) : Number(date.getMonth()) + 1;
-            var d = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+            var date = data.enddate;
+            var y = date.substr(0, 4);
+            var m = date.substr(4, 2);
+            var d = date.substr(6, 2);
             var full = y + '-' + m + '-' + d;
             var status = ('#必应壁纸# ' + full + ' / #' + data.title + '# ' + data.description).slice(0, 138) + '... http://t.cn/RVYI2dT';
             var post = {
@@ -178,7 +179,6 @@ module.exports = {
             }
         }, function(rows) {
             if (rows.length === 0) {
-                console.log('请先登录或者授权！');
                 callback && callback(-1);
             } else {
                 callback && callback(rows[0].token);

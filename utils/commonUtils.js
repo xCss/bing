@@ -30,7 +30,9 @@ module.exports = {
             }
         } catch (error) {
             // send mail
+            //console.log(error.message);
             console.log(error);
+            mailUtils.send(error);
         }
     }
 }
