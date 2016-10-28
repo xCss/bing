@@ -15,7 +15,7 @@ module.exports = {
             from: 'Bugs<' + user + '>',
             to: '<mail@xone.me>',
             subject: new Date().toLocaleString(),
-            html: '<pre>' + data + '</pre>'
+            html: '<pre>' + data.message + '<br>' + data.stack + '</pre>'
         }, function(err, res) {
             console.log(res);
         });
