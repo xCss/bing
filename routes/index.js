@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
         }
     };
     if (!!id && Number(id) > 0) {
-        var params['body'] = 'weibo=1 and id<' + id;
+        params['body'] = 'weibo=1 and id<' + id;
         dbUtils.getCount('bing', params, function(rows) {
             var page = {
                 prev: 1,
