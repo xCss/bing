@@ -6,7 +6,7 @@
 /**
  * 设置时区
  */
-proces.env.TZ = "Asia/Shanghai";
+process.env.TZ = "Asia/Shanghai";
 
 var app = require('../app');
 var debug = require('debug')('API:server');
