@@ -18,18 +18,14 @@ var flash = require('express-flash');
 var schedule = require('node-schedule');
 var weiboUtils = require('./utils/weiboUtils');
 
-var rule = new schedule.RecurrenceRule();
-rule.minute = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
-var counter = 1;
-var t = schedule.scheduleJob(rule, function() {
+var t = schedule.scheduleJob({ hour: [6, 15, 20], minute: 30 }, function() {
     weiboUtils.update(function(data) {
         if (data && data.id) {
-            console.log(new Date().toLocaleString() + ' 发送成功！' + counter);
-            counter++;
+            console.log(new Date().toLocaleString() + ' 发送成功！');
         } else {
             console.log(data);
         }
-    });
+    }, true);
 });
 var app = express();
 // view engine setup

@@ -40,6 +40,24 @@ module.exports = {
         module.exports.commonQuery(sql, callback);
     },
     /**
+     * 获得总条数
+     */
+    getCount: function(table, params, callback) {
+        var sql = 'select count(id) as sum from ' + table;
+        var _condition = [];
+        if (Object.prototype.toString.call(params) === '[object Object]') {
+            for (var i in params) {
+                _condition.push(i + '="' + params[i] + '"');
+            }
+            if (_condition.length > 0) {
+                sql += ' where ' + _condition.join(' and ');
+            }
+        } else if (Object.prototype.toString.call(params) === '[objcet String]') {
+            sql += ' where ' + params;
+        }
+        module.exports.commonQuery(sql, callback);
+    },
+    /**
      * 插入数据
      * @table   表名
      * @params  参数{k:v}
@@ -108,16 +126,21 @@ module.exports = {
      */
     commonQuery: function(sql, callback) {
         console.log(sql);
-        pool.getConnection(function(err, connection) {
-            connection.query(sql, function(err, rows) {
-                if (!err) {
-                    callback && callback(rows);
-                } else {
-                    // send mail
-                    console.log(err);
-                }
-                connection.release();
+        try {
+            pool.getConnection(function(err, connection) {
+                connection.query(sql, function(err, rows) {
+                    if (!err) {
+                        callback && callback(rows);
+                    } else {
+                        // send mail
+                        console.log(err);
+                    }
+                    connection.release();
+                });
             });
-        });
+        } catch (error) {
+            console.log(error);
+            callback && callback([]);
+        }
     }
 };

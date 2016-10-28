@@ -8,11 +8,11 @@ module.exports = {
         USER_UID: ''
     },
     mysql_dev: {
-        host: 'qdm16395144.my3w.com',
-        user: 'qdm16395144',
-        password: 'abc123456',
+        host: process.env.mysql_host,
+        user: process.env.mysql_user,
+        password: process.env.mysql_password,
         port: '3306',
-        database: 'qdm16395144_db',
+        database: process.env.mysql_database,
         connectionLimit: 10,
         supportBigNumbers: true,
         multipleStatements: true,

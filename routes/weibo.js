@@ -1,6 +1,4 @@
 var router = require('express').Router(),
-    passport = require('passport'),
-    WeiboStrategy = require('passport-weibo').Strategy,
     request = require('superagent'),
     weibo = require('../configs/config').weibo,
     weiboUtils = require('../utils/weiboUtils');
@@ -68,6 +66,7 @@ router.get('/callback', function(req, res, next) {
                         }, function(r) {
                             if (data.uid === weibo.MASTER_UID && !weibo.MASTER_ACCESS_TOKEN) {
                                 weibo.MASTER_ACCESS_TOKEN = data.access_token;
+                                weibo.ACCESS_TOKEN = data.access_token;
                             } else {
                                 weibo.ACCESS_TOKEN = data.access_token;
                                 weibo.USER_UID = data.uid;

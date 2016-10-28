@@ -3,7 +3,8 @@ extends layout
 block content
   div#main
     header#header
-        h1 #{title}
+        a(href='/')
+            h1 #{title}
         p #{description}
         ul.icons
             li
@@ -22,15 +23,19 @@ block content
                         img(src=val.thumbnail_pic )
                     h2 ##{val.date}# #{val.copyright}
                     p #{val.description}
+                    - var url = 'http://service.weibo.com/share/share.php?url='+encodeURIComponent('http://bing.ioliu.cn')+'&title='+encodeURIComponent('#必应壁纸# '+ val.date + '/ #'+ val.title +'# '+ val.description + '&appkey=1833831541&pic='+encodeURIComponent(val.url));
                     ul.actions
                         li
-                        - var url = 'http://service.weibo.com/share/share.php?url='+encodeURIComponent('http://bing.ioliu.cn')+'&title='+encodeURIComponent('#必应壁纸# '+ val.date + '/ #'+ val.title +'# '+ val.description + '&appkey=1833831541&pic='+encodeURIComponent(val.original_pic));
-                            a.button.small(href=url,target="_blank",rel="nofollow") SHARE
+                            a.button.small(href=url,target="_blank",rel="nofollow") 分享
+                        li 
+                            a.button.small(href=val.copyrightlink,target="_blank",rel="nofollow") 搜索
 
+    - var prev = '/?p='+page.prev;
+    - var next = '/?p='+page.next;
     ul.actions.align-center
         li
-            a.button.small &lt;&lt; 上页
-            a.button.small 下页 &gt;&gt;
+            a.button.small(href=prev) &lt;&lt; 上页
+            a.button.small(href=next) 下页 &gt;&gt;
     footer#footer
         ul.copyright
             li 

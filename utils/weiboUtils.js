@@ -10,8 +10,9 @@ module.exports = {
     /**
      * 发送微博
      * @callback
+     * @isAuto 是否自动发送(true,false)
      */
-    update: function(callback) {
+    update: function(callback, isAuto) {
         var date = new Date();
         var y = date.getFullYear();
         var m = Number(date.getMonth()) + 1 < 10 ? '0' + (Number(date.getMonth()) + 1) : Number(date.getMonth()) + 1;
@@ -24,7 +25,7 @@ module.exports = {
             if (rows.length === 0) {
                 // 如果不存在则抓取
                 bingUtils.fetchPicture({}, function(data) {
-                    module.exports.commonSend(data, callback);
+                    module.exports.commonSend(data, callback, isAuto);
                 });
             } else {
                 // 如果存在，但没有发送微博
@@ -43,10 +44,10 @@ module.exports = {
                             data['longitude'] = body.longitude;
                             data['latitude'] = body.latitude;
                             data['continent'] = body.continent;
-                            module.exports.commonSend(data, callback);
+                            module.exports.commonSend(data, callback, isAuto);
                         });
                     } else {
-                        module.exports.commonSend(data, callback);
+                        module.exports.commonSend(data, callback, isAuto);
                     }
                 } else {
                     // 如果已发送则查询上一条是否已发送
@@ -67,10 +68,10 @@ module.exports = {
                                 d['longitude'] = body.longitude;
                                 d['latitude'] = body.latitude;
                                 d['continent'] = body.continent;
-                                module.exports.commonSend(d, callback);
+                                module.exports.commonSend(d, callback, isAuto);
                             });
                         } else {
-                            module.exports.commonSend(d, callback);
+                            module.exports.commonSend(d, callback, isAuto);
                         }
                     })
 
@@ -168,11 +169,14 @@ module.exports = {
     },
     /**
      * 检查授权
-     * @state   状态:0-自动,1-手动
      * @callback
+     * @isAuto 是否自动发送(true/false)
      */
-    checkOauth: function(callback) {
+    checkOauth: function(callback, isAuto) {
         var uid = !!weibo.USER_UID ? weibo.USER_UID : weibo.MASTER_UID;
+        if (isAuto) {
+            uid = weibo.MASTER_UID;
+        }
         dbUtils.get('bing_session', {
             body: {
                 uid: uid

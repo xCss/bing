@@ -1,28 +1,47 @@
 {
-  "name": "Bing",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "supervisor node ./bin/www"
-  },
-  "dependencies": {
-    "bluebird": "^3.4.6",
-    "body-parser": "~1.15.1",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.2.0",
-    "express": "~4.13.4",
-    "express-flash": "0.0.2",
-    "express-session": "^1.14.1",
-    "helmet": "^2.3.0",
-    "morgan": "~1.7.0",
-    "mysql": "^2.11.1",
-    "node-sass-middleware": "0.8.0",
-    "node-schedule": "^1.2.0",
-    "nodemailer": "^0.7.1",
-    "object-assign": "^4.1.0",
-    "os": "^0.1.1",
-    "pug": "^2.0.0-beta6",
-    "serve-favicon": "~2.3.0",
-    "superagent": "^2.3.0"
-  }
+    "name": "bing",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "start": "supervisor node ./bin/www"
+    },
+    "author": {
+        "name": "xCss",
+        "mail": "xioveliu@gmail.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/xCss/bing.git"
+    },
+    "keywords": [
+        "Bing",
+        "BingPicture",
+        "必应图片",
+        "必应壁纸"
+    ],
+    "bugs": {
+        "url": "https://github.com/xCss/bing/issues"
+    },
+    "readme": "./readme.md",
+    "homepage": "https://github.com/xCss/bing#readme",
+    "dependencies": {
+        "bluebird": "^3.4.6",
+        "body-parser": "~1.15.1",
+        "cookie-parser": "~1.4.3",
+        "debug": "~2.2.0",
+        "express": "~4.13.4",
+        "express-flash": "0.0.2",
+        "express-session": "^1.14.1",
+        "helmet": "^2.3.0",
+        "morgan": "~1.7.0",
+        "mysql": "^2.11.1",
+        "node-sass-middleware": "0.8.0",
+        "node-schedule": "^1.2.0",
+        "nodemailer": "^0.7.1",
+        "object-assign": "^4.1.0",
+        "os": "^0.1.1",
+        "pug": "^2.0.0-beta6",
+        "serve-favicon": "~2.3.0",
+        "superagent": "^2.3.0"
+    }
 }

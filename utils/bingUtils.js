@@ -75,6 +75,10 @@ module.exports = {
      * }
      */
     fetchStory: function(options, callback) {
+        if (Object.prototype.toString.call(options) === '[object Function]') {
+            callback = options;
+            options = {};
+        }
         request
             .get(story)
             .set(cookie)
