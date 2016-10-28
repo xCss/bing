@@ -30,7 +30,7 @@ block content
                         li 
                             a.button.small(href=val.copyrightlink,target="_blank",rel="nofollow") 搜索
 
-    - var prev = page.prev==0?'/':'/?p='+page.prev;
+    - var prev = page.prev<=1?'/':'/?p='+page.prev;
     - var next = '/?p='+page.next;
     ul.actions.align-center
         li
