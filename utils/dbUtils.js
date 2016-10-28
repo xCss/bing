@@ -13,7 +13,7 @@ module.exports = {
      * @params  参数{k:v}
      * 
      * or       参数:{body:{k:v},page:{no:1,size:10}}
-     *          body:参数键值
+     *          body:参数键值(可以直接传条件字符串：'a>b or c>d')
      *          page:分页对象(no-页码，size-每页显示条数)
      * 
      * @callback
@@ -35,6 +35,8 @@ module.exports = {
             if (condition.length > 0) {
                 sql += ' where ' + condition.join(' and ');
             }
+        } else if (Object.prototype.toString.call(body) === '[object String]') {
+            sql += ' where ' + body;
         }
         sql += ' order by id desc limit ' + (page.no - 1) * page.size + ',' + page.size;
         module.exports.commonQuery(sql, callback);
@@ -43,7 +45,7 @@ module.exports = {
      * 获得总条数
      * @table   表名
      * @params  参数{k:v}
-     *          或者直接是条件字符串： 'id=1 or id=2'
+     *          或者直接是条件字符串： 'weibo=1 and id>2'
      * @callback
      */
     getCount: function(table, params, callback) {
