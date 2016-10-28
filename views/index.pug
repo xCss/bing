@@ -18,12 +18,12 @@ block content
                     span.label Mail
     section#thumbnails
             each val in data
-                article
+                article(rid=val.id)
                     a.thumbnail(href= val.original_pic   )
                         img(src=val.thumbnail_pic )
                     h2 ##{val.date}# #{val.copyright}
                     p #{val.description}
-                    - var url = 'http://service.weibo.com/share/share.php?url='+encodeURIComponent('http://bing.ioliu.cn')+'&title='+encodeURIComponent('#必应壁纸# '+ val.date + '/ #'+ val.title +'# '+ val.description + '&appkey=1833831541&pic='+encodeURIComponent(val.url));
+                    - var url = 'http://service.weibo.com/share/share.php?url='+encodeURIComponent('http://bing.ioliu.cn?id='+val.id)+'&title='+encodeURIComponent('#必应壁纸# '+ val.date + '/ #'+ val.title +'# '+ val.description + '&appkey=1833831541&pic='+encodeURIComponent(val.url));
                     ul.actions
                         li
                             a.button.small(href=url,target="_blank",rel="nofollow") 分享
