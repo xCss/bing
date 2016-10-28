@@ -41,6 +41,10 @@ module.exports = {
     },
     /**
      * 获得总条数
+     * @table   表名
+     * @params  参数{k:v}
+     *          或者直接是条件字符串： 'id=1 or id=2'
+     * @callback
      */
     getCount: function(table, params, callback) {
         var sql = 'select count(id) as sum from ' + table;
@@ -125,7 +129,7 @@ module.exports = {
      * @callback
      */
     commonQuery: function(sql, callback) {
-        console.log(sql);
+        // console.log(sql);
         try {
             pool.getConnection(function(err, connection) {
                 connection.query(sql, function(err, rows) {

@@ -17,7 +17,7 @@ var flash = require('express-flash');
 var schedule = require('node-schedule');
 var weiboUtils = require('./utils/weiboUtils');
 
-var t = schedule.scheduleJob({ hour: [6, 15, 20], minute: 30 }, function() {
+schedule.scheduleJob('0 30 6,12,18 * * *', function() {
     weiboUtils.update(function(data) {
         if (data && data.id) {
             console.log(new Date().toLocaleString() + ' 发送成功！');
@@ -26,6 +26,13 @@ var t = schedule.scheduleJob({ hour: [6, 15, 20], minute: 30 }, function() {
         }
     }, true);
 });
+var counter = 1;
+var t = schedule.scheduleJob('* * * * * *', function() {
+    console.log(new Date().toLocaleString() + ' 调用 ' + i++)
+});
+setTimeout(function() {
+    t.cacel();
+}, 3000);
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
