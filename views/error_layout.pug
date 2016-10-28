@@ -1,0 +1,34 @@
+doctype html
+html
+  head
+    //
+        BingPictrues by xCss
+        https://github.com/xCss/bing | xioveliu@gamil.com
+        
+    title= title
+    meta('charset'="utf-8")
+    meta(name="keywords",content="Bing,Bing壁纸,bing壁纸api,Bing最新壁纸,壁纸分享,壁纸下载,必应壁纸")
+    meta(name="description",content="Bing每日壁纸:风景, 这边独好。")
+    meta(name="viewport",content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1")
+    meta(name="author",content="xCss")
+    meta(http-equiv="X-UA-Compatible",content="IE=edge,chrome=1")
+    meta(name="renderer",content="webkit")
+    meta(property="wb:webmaster",content="4513019856d2091e")
+    link(rel="icon",href="/static/images/bing.ico",sizes="32x32")
+    <!--[if lte IE 8]>
+        script(src="/static/js/html5shiv.js")
+    <![endif]-->
+    <!--[if lte IE 8]>
+        link(rel="stylesheet",href="/static/css/skin/ie8.css")
+    <![endif]-->
+    <!--[if lte IE 9]>
+        link(rel="stylesheet",href="/static/css/skin/ie9.css")
+    <![endif]-->
+    noscript
+        link(rel="stylesheet",href="/static/css/skin/noscript.css")
+    link(rel='stylesheet', href='/static/css/error.css')
+    
+    script(src='/static/js/error.js')
+    
+    body(onload="generateStars()")
+        block content

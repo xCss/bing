@@ -1,6 +1,24 @@
-extends layout
+extends error_layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+    div#help
+        h1=error.status
+        h2=message
+        a.button(href='/') Go Home
+    div#land
+        div#fire
+            div.flame
+            div.flame
+            div.flame
+            div.flame
+            div.flame
+            div#logs
+                div#logOne
+                div#logTwo
+                div#flicker
+        div#ground
+    //h1= error.status
+    //p= message
+    //a.button(href='/') Home
+      
+    //pre #{error.stack}

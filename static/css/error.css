@@ -1,0 +1,327 @@
+@import './reset.css';
+body {
+    color: #fff;
+    font-size: 100%;
+    background-color: #141724;
+    margin: 0px auto;
+    font-family: sans-serif;
+    font-family: CamingoCode, 'Lantinghei SC', 'HanHei SC', 'PingFang SC', arial, 'Microsoft Yahei', georgia, verdana, helvetica, sans-serif;
+}
+
+h1 {
+    font-size: 4.25em;
+    font-weight: 700;
+}
+
+#help {
+    position: absolute;
+    color: white;
+    z-index: 1;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+#stars {
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+    position: absolute;
+    background: linear-gradient(rgba(0, 0, 0, 0.69) 0%, rgba(0, 0, 0, 0.69) 50%, #141724 100%);
+}
+
+.star {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.62);
+    border-radius: 10px;
+    box-shadow: 0 0 5px white;
+    position: absolute;
+    animation: twinkle 5s infinite;
+}
+
+#land {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0px;
+}
+
+#land img {
+    position: absolute;
+    bottom: 0px;
+}
+
+@keyframes twinkle {
+    0% {
+        opacity: 1
+    }
+    50% {
+        opacity: 0.2
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+#fire {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    bottom: -20px;
+    right: 50%;
+    margin-right: -50px;
+}
+
+#logOne {
+    width: 100px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: #917654;
+    position: absolute;
+    transform: rotate(25deg);
+    bottom: 0px;
+    margin-bottom: 50px;
+    z-index: 2;
+}
+
+#logTwo {
+    width: 100px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: #745c3d;
+    position: absolute;
+    transform: rotate(-25deg);
+    bottom: 0px;
+    margin-bottom: 50px;
+    z-index: 2;
+}
+
+.flame {
+    width: 0px;
+    height: 0px;
+    background-color: darkorange;
+    border-radius: 5px;
+    bottom: 0px;
+    transform: rotate(45deg);
+    margin-left: 25px;
+    margin-bottom: 75px;
+    position: absolute;
+    animation: fire 1s infinite;
+    animation-timing-function: linear;
+}
+
+.flame:nth-child(1) {
+    animation: fire 2s infinite;
+    animation-timing-function: linear;
+    animation-delay: 0;
+}
+
+.flame:nth-child(2) {
+    animation: fire 2s infinite;
+    animation-timing-function: linear;
+    animation-delay: 0.5s;
+}
+
+.flame:nth-child(3) {
+    animation: fire 2s infinite;
+    animation-timing-function: linear;
+    animation-delay: 1s;
+}
+
+.flame:nth-child(4) {
+    animation: fire 2s infinite;
+    animation-timing-function: linear;
+    animation-delay: 1.5s;
+}
+
+.flame:nth-child(5) {
+    animation: fire 2s infinite;
+    animation-timing-function: linear;
+    animation-delay: 2s;
+}
+
+#flicker {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 140, 0, 0.1);
+    border-radius: 40px;
+    position: absolute;
+    bottom: 0px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+    z-index: 1;
+    box-shadow: 0 0 100px darkorange;
+    animation: flick 3s infinite;
+    animation-timing-function: ease-in-out;
+}
+
+#ground {
+    width: 130%;
+    height: 25vh;
+    background-color: #121628;
+    position: absolute;
+    bottom: 0px;
+    border-radius: 100%;
+    margin-left: -15%;
+    margin-bottom: -10vh;
+    box-shadow: 0 0 100px rgb(39, 48, 64);
+}
+
+@keyframes fire {
+    0% {
+        width: 0;
+        height: 0;
+        margin-left: 50px;
+        background-color: #ffce00;
+        z-index: 1000;
+    }
+    50% {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 75px;
+        margin-left: 25px;
+        background-color: darkorange;
+    }
+    75% {
+        z-index: 1;
+    }
+    100% {
+        width: 0px;
+        height: 0px;
+        margin-bottom: 200px;
+        margin-left: 50px;
+        background-color: #ff0000;
+        z-index: 1;
+    }
+}
+
+@keyframes flick {
+    0% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0.4;
+    }
+}
+
+
+/* Button */
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button,
+.button {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    -webkit-transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out, color 0.25s ease-in-out;
+    transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out, color 0.25s ease-in-out;
+    background-color: transparent;
+    border: solid 1px #ccc;
+    color: #555;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 1;
+    padding: 0.75em 1.5em;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    margin-top: 15px;
+}
+
+.button+.button {
+    margin-left: 5px;
+}
+
+.caption input[type="submit"],
+.caption input[type="reset"],
+.caption input[type="button"],
+.caption button,
+.caption .button {
+    background-color: transparent;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+button:hover,
+.button:hover {
+    border-color: #00D3B7;
+    color: #00D3B7;
+    text-decoration: none;
+}
+
+input[type="submit"]:hover:active,
+input[type="reset"]:hover:active,
+input[type="button"]:hover:active,
+button:hover:active,
+.button:hover:active {
+    background-color: rgba(0, 211, 183, 0.15);
+}
+
+input[type="submit"].icon,
+input[type="reset"].icon,
+input[type="button"].icon,
+button.icon,
+.button.icon {
+    padding-left: 1.35em;
+}
+
+input[type="submit"].icon:before,
+input[type="reset"].icon:before,
+input[type="button"].icon:before,
+button.icon:before,
+.button.icon:before {
+    margin-right: 0.5em;
+}
+
+input[type="submit"].fit,
+input[type="reset"].fit,
+input[type="button"].fit,
+button.fit,
+.button.fit {
+    display: block;
+    margin: 0 0 0.625em 0;
+    width: 100%;
+}
+
+input[type="submit"].small,
+input[type="reset"].small,
+input[type="button"].small,
+button.small,
+.button.small {
+    font-size: 0.8em;
+}
+
+input[type="submit"].big,
+input[type="reset"].big,
+input[type="button"].big,
+button.big,
+.button.big {
+    font-size: 1.35em;
+}
+
+input[type="submit"].disabled,
+input[type="submit"]:disabled,
+input[type="reset"].disabled,
+input[type="reset"]:disabled,
+input[type="button"].disabled,
+input[type="button"]:disabled,
+button.disabled,
+button:disabled,
+.button.disabled,
+.button:disabled {
+    -moz-pointer-events: none;
+    -webkit-pointer-events: none;
+    -ms-pointer-events: none;
+    pointer-events: none;
+    opacity: 0.25;
+}
