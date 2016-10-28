@@ -25,7 +25,10 @@ module.exports = {
             if (rows.length === 0) {
                 // 如果不存在则抓取
                 bingUtils.fetchPicture({}, function(data) {
-                    module.exports.commonSend(data, callback, isAuto);
+                    dbUtils.set('bing', data, function(rows) {
+                        data.id = rows.insertId || 0;
+                        module.exports.commonSend(data, callback, isAuto);
+                    })
                 });
             } else {
                 // 如果存在，但没有发送微博
@@ -111,7 +114,7 @@ module.exports = {
             var m = date.substr(4, 2);
             var d = date.substr(6, 2);
             var full = y + '-' + m + '-' + d;
-            var status = ('#必应壁纸# ' + full + ' / #' + data.title + '# ' + data.description).slice(0, 138) + '... http://t.cn/RVYI2dT';
+            var status = ('#必应壁纸# ' + full + ' / #' + data.title + '# ' + data.description).slice(0, 138) + '... http://bing.ioliu.cn?id=' + data.id;
             var post = {
                 access_token: token,
                 status: status,
