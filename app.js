@@ -17,7 +17,7 @@ var flash = require('express-flash');
 var schedule = require('node-schedule');
 var weiboUtils = require('./utils/weiboUtils');
 
-schedule.scheduleJob('0 30 6,12,18 * * *', function() {
+schedule.scheduleJob('0 30 0,6,12,18 * * *', function() {
     weiboUtils.update(function(data) {
         if (data && data.id) {
             console.log(new Date().toLocaleString() + ' 发送成功！');
