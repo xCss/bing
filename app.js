@@ -28,10 +28,10 @@ schedule.scheduleJob('0 30 6,12,18 * * *', function() {
 });
 var counter = 1;
 var t = schedule.scheduleJob('* * * * * *', function() {
-    console.log(new Date().toLocaleString() + ' 调用 ' + i++)
+    console.log(new Date().toLocaleString() + ' 调用 ' + counter++)
 });
 setTimeout(function() {
-    t.cacel();
+    t.cancel();
 }, 3000);
 var app = express();
 // view engine setup
