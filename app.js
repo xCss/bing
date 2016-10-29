@@ -20,8 +20,8 @@ var bingUtils = require('./utils/bingUtils');
 var dbUtils = require('./utils/dbUtils');
 var mailUtils = require('./utils/mailUtils');
 
-// 每天 0 点 20 抓取
-schedule.scheduleJob('0 20 0 * * *', function() {
+// 每天 0:25 抓取
+schedule.scheduleJob('0 25 0 * * *', function() {
     bingUtils.fetchPicture({}, function(data) {
         dbUtils.set('bing', data, function(rows) {
             data.id = rows.insertId || 0;
@@ -32,8 +32,8 @@ schedule.scheduleJob('0 20 0 * * *', function() {
         })
     });
 });
-// 每天 6:20,12:20,18:20 发送微博
-schedule.scheduleJob('0 20 6,12,18 * * *', function() {
+// 每天 6:25,12:25,18:25 发送微博
+schedule.scheduleJob('0 25 6,12,18 * * *', function() {
     weiboUtils.update(function(data) {
         if (data && data.id) {
             mailUtils.send({
