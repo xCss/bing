@@ -57,7 +57,7 @@ schedule.scheduleJob('0 30 6,12,18 * * *', function() {
 
 // 每隔十分钟检查数据库中是否存在未上传到骑牛的图片，如果存在则上传图片到骑牛
 schedule.scheduleJob('0 0,10,20,30,40,50 * * * *', function() {
-    dbUtils.get('bing', 'ISNULL(qiniu_url)', function(rows) {
+    dbUtils.get('bing', 'ISNULL(qiniu_url) || qiniu_url=""', function(rows) {
         if (rows.length > 0) {
             var data = rows[0];
             var url = data.url;
@@ -94,8 +94,7 @@ app.use(session({
         secure: true,
         maxAge: 60 * 30 * 1000 // 过期时间（毫秒）
     },
-    resave: false,
-    saveUninitiarlized: false
+    resave: false
 }));
 // 设置日志
 app.use(logger('combined', {

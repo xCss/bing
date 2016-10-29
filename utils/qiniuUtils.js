@@ -35,7 +35,8 @@ module.exports = {
         for (var i = 0, len = resolutions.length; i < len; i++) {
             var _temp = resolutions[i];
             var remoteURL = imgURL.replace('1920x1080', _temp);
-            var imgName = 'bing/' + imgURL.substr(imgURL.lastIndexOf('/') + 1, imgURL.length);
+            var _tempName = 'bing/' + imgURL.substr(imgURL.lastIndexOf('/') + 1, imgURL.length);
+            var imgName = _tempName.replace('1920x1080', _temp);
             client.fetch(remoteURL, bucket, imgName, function(err, ret) {
                 if (!err) {
                     console.log(ret);
