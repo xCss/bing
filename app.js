@@ -16,8 +16,24 @@ var flash = require('express-flash');
 // 定时器
 var schedule = require('node-schedule');
 var weiboUtils = require('./utils/weiboUtils');
+var bingUtils = require('./utils/bingUtils');
+var dbUtils = require('./utils/dbUtils');
+var mailUtils = require('./utils/mailUtils');
 
-schedule.scheduleJob('0 35 0,6,12,18 * * *', function() {
+// 每天0点40抓取
+schedule.scheduleJob('0 40 0 * * *', function() {
+    bingUtils.fetchPicture({}, function(data) {
+        dbUtils.set('bing', data, function(rows) {
+            data.id = rows.insertId || 0;
+            mailUtils.send({
+                message: 'success!',
+                stack: JSON.stringify(data, '', 4)
+            });
+        })
+    });
+});
+
+schedule.scheduleJob('0 40 6,12,18 * * *', function() {
     weiboUtils.update(function(data) {
         if (data && data.id) {
             console.log(new Date().toLocaleString() + ' 发送成功！');
@@ -71,8 +87,6 @@ app.use('/static', express.static(path.join(__dirname, 'static')));
 app.use('/', index);
 app.use('/weibo', weibo);
 app.get('/test', function(req, res, next) {
-    var bingUtils = require('./utils/bingUtils');
-    var dbUtils = require('./utils/dbUtils');
     var images = [];
     bingUtils.fetchPicture(function(data) {
         dbUtils.get('bing', data, function(data) {
