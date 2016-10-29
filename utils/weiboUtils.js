@@ -63,8 +63,8 @@ module.exports = {
                             bingUtils.fetchStory({
                                 d: d.enddate
                             }, function(body) {
-                                d['url'] = body.url || 'http://7xilig.com1.z0.glb.clouddn.com/bing/' + body.qiniu_url + '_1920x1080.jpg',
-                                    d['title'] = body.title;
+                                d['url'] = body.url || 'http://7xilig.com1.z0.glb.clouddn.com/bing/' + body.qiniu_url + '_1920x1080.jpg';
+                                d['title'] = body.title;
                                 d['attribute'] = body.attribute;
                                 d['description'] = body.description;
                                 d['country'] = body.country;
@@ -72,6 +72,7 @@ module.exports = {
                                 d['longitude'] = body.longitude;
                                 d['latitude'] = body.latitude;
                                 d['continent'] = body.continent;
+                                console.log(d);
                                 module.exports.commonSend(d, callback, isAuto);
                             });
                         } else {
