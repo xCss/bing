@@ -73,6 +73,7 @@ module.exports = {
                                     d['longitude'] = body.longitude;
                                     d['latitude'] = body.latitude;
                                     d['continent'] = body.continent;
+                                    console.log(d);
                                     module.exports.commonSend(d, callback, isAuto);
                                 });
                             } else {

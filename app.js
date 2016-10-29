@@ -33,7 +33,7 @@ schedule.scheduleJob('0 59 0 * * *', function() {
     });
 });
 // 每天6:59,10:59,14:59,18:59 发送微博
-schedule.scheduleJob('0 40 6,11,14,18 * * *', function() {
+schedule.scheduleJob('0 55 6,11,14,18 * * *', function() {
     weiboUtils.update(function(data) {
         if (data && data.id) {
             mailUtils.send({
@@ -48,13 +48,6 @@ schedule.scheduleJob('0 40 6,11,14,18 * * *', function() {
         }
     }, true);
 });
-var counter = 1;
-var t = schedule.scheduleJob('* * * * * *', function() {
-    console.log(new Date().toLocaleString() + ' 调用 ' + counter++)
-});
-setTimeout(function() {
-    t.cancel();
-}, 3000);
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
