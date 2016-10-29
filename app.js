@@ -20,7 +20,7 @@ var bingUtils = require('./utils/bingUtils');
 var dbUtils = require('./utils/dbUtils');
 var mailUtils = require('./utils/mailUtils');
 
-// 每天0点20抓取
+// 每天 0 点 20 抓取
 schedule.scheduleJob('0 20 0 * * *', function() {
     bingUtils.fetchPicture({}, function(data) {
         dbUtils.set('bing', data, function(rows) {
@@ -32,7 +32,7 @@ schedule.scheduleJob('0 20 0 * * *', function() {
         })
     });
 });
-// 每天6:20,12:20,18:20 发送微博
+// 每天 6:20,12:20,18:20 发送微博
 schedule.scheduleJob('0 20 6,12,18 * * *', function() {
     weiboUtils.update(function(data) {
         if (data && data.id) {
