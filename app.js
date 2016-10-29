@@ -33,7 +33,7 @@ schedule.scheduleJob('0 40 0 * * *', function() {
     });
 });
 
-schedule.scheduleJob('0 40 6,12,18 * * *', function() {
+schedule.scheduleJob('0 40 6,10,14,18 * * *', function() {
     weiboUtils.update(function(data) {
         if (data && data.id) {
             console.log(new Date().toLocaleString() + ' 发送成功！');
