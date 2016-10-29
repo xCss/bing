@@ -57,25 +57,27 @@ module.exports = {
                     dbUtils.get('bing', {
                         weibo: 0
                     }, function(rs) {
-                        var d = rs[0];
-                        // 如果少了某个字段
-                        if (!d.title || !d.attribute || !d.description || !d.thumbnail_pic) {
-                            bingUtils.fetchStory({
-                                d: d.enddate
-                            }, function(body) {
-                                d['url'] = !!d.url && d.url || 'http://7xilig.com1.z0.glb.clouddn.com/bing/' + d.qiniu_url + '_1920x1080.jpg';
-                                d['title'] = body.title;
-                                d['attribute'] = body.attribute;
-                                d['description'] = body.description;
-                                d['country'] = body.country;
-                                d['city'] = body.city;
-                                d['longitude'] = body.longitude;
-                                d['latitude'] = body.latitude;
-                                d['continent'] = body.continent;
+                        if (rs.length > 0) {
+                            var d = rs[0];
+                            // 如果少了某个字段
+                            if (!d.title || !d.attribute || !d.description || !d.thumbnail_pic) {
+                                bingUtils.fetchStory({
+                                    d: d.enddate
+                                }, function(body) {
+                                    d['url'] = !!d.url && d.url || 'http://7xilig.com1.z0.glb.clouddn.com/bing/' + d.qiniu_url + '_1920x1080.jpg';
+                                    d['title'] = body.title;
+                                    d['attribute'] = body.attribute;
+                                    d['description'] = body.description;
+                                    d['country'] = body.country;
+                                    d['city'] = body.city;
+                                    d['longitude'] = body.longitude;
+                                    d['latitude'] = body.latitude;
+                                    d['continent'] = body.continent;
+                                    module.exports.commonSend(d, callback, isAuto);
+                                });
+                            } else {
                                 module.exports.commonSend(d, callback, isAuto);
-                            });
-                        } else {
-                            module.exports.commonSend(d, callback, isAuto);
+                            }
                         }
                     })
 
