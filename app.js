@@ -33,7 +33,7 @@ schedule.scheduleJob('0 59 0 * * *', function() {
     });
 });
 // 每天6:59,10:59,14:59,18:59 发送微博
-schedule.scheduleJob('0 27 6,11,14,18 * * *', function() {
+schedule.scheduleJob('0 40 6,11,14,18 * * *', function() {
     weiboUtils.update(function(data) {
         if (data && data.id) {
             mailUtils.send({
