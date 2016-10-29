@@ -14,7 +14,7 @@ module.exports = {
         smtpTransport.sendMail({
             from: 'Bugs<' + user + '>',
             to: '<mail@xone.me>',
-            subject: new Date().toLocaleString(),
+            subject: data.title || new Date().toLocaleString(),
             html: '<pre>' + data.message + '<br>' + data.stack + '</pre>'
         }, function(err, res) {
             if (err) {

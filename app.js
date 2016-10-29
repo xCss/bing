@@ -15,18 +15,22 @@ var flash = require('express-flash');
 
 // 定时器
 var schedule = require('node-schedule');
-var weiboUtils = require('./utils/weiboUtils');
-var bingUtils = require('./utils/bingUtils');
-var dbUtils = require('./utils/dbUtils');
-var mailUtils = require('./utils/mailUtils');
 
-// 每天 0:30 抓取
+// 各种工具类
+var dbUtils = require('./utils/dbUtils');
+var bingUtils = require('./utils/bingUtils');
+var mailUtils = require('./utils/mailUtils');
+var qiniuUtils = require('./utils/qiniuUtils');
+var weiboUtils = require('./utils/weiboUtils');
+
+// 每天 0:30 从Bing抓取数据
 schedule.scheduleJob('0 30 0 * * *', function() {
     bingUtils.fetchPicture({}, function(data) {
         dbUtils.set('bing', data, function(rows) {
             data.id = rows.insertId || 0;
             mailUtils.send({
-                message: 'success!',
+                message: '从Bing抓取成功',
+                title: '从Bing抓取成功',
                 stack: JSON.stringify(data, '', 4)
             });
         })
@@ -37,17 +41,43 @@ schedule.scheduleJob('0 30 6,12,18 * * *', function() {
     weiboUtils.update(function(data) {
         if (data && data.id) {
             mailUtils.send({
-                message: 'success!',
+                message: '发送微博成功',
+                title: '发送到博成功',
                 stack: JSON.stringify(data, '', 4)
             });
         } else {
             mailUtils.send({
-                message: 'some error!',
+                message: '发送微博失败',
+                title: '发送微博失败',
                 stack: JSON.stringify(data, '', 4)
             });
         }
     }, true);
 });
+
+// 每隔十分钟检查数据库中是否存在未上传到骑牛的图片，如果存在则上传图片到骑牛
+schedule.scheduleJob('0 0,10,20,30,40,50 * * * *', function() {
+    dbUtils.get('bing', 'ISNULL(qiniu_url)', function(rows) {
+        if (rows.length > 0) {
+            var data = rows[0];
+            var url = data.url;
+            qiniuUtils.fetchToQiniu(url, function() {
+                var _temp = url.substr(url.lastIndexOf('/') + 1, url.length);
+                var qiniu_url = _temp.substr(0, _temp.lastIndexOf('_'));
+                dbUtils.update('bing', {
+                    body: {
+                        qiniu_url: qiniu_url
+                    },
+                    condition: {
+                        id: data.id
+                    }
+                }, function(rs) {
+                    console.log(rs);
+                });
+            });
+        }
+    });
+})
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
