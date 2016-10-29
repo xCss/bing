@@ -64,7 +64,7 @@ module.exports = {
                                 bingUtils.fetchStory({
                                     d: d.enddate
                                 }, function(body) {
-                                    d['url'] = !!d.url && d.url || 'http://7xilig.com1.z0.glb.clouddn.com/bing/' + d.qiniu_url + '_1920x1080.jpg';
+                                    d['url'] = !!d.qiniu_url && 'http://7xilig.com1.z0.glb.clouddn.com/bing/' + d.qiniu_url + '_1920x1080.jpg' || d.url;
                                     d['title'] = body.title;
                                     d['attribute'] = body.attribute;
                                     d['description'] = body.description;
@@ -73,7 +73,6 @@ module.exports = {
                                     d['longitude'] = body.longitude;
                                     d['latitude'] = body.latitude;
                                     d['continent'] = body.continent;
-                                    console.log(d);
                                     module.exports.commonSend(d, callback, isAuto);
                                 });
                             } else {
