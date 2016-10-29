@@ -63,7 +63,7 @@ module.exports = {
                             bingUtils.fetchStory({
                                 d: d.enddate
                             }, function(body) {
-                                d['url'] = body.url || 'http://7xilig.com1.z0.glb.clouddn.com/bing/' + body.qiniu_url + '_1920x1080.jpg';
+                                d['url'] = !!body.url && body.url || 'http://7xilig.com1.z0.glb.clouddn.com/bing/' + body.qiniu_url + '_1920x1080.jpg';
                                 d['title'] = body.title;
                                 d['attribute'] = body.attribute;
                                 d['description'] = body.description;
