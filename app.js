@@ -113,6 +113,7 @@ app.use(flash());
 //    , debug: true
 //}));
 app.use('/static', express.static(path.join(__dirname, 'static')));
+app.use(favicon(__dirname + '/static/images/bing.ico'));
 app.use('/', index);
 app.use('/weibo', weibo);
 app.use('/v1', v1);

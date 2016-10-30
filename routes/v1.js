@@ -19,6 +19,8 @@ router.get('/rand', function(req, res, next) {
             dbUtils.get('bing', {
                 id: rand
             }, function(rs) {
+                console.log(rs);
+                console.log('rand:' + rand);
                 var data = rs[0];
                 var qiniu_url = data.qiniu_url;
                 var fullURL = qiniuUtils.imageView(qiniu_url);
