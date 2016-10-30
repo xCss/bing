@@ -148,7 +148,7 @@ var main = (function($) {
             _.$viewer.on('touchend', function() {
                 if (skel.breakpoint('medium').active) _.hide();
                 //_.isShow = !_.isShow;
-                _.$viewer.children('.inner,.caption').toggle();
+                _.$viewer.children('.inner,.slide .caption').toggle('slow');
             });
             // Touch gestures.
             _.$viewer.on('touchstart', function(event) {
