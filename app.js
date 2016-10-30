@@ -8,6 +8,7 @@ var request = require('superagent');
 var session = require('express-session');
 var index = require('./routes/index');
 var weibo = require('./routes/weibo');
+var v1 = require('./routes/v1');
 // 设置与安全相关的HTTP头的中间件
 var helmet = require('helmet');
 // express的消息提示中间件
@@ -114,6 +115,7 @@ app.use(flash());
 app.use('/static', express.static(path.join(__dirname, 'static')));
 app.use('/', index);
 app.use('/weibo', weibo);
+app.use('/v1', v1);
 app.get('/test', function(req, res, next) {
     var images = [];
     bingUtils.fetchPicture(function(data) {
