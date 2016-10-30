@@ -147,8 +147,9 @@ var main = (function($) {
             // Hide main wrapper on tap (<= medium only).
             _.$viewer.on('touchend', function() {
                 if (skel.breakpoint('medium').active) _.hide();
-                //_.isShow = !_.isShow;
-                _.$viewer.children('.inner,.slide .caption').toggle('slow');
+                _.isShow = !_.isShow;
+                var $child = _.$viewer.find('.inner,.slide .caption');
+                !_.isShow && $child.fadeIn(200) || $child.fadeOut(200);
             });
             // Touch gestures.
             _.$viewer.on('touchstart', function(event) {
