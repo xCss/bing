@@ -19,13 +19,10 @@ router.get('/rand', function(req, res, next) {
             dbUtils.get('bing', {
                 id: rand
             }, function(rs) {
-                console.log(rs);
-                console.log('rand:' + rand);
                 if (rs.length > 0) {
                     var data = rs[0];
                     var qiniu_url = data.qiniu_url;
                     var fullURL = qiniuUtils.imageView(qiniu_url);
-                    console.log(fullURL);
                     request.get(fullURL)
                         .set(cookie)
                         .end(function(err, response) {
