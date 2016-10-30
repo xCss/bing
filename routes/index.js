@@ -20,7 +20,8 @@ router.get('/', function(req, res, next) {
         dbUtils.get('bing', params, function(rows) {
             var page = {
                 prev: 1,
-                next: 2
+                next: 2,
+                curr: '首页'
             };
             common(req, res, next, page, rows);
         });
@@ -34,7 +35,8 @@ router.get('/', function(req, res, next) {
                     no: no > Math.ceil(sum / size) ? Math.ceil(sum / size) : no,
                     sum: sum,
                     next: no + 1 > Math.ceil(sum / size) ? Math.ceil(sum / size) : no + 1,
-                    prev: no - 1 >= 0 ? ((no - 1) > Math.ceil(sum / size) ? Math.ceil(sum / size) - 1 : no - 1) : 1
+                    prev: no - 1 >= 0 ? ((no - 1) > Math.ceil(sum / size) ? Math.ceil(sum / size) - 1 : no - 1) : 1,
+                    curr: no <= 1 ? '首页' : '第 ' + no + ' 页'
                 };
                 params['page'] = page;
                 dbUtils.get('bing', params, function(rows) {

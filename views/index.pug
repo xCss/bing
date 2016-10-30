@@ -23,7 +23,7 @@ block content
                         img(src=val.thumbnail_pic )
                     h2 ##{val.date}# #{val.copyright}
                     p #{val.description}
-                    - var url = 'http://service.weibo.com/share/share.php?url='+encodeURIComponent('http://bing.ioliu.cn?id='+val.id)+'&title='+encodeURIComponent('#必应壁纸# '+ val.date + '/ #'+ val.title +'# '+ val.description) + '&appkey=1833831541';
+                    - var url = 'http://service.weibo.com/share/share.php?url='+encodeURIComponent('http://bing.ioliu.cn?id='+val.id)+'&title='+encodeURIComponent('#必应壁纸# '+ val.date + ' / '+ val.description) + '&appkey=1833831541';
                     ul.actions
                         li
                             a.button.small(href=url,target="_blank",rel="nofollow") 分享
