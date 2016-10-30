@@ -36,7 +36,9 @@ router.get('/rand', function(req, res, next) {
                     res.redirect('/');
                 }
 
-            })
+            });
+        } else {
+            res.redirect('/')
         }
     });
 })
