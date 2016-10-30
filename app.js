@@ -124,7 +124,7 @@ app.get('/test', function(req, res, next) {
 });
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
+    var err = new Error('啊( ⊙ o ⊙ )，你发现了新大陆 ∑(っ °Д °;)っ');
     err.status = 404;
     next(err);
 });
