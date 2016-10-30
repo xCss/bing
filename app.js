@@ -36,13 +36,13 @@ schedule.scheduleJob('0 30 0 * * *', function() {
         })
     });
 });
-// 每天 6:30,12:30,18:30 发送微博
+// 每天 6:30,12:30,18:30 定时发送微博
 schedule.scheduleJob('0 30 6,12,18 * * *', function() {
     weiboUtils.update(function(data) {
         if (data && data.id) {
             mailUtils.send({
                 message: '发送微博成功',
-                title: '发送到博成功',
+                title: '发送微博成功',
                 stack: JSON.stringify(data, '', 4)
             });
         } else {
