@@ -7,7 +7,7 @@ var main = (function($) {
          */
         settings: {
             // Preload all images.
-            preload: false, // Slide duration (must match "duration.slide" in _vars.scss).
+            preload: true, // Slide duration (must match "duration.slide" in _vars.scss).
             slideDuration: 500, // Layout duration (must match "duration.layout" in _vars.scss).
             layoutDuration: 750, // Thumbnails per "row" (must match "misc.thumbnails-per-row" in _vars.scss).
             thumbnailsPerRow: 2, // Side of main wrapper (must match "misc.main-side" in _vars.scss).
@@ -149,7 +149,7 @@ var main = (function($) {
                 if (skel.breakpoint('medium').active) _.hide();
                 _.isShow = !_.isShow;
                 var $child = _.$viewer.find('.inner,.slide .caption');
-                !_.isShow && $child.fadeIn(350) || $child.fadeOut(350);
+                !_.isShow && $child.fadeIn(500) || $child.fadeOut(500);
             });
             // Touch gestures.
             _.$viewer.on('touchstart', function(event) {
