@@ -149,7 +149,7 @@ var main = (function($) {
                 if (skel.breakpoint('medium').active) _.hide();
                 _.isShow = !_.isShow;
                 var $child = _.$viewer.find('.inner,.slide .caption');
-                !_.isShow && $child.fadeIn(200) || $child.fadeOut(200);
+                !_.isShow && $child.fadeIn(350) || $child.fadeOut(350);
             });
             // Touch gestures.
             _.$viewer.on('touchstart', function(event) {
