@@ -1,5 +1,4 @@
 var qiniu = require('qiniu');
-var request = require('super-agent');
 // access_key and secret_key
 qiniu.conf.ACCESS_KEY = process.env.qiniu_access_key;
 qiniu.conf.SECRET_KEY = process.env.qiniu_secret_key;
