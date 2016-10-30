@@ -15,7 +15,7 @@ router.get('/rand', function(req, res, next) {
     dbUtils.getCount('bing', {}, function(rows) {
         if (rows.length > 0) {
             var sum = Number(rows[0].sum);
-            var rand = Math.random() * (sum - 1) + 1;
+            var rand = Math.floor(Math.random() * (sum - 1) + 1);
             dbUtils.get('bing', {
                 id: rand
             }, function(rs) {
