@@ -14,23 +14,28 @@ router.get('/', function(req, res, next) {
 router.get('/rand', function(req, res, next) {
     dbUtils.getCount('bing', {}, function(rows) {
         if (rows.length > 0) {
-            var sum = Number(rows[0]);
+            var sum = Number(rows[0].sum);
             var rand = Math.random() * (sum - 1) + 1;
             dbUtils.get('bing', {
                 id: rand
             }, function(rs) {
                 console.log(rs);
                 console.log('rand:' + rand);
-                var data = rs[0];
-                var qiniu_url = data.qiniu_url;
-                var fullURL = qiniuUtils.imageView(qiniu_url);
-                console.log(fullURL);
-                request.get(fullURL)
-                    .set(cookie)
-                    .end(function(err, response) {
-                        res.header('content-type', 'image/jpg');
-                        res.send(response.body);
-                    });
+                if (rs.length > 0) {
+                    var data = rs[0];
+                    var qiniu_url = data.qiniu_url;
+                    var fullURL = qiniuUtils.imageView(qiniu_url);
+                    console.log(fullURL);
+                    request.get(fullURL)
+                        .set(cookie)
+                        .end(function(err, response) {
+                            res.header('content-type', 'image/jpg');
+                            res.send(response.body);
+                        });
+                } else {
+                    res.redirect('/');
+                }
+
             })
         }
     });
