@@ -1,16 +1,17 @@
-
-
 FROM node:6.3.1
+
+#
+# RUN uname -a
+
+# Timezone Setting
+# Ubuntu
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+# CentOS 
+# RUN echo "Asia/shanghai" > /etc/timezone; 
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
-
-#
-RUN uname -a
-
-# CentOS 
-# RUN echo "Asia/shanghai" > /etc/timezone; 
 
 RUN npm i -g supervisor
 RUN npm i
