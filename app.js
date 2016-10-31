@@ -117,6 +117,13 @@ app.use(favicon(__dirname + '/static/images/bing.ico'));
 app.use('/', index);
 app.use('/weibo', weibo);
 app.use('/v1', v1);
+/**
+ * Robots.txt
+ */
+app.use('/robots.txt', function(req, res, next) {
+    res.header('content-type', 'text/plain');
+    res.send('User-agent: *');
+});
 app.get('/test', function(req, res, next) {
     var images = [];
     bingUtils.fetchPicture(function(data) {
