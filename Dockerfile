@@ -1,14 +1,16 @@
-#
-RUN uname -a
 
-# CentOS 
-# RUN echo "Asia/shanghai" > /etc/timezone; 
 
 FROM node:6.3.1
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
+
+#
+RUN uname -a
+
+# CentOS 
+# RUN echo "Asia/shanghai" > /etc/timezone; 
 
 RUN npm i -g supervisor
 RUN npm i
