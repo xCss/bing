@@ -18,8 +18,9 @@ block content
                     span.label Mail
     section#thumbnails
             each val in data
+                - var original = 'http://7xilig.com1.z0.glb.clouddn.com/bing/'+val.qiniu_url+'_1920x1080.jpg';
                 article(rid=val.id)
-                    a.thumbnail(href= val.original_pic   )
+                    a.thumbnail(href= original   )
                         img(src=val.thumbnail_pic )
                     h2 ##{val.date}# #{val.copyright}
                     p #{val.description}
