@@ -1,5 +1,5 @@
 #
-RUN username -a
+RUN uname -a
 
 # CentOS 
 # RUN echo "Asia/shanghai" > /etc/timezone; 
