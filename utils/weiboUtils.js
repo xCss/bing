@@ -136,6 +136,7 @@ module.exports = {
                     }
                 }
             };
+            console.log(post);
             request
                 .post(update_url_text)
                 .type('form')
