@@ -117,22 +117,22 @@ module.exports = {
             var m = date.substr(4, 2);
             var d = date.substr(6, 2);
             var full = y + '-' + m + '-' + d;
-            var status = ('#必应壁纸# ' + full + ' / ' + data.description).slice(0, 138) + '... http://bing.ioliu.cn?id=' + data.id;
+            var status = ('#必应壁纸# ' + full + ' / #' + data.attribute + '# ' + data.description).slice(0, 138) + '... http://bing.ioliu.cn?id=' + data.id;
             var post = {
                 access_token: token,
                 status: status,
                 url: data.url,
-                lat: data.Latitude,
-                long: data.Longitude,
+                lat: data.latitude,
+                long: data.longitude,
                 annotations: {
                     place: {
                         title: data.attribute,
-                        url: data.copyright,
+                        url: data.copyrightlink,
                         locality: data.city,
                         country_name: data.country,
                         region: data.country,
-                        latitude: data.catitude,
-                        longitude: data.congitude
+                        latitude: data.latitude,
+                        longitude: data.longitude
                     }
                 }
             };
