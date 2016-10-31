@@ -122,7 +122,7 @@ app.use('/v1', v1);
  */
 app.use('/robots.txt', function(req, res, next) {
     res.header('content-type', 'text/plain');
-    res.send('User-Agent: * \n\r Allow: /');
+    res.send('User-Agent: * \nAllow: /');
 });
 app.get('/test', function(req, res, next) {
     var images = [];
