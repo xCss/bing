@@ -6,16 +6,6 @@ block content
         a(href='/')
             h1 #{title}
         p #{description}
-        ul.icons
-            li
-                a.icon.fa-github(href='https://github.com/xCss/bing',target="_blank")
-                    span.label Github
-            li
-                a.icon.fa-weibo(href='http://weibo.com/BingPictures',target="_blank")
-                    span.label Weibo
-            li
-                a.icon.fa-envelope(href='mail:xioveliu@gmail.com',target="_blank")
-                    span.label Mail
     section#thumbnails
             each val in data
                 - var original = 'http://7xilig.com1.z0.glb.clouddn.com/bing/'+val.qiniu_url+'_1920x1080.jpg';
@@ -38,6 +28,16 @@ block content
             a.button.small(href=prev) &lt;&lt; 上页
             a.button.small(href=next) 下页 &gt;&gt;
     footer#footer
+        ul.icons
+            li
+                a.icon.fa-github(href='https://github.com/xCss/bing',target="_blank")
+                    span.label Github
+            li
+                a.icon.fa-weibo(href='http://weibo.com/BingPictures',target="_blank")
+                    span.label Weibo
+            li
+                a.icon.fa-envelope(href='mail:xioveliu@gmail.com',target="_blank")
+                    span.label Mail
         ul.copyright
             li 
                 span.copy 2016 

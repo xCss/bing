@@ -239,7 +239,7 @@ i {
 }
 
 p {
-    margin: 0 0 1.25em 0;
+    margin: 0;
 }
 
 h1,
@@ -923,7 +923,7 @@ body.is-loading-1 #main {
 /* Footer */
 
 #footer {
-    padding: 1.25em 2.25em 1em 2.25em;
+    padding: 0 1.25em;
 }
 
 #footer .copyright {
