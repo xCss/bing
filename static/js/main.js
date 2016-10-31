@@ -7,7 +7,7 @@ var main = (function($) {
          */
         settings: {
             // Preload all images.
-            preload: true, // Slide duration (must match "duration.slide" in _vars.scss).
+            preload: false, // Slide duration (must match "duration.slide" in _vars.scss).
             slideDuration: 500, // Layout duration (must match "duration.layout" in _vars.scss).
             layoutDuration: 750, // Thumbnails per "row" (must match "misc.thumbnails-per-row" in _vars.scss).
             thumbnailsPerRow: 2, // Side of main wrapper (must match "misc.main-side" in _vars.scss).
