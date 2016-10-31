@@ -117,7 +117,7 @@ module.exports = {
             var m = date.substr(4, 2);
             var d = date.substr(6, 2);
             var full = y + '-' + m + '-' + d;
-            var status = ('#必应壁纸# ' + full + ' / #' + data.attribute + '# ' + data.description).slice(0, 138) + '... http://bing.ioliu.cn?id=' + data.id;
+            var status = ('#必应壁纸# ' + full + ' / #' + data.title + '# ' + data.description).slice(0, 138) + '... http://bing.ioliu.cn?id=' + data.id;
             var post = {
                 access_token: token,
                 status: status,
@@ -126,7 +126,7 @@ module.exports = {
                 long: data.longitude,
                 annotations: {
                     place: {
-                        title: data.attribute,
+                        title: data.title,
                         url: data.copyrightlink,
                         locality: data.city,
                         country_name: data.country,
