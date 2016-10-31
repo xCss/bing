@@ -1,5 +1,8 @@
+#
+RUN username -a
+
 # CentOS 
-RUN echo "Asia/shanghai" > /etc/timezone; 
+# RUN echo "Asia/shanghai" > /etc/timezone; 
 
 FROM node:6.3.1
 
