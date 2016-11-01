@@ -225,6 +225,7 @@ a {
 a:hover {
     border-bottom-color: transparent;
     color: #00D3B7;
+    text-decoration: none;
 }
 
 strong,
@@ -679,6 +680,18 @@ input[type="radio"]+label:before {
 
 .icon>.label {
     display: none;
+}
+
+.icon.fa-github:hover {
+    color: #333333;
+}
+
+.icon.fa-weibo:hover {
+    color: #E32428;
+}
+
+.icon.fa-envelope:hover {
+    color: #627DFE;
 }
 
 

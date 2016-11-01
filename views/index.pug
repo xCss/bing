@@ -11,7 +11,7 @@ block content
                 - var original = 'http://7xilig.com1.z0.glb.clouddn.com/bing/'+val.qiniu_url+'_1920x1080.jpg';
                 article(rid=val.id)
                     a.thumbnail(href= original   )
-                        img(src=val.thumbnail_pic )
+                        img(src=val.bmiddle_pic )
                     h2 ##{val.date}# #{val.copyright}
                     p #{val.description}
                     - var url = 'http://service.weibo.com/share/share.php?url='+encodeURIComponent('http://bing.ioliu.cn?id='+val.id)+'&title='+encodeURIComponent('#必应壁纸# '+ val.date + ' / '+ val.description) + '&appkey=1833831541';
@@ -20,6 +20,8 @@ block content
                             a.button.small(href=url,target="_blank",rel="nofollow") 分享
                         li 
                             a.button.small(href=val.copyrightlink,target="_blank",rel="nofollow") 搜索
+                        li 
+                            a.button.small(href=original,target="_blank",rel="nofollow") 下载
 
     - var prev = page.prev<=1?'/':'/?p='+page.prev;
     - var next = '/?p='+page.next;
