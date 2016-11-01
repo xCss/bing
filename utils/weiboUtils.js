@@ -110,7 +110,7 @@ module.exports = {
     /**
      * 公共发送微博方法
      */
-    commonSend: function(data, callback) {
+    commonSend: function(data, callback, isAuto) {
         module.exports.checkOauth(function(token) {
             var date = data.enddate;
             var y = date.substr(0, 4);
@@ -170,7 +170,7 @@ module.exports = {
                         });
                     });
                 });
-        });
+        }, isAuto);
 
     },
     /**

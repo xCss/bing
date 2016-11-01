@@ -98,8 +98,10 @@ module.exports = {
         for (var j in condition) {
             condition_temp.push(j + '="' + condition[j] + '"');
         }
-        var sql = 'update ' + table + ' set ' + body_temp.join(',') + ' where ' + condition_temp.join(' and ');
-        module.exports.commonQuery(sql, callback);
+        if (body_temp.length > 0 && condition_temp.length > 0) {
+            var sql = 'update ' + table + ' set ' + body_temp.join(',') + ' where ' + condition_temp.join(' and ');
+            module.exports.commonQuery(sql, callback);
+        }
     },
     /**
      * 删除数据
