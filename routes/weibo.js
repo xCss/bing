@@ -88,10 +88,11 @@ router.get('/send', function(req, res, next) {
     }
     if (weibo.ACCESS_TOKEN === '') {
         res.redirect('/weibo');
+    } else {
+        weiboUtils.update(function() {
+            res.redirect('/');
+        });
     }
-    weiboUtils.update(function() {
-        res.redirect('/');
-    });
 });
 /**
  * 获取短链
@@ -102,10 +103,11 @@ router.get('/shorten', function(req, res, next) {
     }
     if (weibo.ACCESS_TOKEN === '') {
         res.redirect('/weibo');
+    } else {
+        var url = req.query.url;
+        weiboUtils.shorten(url, function(data) {
+            res.send(data);
+        });
     }
-    var url = req.query.url;
-    weiboUtils.shorten(url, function(data) {
-        res.send(data);
-    });
 });
 module.exports = router;
