@@ -24,8 +24,8 @@ var mailUtils = require('./utils/mailUtils');
 var qiniuUtils = require('./utils/qiniuUtils');
 var weiboUtils = require('./utils/weiboUtils');
 
-// 每天 0:45 从Bing抓取数据
-schedule.scheduleJob('0 45 0 * * *', function() {
+// 每天 01:00 从Bing抓取数据
+schedule.scheduleJob('0 0 1 * * *', function() {
     bingUtils.fetchPicture({}, function(data) {
         dbUtils.set('bing', data, function(rows) {
             data.id = rows.insertId || 0;
