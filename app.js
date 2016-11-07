@@ -26,15 +26,29 @@ var weiboUtils = require('./utils/weiboUtils');
 
 // 每天 01:00 从Bing抓取数据
 schedule.scheduleJob('0 0 1 * * *', function() {
-    bingUtils.fetchPicture({}, function(data) {
-        dbUtils.set('bing', data, function(rows) {
-            data.id = rows.insertId || 0;
-            mailUtils.send({
-                message: '从Bing抓取成功',
-                title: '从Bing抓取成功',
-                stack: JSON.stringify(data, '', 4)
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var now = year + '' + month + '' + day;
+    // 查询是否已经抓取并插入数据库，如果已插入就不重复抓取
+    dbUtils.get('bing', {
+        body: {
+            enddate: now
+        }
+    }, function(rows) {
+        if (rows.length === 0) {
+            bingUtils.fetchPicture({}, function(data) {
+                dbUtils.set('bing', data, function(rows) {
+                    data.id = rows.insertId || 0;
+                    mailUtils.send({
+                        message: '从Bing抓取成功',
+                        title: '从Bing抓取成功',
+                        stack: JSON.stringify(data, '', 4)
+                    });
+                })
             });
-        })
+        }
     });
 });
 // 每天 6:30,10:30,14:30,18:30,21:30 定时发送微博
@@ -73,7 +87,7 @@ schedule.scheduleJob('0 0,10,20,30,40,50 * * * *', function() {
                         id: data.id
                     }
                 }, function(rs) {
-                    console.log(rs);
+                    // nsole.log(rs);
                 });
             });
         }
