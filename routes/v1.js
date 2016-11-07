@@ -33,7 +33,7 @@ var commonV1 = function(req, res, next) {
         } else {
             res.json({
                 status: -1,
-                message: '很抱歉，由于未知原因，暂时无法提供服务，请稍后再试!'
+                message: '很抱歉，由于未知原因，暂时无法提供服务，请稍后重试!'
             });
         }
     });
