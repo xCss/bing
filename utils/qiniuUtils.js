@@ -66,7 +66,7 @@ module.exports = {
         height = height || 1080;
         quality = quality || 100;
         mode = mode || 1;
-        var base = 'http://7xilig.com1.z0.glb.clouddn.com/bing/';
+        var base = 'http://images.ioliu.cn/bing/';
         url = url.indexOf('1920x1080') == -1 ? url + '_1920x1080.jpg' : url;
         url = base + url;
         var imageView = new qiniu.fop.ImageView(mode, width, height, quality);
