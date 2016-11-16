@@ -1,28 +1,11 @@
 var qiniu = require('qiniu');
+var resolutions = require('../configs/config').resolutions;
 // access_key and secret_key
 qiniu.conf.ACCESS_KEY = process.env.qiniu_access_key;
 qiniu.conf.SECRET_KEY = process.env.qiniu_secret_key;
 
 // 上传的空间
 var bucket = 'ioliu';
-
-// 目前已知的分辨率
-var resolutions = [
-    '1920x1200',
-    '1920x1080',
-    '1366x768',
-    '1280x768',
-    '1024x768',
-    '800x600',
-    '800x480',
-    '768x1280',
-    '720x1280',
-    '640x480',
-    '480x800',
-    '400x240',
-    '320x240',
-    '240x320'
-];
 
 module.exports = {
     /**
@@ -68,7 +51,7 @@ module.exports = {
         mode = mode || 1;
         var base = 'http://images.ioliu.cn/bing/';
         url = url.indexOf('1920x1080') == -1 ? url + '_1920x1080.jpg' : url;
-        url = base + url;
+        url = /http/.test(url) ? url : base + url;
         var imageView = new qiniu.fop.ImageView(mode, width, height, quality);
         return imageView.makeRequest(url);
     }
