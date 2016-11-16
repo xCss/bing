@@ -15,9 +15,9 @@
     },
     "keywords": [
         "Bing",
-        "BingPicture",
+        "BingPicture API",
         "必应图片",
-        "必应壁纸"
+        "必应壁纸接口"
     ],
     "bugs": {
         "url": "https://github.com/xCss/bing/issues"

@@ -18,15 +18,15 @@ router.post('/', function(req, res, next) {
 });
 
 var v1 = function(req, res, next) {
-    var d = req.params.d;
-    var w = req.params.w;
-    var h = req.params.h;
+    var d = req.query.d || req.body.d;
+    var w = req.query.w || req.body.w;
+    var h = req.query.h || req.body.h;
     var size = w + 'x' + h;
     var enddate = 0;
     if (!isNaN(d)) {
-        var date = +Date.now / 1000 / 60 / 24 - +d;
-        var newDate = new Date(date * 24 * 60 * 1000);
-        enddate = newDate.getFullYear() + '' + (newDate.getMonth() + 1) > 10 ? (newDate.getMonth() + 1) : '0' + (newDate.getMonth() + 1) + '' + newDate.getDay() > 10 ? newDate.getDay() : '0' + newDate.getDay();
+        var date = new Date().getTime() - parseInt(d) * 1000 * 60 * 60 * 24;
+        var newDate = new Date(date);
+        enddate = newDate.getFullYear() + '' + ((newDate.getMonth() + 1) > 10 ? (newDate.getMonth() + 1) : '0' + (newDate.getMonth() + 1)) + '' + (newDate.getDate() > 10 ? newDate.getDate() : '0' + newDate.getDate());
     }
     var params = {
         page: {
@@ -40,7 +40,6 @@ var v1 = function(req, res, next) {
             enddate: enddate
         }
     }
-    console.log(params);
     dbUtils.get('bing', params, function(rows) {
         if (rows.length > 0) {
             var data = rows[0];
@@ -63,7 +62,7 @@ var v1 = function(req, res, next) {
                         message: ''
                     }
                 };
-                if (req.method === 'GET' && req.params.callback) {
+                if (req.method === 'GET' && req.query.callback) {
                     res.jsonp(output);
                 } else {
                     res.json(output);
@@ -74,7 +73,7 @@ var v1 = function(req, res, next) {
                 data: {},
                 status: {
                     code: -1,
-                    message: '很抱歉，由于未知原因，暂时无法提供服务，请稍后重试!'
+                    message: '很抱歉，可能由于您输入的天数[d]大于壁纸总数，请修改后重试!'
                 }
             });
         }
@@ -92,11 +91,11 @@ router.post('/rand', function(req, res, next) {
 });
 
 var random = function(req, res, next) {
-    var t = req.params.type;
-    var w = req.params.w || '1920';
-    var h = req.params.h || '1080';
+    var t = req.query.type || req.body.type;
+    var w = req.query.w || req.body.w || '1920';
+    var h = req.query.h || req.body.h || '1080';
     var size = w + 'x' + h;
-    var callback = req.params.callback;
+    var callback = req.query.callback || req.body.callback;
     dbUtils.getCount('bing', {}, function(rows) {
         if (rows.length > 0) {
             var sum = Number(rows[0].sum);
@@ -148,6 +147,69 @@ var random = function(req, res, next) {
             params += !!h ? '&h=' + h : '';
             params += !!callback ? '&&callback=' + callback : '';
             res.redirect('/v1/rand' + params);
+        }
+    });
+}
+
+
+/**
+ * 获取高斯模糊图片
+ */
+router.get('/blur', function(req, res, next) {
+    blur(req, res, next);
+});
+router.post('/blur', function(req, res, next) {
+    blur(req, res, next);
+});
+
+var blur = function(req, res, next) {
+    var d = req.query.d || req.body.d;
+    var w = req.query.w || req.body.w;
+    var h = req.query.h || req.body.h;
+    var r = req.query.r || req.body.r;
+    r = isNaN(r) ? 10 : parseInt(r) > 50 ? 50 : parseInt(r) <= 0 ? 1 : r;
+    var size = w + 'x' + h;
+    var enddate = 0;
+    if (!isNaN(d)) {
+        var date = new Date().getTime() - parseInt(d) * 1000 * 60 * 60 * 24;
+        var newDate = new Date(date);
+        enddate = newDate.getFullYear() + '' + ((newDate.getMonth() + 1) > 10 ? (newDate.getMonth() + 1) : '0' + (newDate.getMonth() + 1)) + '' + (newDate.getDate() > 10 ? newDate.getDate() : '0' + newDate.getDate());
+    }
+    var params = {
+        page: {
+            no: 1,
+            size: 1
+        },
+        body: {}
+    };
+    if (!!enddate) {
+        params.body = {
+            enddate: enddate
+        }
+    }
+    dbUtils.get('bing', params, function(rows) {
+        if (rows.length > 0) {
+            var data = rows[0];
+            var base = 'http://images.ioliu.cn/bing/';
+            if (resolutions.indexOf(size) > -1) {
+                data['url'] = base + data.qiniu_url + '_' + size + '.jpg';
+            }
+            var qiniu_url = /images\.ioliu\.cn/.test(data.url) ? data.url : base + data.qiniu_url + '_1920x1080.jpg';
+            qiniu_url += '?imageMogr2/blur/' + r + 'x50'
+            request.get(qiniu_url)
+                .set(cookie)
+                .end(function(err, response) {
+                    res.header('content-type', 'image/jpg');
+                    res.send(response.body);
+                });
+        } else {
+            res.json({
+                data: {},
+                status: {
+                    code: -1,
+                    message: '很抱歉，可能由于您输入的天数[d]大于壁纸总数，请修改后重试!'
+                }
+            });
         }
     });
 }
