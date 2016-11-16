@@ -22,7 +22,6 @@ var v1 = function(req, res, next) {
     var w = req.params.w;
     var h = req.params.h;
     var size = w + 'x' + h;
-    console.log(req.params.callback)
     var enddate = 0;
     if (!isNaN(d)) {
         var date = +Date.now / 1000 / 60 / 24 - +d;
