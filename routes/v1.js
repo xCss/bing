@@ -173,7 +173,7 @@ var blur = function(req, res, next) {
     if (!isNaN(d)) {
         var date = new Date().getTime() - parseInt(d) * 1000 * 60 * 60 * 24;
         var newDate = new Date(date);
-        enddate = newDate.getFullYear() + '' + ((newDate.getMonth() + 1) > 10 ? (newDate.getMonth() + 1) : '0' + (newDate.getMonth() + 1)) + '' + (newDate.getDate() > 10 ? newDate.getDate() : '0' + newDate.getDate());
+        enddate = newDate.getFullYear() + '' + ((newDate.getMonth() + 1) > 9 ? (newDate.getMonth() + 1) : '0' + (newDate.getMonth() + 1)) + '' + (newDate.getDate() > 9 ? newDate.getDate() : '0' + newDate.getDate());
     }
     var params = {
         page: {
