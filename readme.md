@@ -1,6 +1,6 @@
 
 # Bing Pictures Interface | 必应壁纸接口
-> :hammer: `Bing 壁纸 Api`重装上阵啦 :smile:
+> :hammer: `Bing 壁纸 Api`重装上阵啦 :smile: http://bing.ioliu.cn
 
 ## 目前开放的壁纸接口：
  - `/v1{d,w,h,callback}` 返回今日的壁纸完整数据(`可选参数{d,w,h}`)： 
