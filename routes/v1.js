@@ -26,7 +26,7 @@ var v1 = function(req, res, next) {
     if (!isNaN(d)) {
         var date = new Date().getTime() - parseInt(d) * 1000 * 60 * 60 * 24;
         var newDate = new Date(date);
-        enddate = newDate.getFullYear() + '' + ((newDate.getMonth() + 1) > 10 ? (newDate.getMonth() + 1) : '0' + (newDate.getMonth() + 1)) + '' + (newDate.getDate() > 10 ? newDate.getDate() : '0' + newDate.getDate());
+        enddate = newDate.getFullYear() + '' + ((newDate.getMonth() + 1) > 9 ? (newDate.getMonth() + 1) : '0' + (newDate.getMonth() + 1)) + '' + (newDate.getDate() > 9 ? newDate.getDate() : '0' + newDate.getDate());
     }
     var params = {
         page: {
@@ -73,7 +73,7 @@ var v1 = function(req, res, next) {
                 data: {},
                 status: {
                     code: -1,
-                    message: '很抱歉，可能由于您输入的天数[d]大于壁纸总数，请修改后重试!'
+                    message: '好厉害啊，这么隐秘的地方都被你发现了n(*≧▽≦*)n，我已经通知主人咯♪(＾∀＾●)ﾉ，请您稍后再来试一下吧(❤´艸｀❤)!'
                 }
             });
         }
@@ -207,7 +207,7 @@ var blur = function(req, res, next) {
                 data: {},
                 status: {
                     code: -1,
-                    message: '很抱歉，可能由于您输入的天数[d]大于壁纸总数，请修改后重试!'
+                    message: '好厉害啊，这么隐秘的地方都被你发现了n(*≧▽≦*)n，我已经通知主人咯♪(＾∀＾●)ﾉ，请您稍后再来试一下吧(❤´艸｀❤)!'
                 }
             });
         }
