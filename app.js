@@ -25,7 +25,7 @@ var qiniuUtils = require('./utils/qiniuUtils');
 var weiboUtils = require('./utils/weiboUtils');
 
 // 每天 01:10,05:10,09:10,13:10 从Bing抓取数据
-schedule.scheduleJob('0 10 1,5,9,13 * * *', function() {
+schedule.scheduleJob('0 10 0,1,5,9,13 * * *', function() {
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
