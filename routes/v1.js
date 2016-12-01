@@ -21,6 +21,8 @@ var v1 = function(req, res, next) {
     var d = req.query.d || req.body.d;
     var w = req.query.w || req.body.w;
     var h = req.query.h || req.body.h;
+    var p = req.query.p || req.body.p;
+    var num = req.query.size || req.body.size;
     var size = w + 'x' + h;
     var enddate = 0;
     if (!isNaN(d)) {
@@ -40,6 +42,17 @@ var v1 = function(req, res, next) {
             enddate: enddate
         }
     }
+    if (!!p && !isNaN(p)) {
+        p = +p < 1 ? 1 : p;
+        params.page = {
+            no: p,
+            size: 10
+        }
+        if (!!num && !isNaN(num)) {
+            num = +num < 1 ? 1 : num;
+            params.page.size = num;
+        }
+    }
     dbUtils.get('bing', params, function(rows) {
         if (rows.length > 0) {
             var data = rows[0];
@@ -55,6 +68,9 @@ var v1 = function(req, res, next) {
                         res.send(response.body);
                     });
             } else {
+                if (+num > 0) {
+                    data = rows;
+                }
                 var output = {
                     data: data,
                     status: {

@@ -39,6 +39,7 @@ module.exports = {
             sql += ' where ' + body;
         }
         sql += ' order by id desc limit ' + (page.no - 1) * page.size + ',' + page.size;
+        //console.log(sql);
         module.exports.commonQuery(sql, callback);
     },
     /**

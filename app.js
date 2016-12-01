@@ -24,8 +24,36 @@ var mailUtils = require('./utils/mailUtils');
 var qiniuUtils = require('./utils/qiniuUtils');
 var weiboUtils = require('./utils/weiboUtils');
 
-// 每天 01:10,05:10,09:10,13:10 从Bing抓取数据
-schedule.scheduleJob('0 10 1,5,9,13 * * *', function() {
+var app = express();
+app.use('/static', express.static(path.join(__dirname, 'static')));
+app.use(favicon(__dirname + '/static/images/bing.ico'));
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+app.enable('trust proxy');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(cookieParser('bing.ioliu.cn'));
+app.use(session({
+    secret: 'bing app', //secret的值建议使用随机字符串
+    cookie: {
+        secure: true,
+        maxAge: 60 * 30 * 1000 // 过期时间（毫秒）
+    },
+    resave: false
+}));
+// 设置日志
+app.use(logger('combined', {
+    skip: function(req, res) { return res.statusCode < 400 }
+}));
+// 启用 helmet 
+app.use(helmet());
+app.use(flash());
+
+// 每天 00:10,01:10,05:10,09:10,13:10 检测bing数据
+schedule.scheduleJob('0 10 0,1,5,9,13 * * *', function() {
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
@@ -93,42 +121,6 @@ schedule.scheduleJob('0 0,10,20,30,40,50 * * * *', function() {
         }
     });
 })
-var app = express();
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-app.enable('trust proxy');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(cookieParser('bing.ioliu.cn'));
-app.use(session({
-    secret: 'bing app', //secret的值建议使用随机字符串
-    cookie: {
-        secure: true,
-        maxAge: 60 * 30 * 1000 // 过期时间（毫秒）
-    },
-    resave: false
-}));
-// 设置日志
-app.use(logger('combined', {
-    skip: function(req, res) { return res.statusCode < 400 }
-}));
-// 启用 helmet 
-app.use(helmet());
-app.use(flash());
-//sass
-//app.use(sassMiddleware({
-//    src: __dirname
-//    , dest: __dirname
-//    , sourceMap: false
-//    , outputStyle: 'compressed'
-//    , debug: true
-//}));
-app.use('/static', express.static(path.join(__dirname, 'static')));
-app.use(favicon(__dirname + '/static/images/bing.ico'));
-
 
 /**
  * 全局过滤
@@ -157,7 +149,10 @@ app.use('/robots.txt', function(req, res, next) {
 app.get('/test', function(req, res, next) {
     var images = [];
     bingUtils.fetchPicture(function(data) {
-        dbUtils.get('bing', data, function(data) {
+        var enddate = req.query.d || data.enddate;
+        dbUtils.get('bing', {
+            enddate: enddate
+        }, function(data) {
             res.send(data);
         });
     });
