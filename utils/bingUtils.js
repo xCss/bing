@@ -27,7 +27,7 @@ module.exports = {
             .end(function(err, res) {
                 commonUtils.convert(err, res, function(data) {
                     for (var i in data['images']) {
-                        images = data['images'][i];
+                        var images = data['images'][i];
                         module.exports.fetchStory({
                             d: images['enddate']
                         }, function(data) {

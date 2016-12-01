@@ -30,7 +30,7 @@ schedule.scheduleJob('0 10 1,5,9,13 * * *', function() {
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
     var day = date.getDate();
-    var now = year + '' + month + '' + day;
+    var now = year + '' + (month < 10 ? '0' + month : month) + '' + (day < 10 ? '0' + day : day);
     // 查询是否已经抓取并插入数据库，如果已插入就不重复抓取
     dbUtils.get('bing', {
         body: {
