@@ -26,7 +26,7 @@ module.exports = {
                     callback && callback(body);
                 }
             } else {
-                throw new Error(err);
+                throw new Error(res);
             }
         } catch (error) {
             // send mail
