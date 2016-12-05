@@ -21,7 +21,7 @@ module.exports = {
                     }
                 }
                 if (body.error_code || body.error) {
-                    throw new Error(body);
+                    throw new Error(res);
                 } else {
                     callback && callback(body);
                 }
