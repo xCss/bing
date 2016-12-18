@@ -4,11 +4,12 @@ html
     //
         BingPictrues by xCss
         https://github.com/xCss/bing | xioveliu@gamil.com
-        
+
+    - var description = page.desc || 'Bing每日壁纸:风景, 这边独好。';
     title #{page.curr} - #{title}
     meta('charset'="utf-8")
     meta(name="keywords",content="Bing,Bing壁纸,Bing每日壁纸,必应每日壁纸,Bing壁纸api,Bing最新壁纸,壁纸分享,壁纸下载,必应壁纸")
-    meta(name="description",content="Bing每日壁纸:风景, 这边独好。")
+    meta(name="description",content=description)
     meta(name="viewport",content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1")
     meta(name="author",content="xCss")
     meta(http-equiv="X-UA-Compatible",content="IE=edge,chrome=1")
