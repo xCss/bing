@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
             var page = {
                 prev: 1,
                 next: 2,
-                curr: '首页'
+                curr: rows.length > 0 && rows[0]['title'] || '首页'
             };
             common(req, res, next, page, rows);
         });
