@@ -62,8 +62,7 @@ var v1 = function(req, res, next) {
                     data['url'] = 'http://images.ioliu.cn/bing/' + data.qiniu_url + '_' + size + '.jpg';
                 }
                 var qiniu_url = /images\.ioliu\.cn/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
-                if ()
-                    request.get(qiniu_url)
+                request.get(qiniu_url)
                     .set(cookie)
                     .end(function(err, response) {
                         res.header('content-type', 'image/jpg');
