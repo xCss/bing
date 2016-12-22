@@ -51,7 +51,7 @@ module.exports = {
         mode = mode || 1;
         var base = 'http://images.ioliu.cn/bing/';
         url = url.indexOf('1920x1080') == -1 ? url + '_1920x1080.jpg' : url;
-        url = /http/.test(url) ? url : base + url;
+        url = /(http|https)\:\/\//.test(url) ? url : base + url;
         var imageView = new qiniu.fop.ImageView(mode, width, height, quality);
         return imageView.makeRequest(url);
     }

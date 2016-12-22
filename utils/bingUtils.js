@@ -36,7 +36,7 @@ module.exports = {
                                 startdate: data.startdate,
                                 fullstartdate: data.fullstartdate,
                                 enddate: data.enddate,
-                                url: data.url,
+                                url: /(http|https)\:\/\//gi.test(data.url) ? data.url : 'http://s.cn.bing.net' + data.url,
                                 urlbase: data.urlbase,
                                 copyright: data.copyright,
                                 copyrightlink: data.copyrightlink,

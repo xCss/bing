@@ -1,5 +1,6 @@
 var express = require('express');
 var dbUtils = require('../utils/dbUtils');
+var qiniuUtils = require('../utils/qiniuUtils');
 var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -81,10 +82,10 @@ var common = function(req, res, next, page, rows) {
                 city: rows[i]['city'],
                 country: rows[i]['country'],
                 continent: rows[i]['continent'],
-                thumbnail_pic: rows[i]['thumbnail_pic'],
-                bmiddle_pic: rows[i]['bmiddle_pic'],
-                original_pic: rows[i]['original_pic'],
-                weibo: rows[i]['weibo'],
+                thumbnail: qiniuUtils(rows[i]['qiniu_url'], 400, 300),
+                //bmiddle_pic: rows[i]['bmiddle_pic'],
+                //original_pic: rows[i]['original_pic'],
+                //weibo: rows[i]['weibo'],
                 date: full
             });
         }
