@@ -98,8 +98,8 @@ schedule.scheduleJob('0 30 6,9,12,15,18,21 * * *', function() {
     }, true);
 });
 
-// 每隔十分钟检查数据库中是否存在未上传到骑牛的图片，如果存在则上传图片到骑牛
-schedule.scheduleJob('0 0,10,20,30,40,50 * * * *', function() {
+// 每隔五分钟检查数据库中是否存在未上传到骑牛的图片，如果存在则上传图片到骑牛
+schedule.scheduleJob('0 0,5,10,15,20,25,30,35,40,45,50,55 * * * *', function() {
     dbUtils.get('bing', 'ISNULL(qiniu_url) || qiniu_url=""', function(rows) {
         if (rows.length > 0) {
             var data = rows[0];

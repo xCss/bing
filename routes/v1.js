@@ -23,6 +23,7 @@ var v1 = function(req, res, next) {
     var h = req.query.h || req.body.h;
     var p = req.query.p || req.body.p;
     var num = req.query.size || req.body.size;
+    var t = req.query.type || req.body.type;
     var size = w + 'x' + h;
     var enddate = 0;
     if (!isNaN(d)) {
@@ -61,7 +62,8 @@ var v1 = function(req, res, next) {
                     data['url'] = 'http://images.ioliu.cn/bing/' + data.qiniu_url + '_' + size + '.jpg';
                 }
                 var qiniu_url = /images\.ioliu\.cn/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
-                request.get(qiniu_url)
+                if ()
+                    request.get(qiniu_url)
                     .set(cookie)
                     .end(function(err, response) {
                         res.header('content-type', 'image/jpg');
