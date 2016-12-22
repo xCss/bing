@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
     no = !!no && Number(no) > 0 ? Number(no) : 1;
     var params = {
         body: {
-            weibo: 1
+
         },
         page: {
             no: no,
@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
         }
     };
     if (!!id && Number(id) > 0) {
-        params['body'] = 'weibo=1 and id<=' + id;
+        params['body'] = 'id<=' + id;
         dbUtils.get('bing', params, function(rows) {
             var page = {
                 prev: 1,
@@ -82,7 +82,7 @@ var common = function(req, res, next, page, rows) {
                 city: rows[i]['city'],
                 country: rows[i]['country'],
                 continent: rows[i]['continent'],
-                thumbnail: qiniuUtils(rows[i]['qiniu_url'], 400, 300),
+                thumbnail: qiniuUtils.imageView(rows[i]['qiniu_url'], 300, 200),
                 //bmiddle_pic: rows[i]['bmiddle_pic'],
                 //original_pic: rows[i]['original_pic'],
                 //weibo: rows[i]['weibo'],
