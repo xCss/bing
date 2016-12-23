@@ -8,9 +8,7 @@ router.get('/', function(req, res, next) {
     var id = req.query.id;
     no = !!no && Number(no) > 0 ? Number(no) : 1;
     var params = {
-        body: {
-
-        },
+        body: '!ISNULL(qiniu_url) || qiniu_url<>""',
         page: {
             no: no,
             size: 10
