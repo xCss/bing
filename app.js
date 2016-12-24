@@ -52,8 +52,8 @@ app.use(logger('combined', {
 app.use(helmet());
 app.use(flash());
 
-// 每天 00:10,01:10,05:10,09:10,13:10 检测bing数据
-schedule.scheduleJob('0 10 0,1,5,9,13 * * *', function() {
+// 每天 00:00,00:10,00:20 检测bing数据
+schedule.scheduleJob('0 0,10,20 0 * * *', function() {
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
@@ -79,8 +79,8 @@ schedule.scheduleJob('0 10 0,1,5,9,13 * * *', function() {
         }
     });
 });
-// 每天 6:30,09:30,12:30,15:30,18:30,21:30 定时发送微博
-schedule.scheduleJob('0 30 6,9,12,15,18,21 * * *', function() {
+// 每天 09:30,12:30,15:30,18:30,21:30 定时发送微博
+schedule.scheduleJob('0 30 9,12,15,18,21 * * *', function() {
     weiboUtils.update(function(data) {
         if (data && data.id) {
             mailUtils.send({
