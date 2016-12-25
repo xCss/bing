@@ -8,7 +8,7 @@ block content
         p #{description}
     section#thumbnails
             each val in data
-                - var original = 'http://images.ioliu.cn/bing/'+val.qiniu_url+'_1920x1080.jpg';
+                - var original = '/bing/'+val.qiniu_url+'_1920x1080.jpg';
                 article(rid=val.id)
                     a.thumbnail(href= original   )
                         img(src=val.thumbnail )
@@ -21,7 +21,7 @@ block content
                         li 
                             a.button.small(href=val.copyrightlink,target="_blank",rel="nofollow") 搜索
                         li 
-                            a.button.small(href=original,target="_blank",rel="nofollow") 下载
+                            a.button.small(href=original,target="_blank") 下载
 
     - var prev = page.prev<=1?'/':'/?p='+page.prev;
     - var next = '/?p='+page.next;
@@ -32,10 +32,10 @@ block content
     footer#footer
         ul.icons
             li
-                a.icon.fa-github(href='https://github.com/xCss/bing',target="_blank")
+                a.icon.fa-github(href='https://github.com/xCss/bing',target="_blank",rel="nofollow")
                     span.label Github
             li
-                a.icon.fa-weibo(href='http://weibo.com/BingPictures',target="_blank")
+                a.icon.fa-weibo(href='http://weibo.com/BingPictures',target="_blank",rel="nofollow")
                     span.label Weibo
             li
                 a.icon.fa-envelope(href='mail:xioveliu@gmail.com',target="_blank")
