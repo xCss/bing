@@ -80,7 +80,7 @@ var common = function(req, res, next, page, rows) {
                 city: rows[i]['city'],
                 country: rows[i]['country'],
                 continent: rows[i]['continent'],
-                thumbnail: qiniuUtils.imageView(rows[i]['qiniu_url'], 300, 200).replace('http://images.ioliu.cn', 'https://bing.ioliu.cn'),
+                thumbnail: qiniuUtils.imageView(rows[i]['qiniu_url'], 300, 200),
                 //bmiddle_pic: rows[i]['bmiddle_pic'],
                 //original_pic: rows[i]['original_pic'],
                 //weibo: rows[i]['weibo'],
