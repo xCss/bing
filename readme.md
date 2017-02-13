@@ -58,3 +58,4 @@ resolutions: [
 ```
 
 欢迎点评→[issue](https://github.com/xCss/bing/issues)
+Test on [RapidAPI](https://rapidapi.com/package/BingSearch?utm_source=BingGitHub&utm_medium=button)
