@@ -34,15 +34,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(cookieParser('bing.ioliu.cn'));
-app.use(session({
-    secret: 'bing app', //secret的值建议使用随机字符串
-    cookie: {
-        secure: true,
-        maxAge: 60 * 30 * 1000 // 过期时间（毫秒）
-    },
-    resave: false
-}));
+app.use(cookieParser());
 // 设置日志
 app.use(logger('combined', {
     skip: function(req, res) { return res.statusCode < 400 }
