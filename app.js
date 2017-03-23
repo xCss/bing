@@ -9,8 +9,6 @@ var session = require('express-session');
 var index = require('./routes/index');
 var weibo = require('./routes/weibo');
 var v1 = require('./routes/v1');
-// 设置与安全相关的HTTP头的中间件
-var helmet = require('helmet');
 // express的消息提示中间件
 var flash = require('express-flash');
 
@@ -48,8 +46,6 @@ app.use(session({
 app.use(logger('combined', {
     skip: function(req, res) { return res.statusCode < 400 }
 }));
-// 启用 helmet 
-app.use(helmet());
 app.use(flash());
 
 // 每天 00:00,00:10,00:20 检测bing数据
