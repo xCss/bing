@@ -5,7 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var request = require('superagent');
-var session = require('express-session');
 var index = require('./routes/index');
 var weibo = require('./routes/weibo');
 var v1 = require('./routes/v1');
