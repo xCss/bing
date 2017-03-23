@@ -8,8 +8,6 @@ var request = require('superagent');
 var index = require('./routes/index');
 var weibo = require('./routes/weibo');
 var v1 = require('./routes/v1');
-// express的消息提示中间件
-var flash = require('express-flash');
 
 // 定时器
 var schedule = require('node-schedule');
@@ -38,7 +36,6 @@ app.use(cookieParser());
 app.use(logger('combined', {
     skip: function(req, res) { return res.statusCode < 400 }
 }));
-app.use(flash());
 
 // 每天 00:00,00:10,00:20 检测bing数据
 schedule.scheduleJob('0 0,10,20 0 * * *', function() {
