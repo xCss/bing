@@ -23,6 +23,7 @@ var qiniuUtils = require('./utils/qiniuUtils');
 var weiboUtils = require('./utils/weiboUtils');
 
 var app = express();
+app.disable('x-powered-by');
 app.use('/static', express.static(path.join(__dirname, 'static')));
 app.use(favicon(__dirname + '/static/images/bing.ico'));
 // view engine setup
