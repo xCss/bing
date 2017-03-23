@@ -120,13 +120,10 @@ schedule.scheduleJob('0 1,6,11,16,21,26,31,36,41,46,51,56 * * * *', function() {
 })
 
 /**
- * 全局过滤
+ * 处理OPTIONS请求
  */
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,Access-Control-Allow-Origin");
-    res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-    // 处理OPTIONS请求
+    // 
     if (req.method === 'OPTIONS') {
         res.send(200);
     } else next();
