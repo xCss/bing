@@ -64,8 +64,8 @@ schedule.scheduleJob('0 0,10,20 0 * * *', function() {
         }
     });
 });
-// 每天 09:30,12:30,15:30,18:30,21:30 定时发送微博
-schedule.scheduleJob('0 30 9,12,15,18,21 * * *', function() {
+// 每天 08:30,12:30,15:30,18:30,21:30 定时发送微博
+schedule.scheduleJob('0 30 8,12,15,18,21 * * *', function() {
     weiboUtils.update(function(data) {
         if (data && data.id) {
             mailUtils.send({
