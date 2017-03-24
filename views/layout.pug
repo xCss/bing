@@ -28,32 +28,34 @@ html
         link(rel="stylesheet",href="/static/css/skin/noscript.css")
     link(rel='stylesheet', href='/static/css/skin/lens.css')
     link(rel="icon",href="/static/images/bing.ico",sizes="32x32")
+    link(rel='stylesheet',href="/static/css/progressively.min.css")
     
   body.is-loading-0.is-loading-1.is-loading-2
     block content
     script(src="/static/js/jquery.min.js")
     script(src="/static/js/skel.min.js")
+    script(src="/static/js/progressively.min.js")
     <!--[if lte IE 8]><script src="/static/js/respond.min.js"></script><![endif]-->
     script(src="/static/js/main.js")
     script.  
-        (function($) { 
-            $(function() {
-                if (skel.vars.os == 'ios' && window.self !== window.top) {
-                    var $body = $('html,body'), $window = $(window.top);
-                    $body.css('-webkit-overflow-scrolling', 'touch');
-                    $window.on('resize orientationchange', function() {
-                    $body
-                        .css('width', $window.width())
-                        .css('height', $window.height());
-                    }).trigger('resize');
-                }
-                if(!/^http:\/\/localhost/.test(location.href)){
-                    var _hmt = _hmt || [];
-                    var hm = document.createElement("script");
-                    hm.src = "//hm.baidu.com/hm.js?667639aad0d4654c92786a241a486361";
-                    var s = document.getElementsByTagName("script")[0]; 
-                    s.parentNode.insertBefore(hm, s);
-                }
-            }); 
-         })(jQuery);
+        $(function() {
+            progressively.init();
+            
+            if (skel.vars.os == 'ios' && window.self !== window.top) {
+                var $body = $('html,body'), $window = $(window.top);
+                $body.css('-webkit-overflow-scrolling', 'touch');
+                $window.on('resize orientationchange', function() {
+                $body
+                    .css('width', $window.width())
+                    .css('height', $window.height());
+                }).trigger('resize');
+            }
+            if(!/^http:\/\/localhost/.test(location.href)){
+                var _hmt = _hmt || [];
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?667639aad0d4654c92786a241a486361";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            }
+        });
 

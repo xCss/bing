@@ -94,28 +94,28 @@ schedule.scheduleJob('0 30 8,12,15,18,21 * * *', function() {
 });
 
 // 每隔五分钟检查数据库中是否存在未上传到骑牛的图片，如果存在则上传图片到骑牛
-schedule.scheduleJob('0 1,6,11,16,21,26,31,36,41,46,51,56 * * * *', function() {
-    dbUtils.get('bing', 'ISNULL(qiniu_url) || qiniu_url=""', function(rows) {
-        if (rows.length > 0) {
-            var data = rows[0];
-            var url = data.url;
-            qiniuUtils.fetchToQiniu(url, function() {
-                var _temp = url.substr(url.lastIndexOf('/') + 1, url.length);
-                var qiniu_url = _temp.substr(0, _temp.lastIndexOf('_'));
-                dbUtils.update('bing', {
-                    body: {
-                        qiniu_url: qiniu_url
-                    },
-                    condition: {
-                        id: data.id
-                    }
-                }, function(rs) {
-                    // nsole.log(rs);
-                });
-            });
-        }
-    });
-})
+// schedule.scheduleJob('0 1,6,11,16,21,26,31,36,41,46,51,56 * * * *', function() {
+//     dbUtils.get('bing', 'ISNULL(qiniu_url) || qiniu_url=""', function(rows) {
+//         if (rows.length > 0) {
+//             var data = rows[0];
+//             var url = data.url;
+//             qiniuUtils.fetchToQiniu(url, function() {
+//                 var _temp = url.substr(url.lastIndexOf('/') + 1, url.length);
+//                 var qiniu_url = _temp.substr(0, _temp.lastIndexOf('_'));
+//                 dbUtils.update('bing', {
+//                     body: {
+//                         qiniu_url: qiniu_url
+//                     },
+//                     condition: {
+//                         id: data.id
+//                     }
+//                 }, function(rs) {
+//                     // nsole.log(rs);
+//                 });
+//             });
+//         }
+//     });
+// })
 
 /**
  * 处理OPTIONS请求
