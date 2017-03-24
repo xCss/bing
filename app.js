@@ -35,7 +35,8 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser('bing.ioliu.cn'));
 app.use(session({
     secret: 'bing app', //secret的值建议使用随机字符串
-    resave: false,
+    resave: true,
+    saveUninitialized: false,
     cookie: {
         secure: true,
         maxAge: 60 * 30 * 1000 // 过期时间（毫秒）
