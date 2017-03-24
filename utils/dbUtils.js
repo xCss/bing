@@ -138,13 +138,13 @@ module.exports = {
         try {
             pool.getConnection(function(err, connection) {
                 connection.query(sql, function(err, rows) {
+                    connection.release();
                     if (!err) {
                         callback && callback(rows);
                     } else {
                         // send mail
                         console.log(err);
                     }
-                    connection.release();
                 });
             });
         } catch (error) {

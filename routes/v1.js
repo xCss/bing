@@ -126,7 +126,7 @@ var random = function(req, res, next) {
                         data['url'] = 'http://images.ioliu.cn/bing/' + data.qiniu_url + '_' + size + '.jpg';
                     }
                     if (t === 'json' || !!callback) {
-                        console.log(callback);
+                        //console.log(callback);
                         var output = {
                             data: data,
                             status: {
