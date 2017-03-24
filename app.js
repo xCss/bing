@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 var request = require('superagent');
 var index = require('./routes/index');
 var weibo = require('./routes/weibo');
@@ -31,7 +32,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(cookieParser());
+app.use(cookieParser('bing.ioliu.cn'));
+app.use(session({
+    secret: 'bing app', //secret的值建议使用随机字符串
+    resave: false,
+    cookie: {
+        secure: true,
+        maxAge: 60 * 30 * 1000 // 过期时间（毫秒）
+    }
+}));
 // 设置日志
 app.use(logger('combined', {
     skip: function(req, res) { return res.statusCode < 400 }
@@ -113,7 +122,7 @@ schedule.scheduleJob('0 1,6,11,16,21,26,31,36,41,46,51,56 * * * *', function() {
 app.use(function(req, res, next) {
     // 
     if (req.method === 'OPTIONS') {
-        res.send(200);
+        res.sendStatus(200);
     } else next();
 });
 
