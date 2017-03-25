@@ -48,7 +48,7 @@ app.use(logger('combined', {
 }));
 
 // 每天 00:00,00:10,00:20 检测bing数据
-schedule.scheduleJob('0 0,10,20,25,30,35,40,45,50,55 * * * *', function() {
+schedule.scheduleJob('0 0,5,10,20,25,30 0 * * *', function() {
     var date = new Date();
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
@@ -94,7 +94,7 @@ schedule.scheduleJob('0 30 8,12,15,18,21 * * *', function() {
 });
 
 // 每隔五分钟检查数据库中是否存在未上传到骑牛的图片，如果存在则上传图片到骑牛
-schedule.scheduleJob('0 1,6,11,16,21,26,31,36,41,46,51,56 * * * *', function() {
+schedule.scheduleJob('0 1,6,11,16,21,26,31 0 * * *', function() {
     dbUtils.get('bing', 'ISNULL(qiniu_url) || qiniu_url=""', function(rows) {
         if (rows.length > 0) {
             var data = rows[0];
