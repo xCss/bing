@@ -8,8 +8,8 @@ block content
         p #{description}
     section#thumbnails
             each val in data
-                - var original = 'http://images.ioliu.cn/bing/'+val.qiniu_url+'_1920x1080.jpg';
-                - var download = 'http://images.ioliu.cn/bing/'+val.qiniu_url+'_1920x1080.jpg';
+                - var original = 'https://static.ioliu.cn/bing/'+val.qiniu_url+'_1920x1080.jpg';
+                - var download = 'https://static.ioliu.cn/bing/'+val.qiniu_url+'_1920x1080.jpg';
                 article(rid=val.id)
                     a.thumbnail.progressive(href= original)
                         img.progressive__img.progressive--not-loaded(data-progressive=val.smallpic,src=val.thumbnail )
