@@ -12,7 +12,7 @@ block content
                 - var download = 'http://images.ioliu.cn/bing/'+val.qiniu_url+'_1920x1080.jpg';
                 article(rid=val.id)
                     a.thumbnail.progressive(href= original)
-                        img.progressive__img.progressive--not-loaded(data-progressive=smallpic,src=val.thumbnail )
+                        img.progressive__img.progressive--not-loaded(data-progressive=val.smallpic,src=val.thumbnail )
                     h2 ##{val.date}# #{val.copyright}
                     p #{val.description}
                     - var url = 'http://service.weibo.com/share/share.php?url='+encodeURIComponent('http://bing.ioliu.cn?id='+val.id)+'&title='+encodeURIComponent('#必应壁纸# '+ val.date + ' / '+ val.description) + '&appkey=1833831541';

@@ -50,6 +50,7 @@ module.exports = {
                                 latitude: data.latitude,
                                 continent: data.continent
                             }
+                            console.log(newData);
                             callback && callback(newData);
                         });
                     }
