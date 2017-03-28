@@ -6,6 +6,9 @@ block content
         a(href='/')
             h1 #{title}
         p #{description}
+        p(style="color:red;font-weight:bold;") 
+            i.icon.fa-bullhorn 
+            a(href='/static/about.html') 号外！留言上线啦
     section#thumbnails
             each val in data
                 - var original = 'http://images.ioliu.cn/bing/'+val.qiniu_url+'_1920x1080.jpg';
