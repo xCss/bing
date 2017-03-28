@@ -64,7 +64,7 @@ module.exports = {
                                 bingUtils.fetchStory({
                                     d: d.enddate
                                 }, function(body) {
-                                    d['url'] = !!d.qiniu_url && 'http://images.ioliu.cn/bing/' + d.qiniu_url + '_1920x1080.jpg' || d.url;
+                                    d['url'] = !!d.qiniu_url && 'https://static.ioliu.cn/bing/' + d.qiniu_url + '_1920x1080.jpg' || d.url;
                                     d['title'] = body.title;
                                     d['attribute'] = body.attribute;
                                     d['description'] = body.description;

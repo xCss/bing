@@ -59,9 +59,9 @@ var v1 = function(req, res, next) {
             var data = rows[0];
             if (!!w || !!h) {
                 if (resolutions.indexOf(size) > -1) {
-                    data['url'] = 'http://images.ioliu.cn/bing/' + data.qiniu_url + '_' + size + '.jpg';
+                    data['url'] = 'http://static.ioliu.cn/bing/' + data.qiniu_url + '_' + size + '.jpg';
                 }
-                var qiniu_url = /images\.ioliu\.cn/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
+                var qiniu_url = /static\.ioliu\.cn/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
                 request.get(qiniu_url)
                     .set(cookie)
                     .end(function(err, response) {
@@ -123,7 +123,7 @@ var random = function(req, res, next) {
                 if (rs.length > 0) {
                     var data = rs[0];
                     if (resolutions.indexOf(size) > -1) {
-                        data['url'] = 'http://images.ioliu.cn/bing/' + data.qiniu_url + '_' + size + '.jpg';
+                        data['url'] = 'https://static.ioliu.cn/bing/' + data.qiniu_url + '_' + size + '.jpg';
                     }
                     if (t === 'json' || !!callback) {
                         //console.log(callback);
@@ -140,7 +140,7 @@ var random = function(req, res, next) {
                             res.json(output);
                         }
                     } else {
-                        var qiniu_url = /images\.ioliu\.cn/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
+                        var qiniu_url = /static\.ioliu\.cn/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
                         request.get(qiniu_url)
                             .set(cookie)
                             .end(function(err, response) {
@@ -207,11 +207,11 @@ var blur = function(req, res, next) {
     dbUtils.get('bing', params, function(rows) {
         if (rows.length > 0) {
             var data = rows[0];
-            var base = 'http://images.ioliu.cn/bing/';
+            var base = 'https://static.ioliu.cn/bing/';
             if (resolutions.indexOf(size) > -1) {
                 data['url'] = base + data.qiniu_url + '_' + size + '.jpg';
             }
-            var qiniu_url = /images\.ioliu\.cn/.test(data.url) ? data.url : base + data.qiniu_url + '_1920x1080.jpg';
+            var qiniu_url = /static\.ioliu\.cn/.test(data.url) ? data.url : base + data.qiniu_url + '_1920x1080.jpg';
             qiniu_url += '?imageMogr2/blur/' + r + 'x50'
             request.get(qiniu_url)
                 .set(cookie)
