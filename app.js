@@ -131,6 +131,9 @@ app.use('/', index);
 app.use('/weibo', weibo);
 app.use('/v1', v1);
 
+app.use('/about.html',function(req,res,next){
+    res.render('about');
+});
 /**
  * Robots.txt
  */

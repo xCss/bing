@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
         body: '!ISNULL(qiniu_url) || qiniu_url<>""',
         page: {
             no: no,
-            size: 10
+            size: 18
         }
     };
     if (!!id && Number(id) > 0) {
@@ -90,8 +90,6 @@ var common = function(req, res, next, page, rows) {
         }
         res.render('index', {
             data: data,
-            title: '必应壁纸',
-            description: 'Bing 每日壁纸',
             page: page
         });
     } else {

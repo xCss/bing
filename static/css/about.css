@@ -1,0 +1,112 @@
+code {
+    color: #1abc9c;
+}
+
+html {
+    background: #eee;
+}
+
+body {
+    width: 95%;
+    max-width: 960px;
+    background: #fff;
+    margin: 2em auto 0;
+    padding-top: 1em;
+    border: 1px solid #ddd;
+    border-width: 0 1px;
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+i.serif {
+    text-transform: lowercase;
+    color: #1abc9c;
+}
+
+ :-moz-any(h1, h2, h3, h4, h5, h5) i.serif {
+    text-transform: capitalize;
+}
+
+i.serif:hover {
+    color: inherit;
+}
+
+#wrapper {
+    padding: 2% 2%;
+    position: relative;
+}
+
+#tagline {
+    color: #999;
+    font-size: 1em;
+    margin: -2em 0 2em;
+    padding-bottom: 2em;
+    border-bottom: 3px double #eee;
+}
+
+#fork {
+    position: fixed;
+    top: 0;
+    right: 0;
+    _position: absolute;
+}
+
+#table {
+    margin-bottom: 2em;
+    color: #888;
+}
+
+#github {
+    position: absolute;
+    top: 1em;
+}
+
+#github iframe {
+    display: inline;
+    margin-right: 1em;
+}
+
+@media only screen and (max-width: 640px) {
+    body {
+        width: 100%;
+        border: none;
+    }
+    table {
+        word-break: break-all;
+        word-wrap: break-word;
+        font-size: 12px;
+    }
+    .typo table th,
+    .typo table td,
+    .typo-table th,
+    .typo-table td .typo table caption {
+        padding: 0.5em;
+    }
+    #fork {
+        display: none;
+    }
+}
+
+.icon {
+    font-size: 1em;
+}
+
+#QR {
+    font-size: 0;
+}
+
+#wechat,
+#alipay {
+    font-size: 14px;
+    width: 50%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#wechat_qr,
+#alipay_qr {
+    display: inline-block;
+    max-width: 150px;
+}

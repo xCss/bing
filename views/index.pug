@@ -1,51 +1,90 @@
-extends layout
+doctype html
+html(lang="en")
+  head
+    include common_headers.pug
+    title 首页 | 必应壁纸,必应每日壁纸,必应高清壁纸,必应壁纸接口
+    meta(name="keywords",content="必应壁纸,必应高清壁纸打包下载,必应壁纸合集,必应每日壁纸下载,必应壁纸接口,必应壁纸官方下载,Bing壁纸,微软bing每日壁纸,必应每日壁纸下载,Bing壁纸api,高清壁纸分享,bing壁纸官方下载,必应高清壁纸,必应壁纸打包下载")
+    link(rel='stylesheet',href="/static/css/progressively.css")
+    link(rel='stylesheet', href='/static/css/common.css')
+    link(rel='stylesheet', href='/static/css/main.css')
+body
+    header
+        div.container
+            a.logo(href="#")
+                i.icon.icon-bing
+                   span 必应壁纸
+            span.menu-btn
+                i.icon.icon-menu
+            nav
+                ul.menu
+                    li.active
+                        a(href="#")
+                            i.icon.icon-home
+                            p.text 首页
+                    li
+                        a(href="#")
+                            i.icon.icon-ranking
+                            p.text 排行榜
+                    li
+                        a(href="about.html")
+                            i.icon.icon-about
+                            p.text 关于
 
-block content
-  div#main
-    header#header
-        a(href='/')
-            h1 #{title}
-        p #{description}
-        h2(style="color:red;font-weight:bold;") 
-            i.icon.fa-bullhorn 
-            a(href='/static/about.html',target="_blank") 号外！留言上线啦
-    section#thumbnails
-            each val in data
-                - var original = 'https://static.ioliu.cn/bing/'+val.qiniu_url+'_1920x1080.jpg';
-                - var download = 'https://static.ioliu.cn/bing/'+val.qiniu_url+'_1920x1080.jpg';
-                article(rid=val.id)
-                    a.thumbnail.progressive(href= original)
-                        img.progressive__img.progressive--not-loaded(data-progressive=val.smallpic,src=val.thumbnail )
-                    h2 ##{val.date}# #{val.copyright}
-                    p #{val.description}
-                    - var url = 'http://service.weibo.com/share/share.php?url='+encodeURIComponent('http://bing.ioliu.cn?id='+val.id)+'&title='+encodeURIComponent('#必应壁纸# '+ val.date + ' / '+ val.description) + '&appkey=1833831541';
-                    ul.actions
-                        li
-                            a.button.small(href=url,target="_blank",rel="nofollow") 分享
-                        li 
-                            a.button.small(href=val.copyrightlink,target="_blank",rel="nofollow") 搜索
-                        li 
-                            a.button.small(href=download,target="_blank") 下载
+                    //- <li class="search-wrap">
+                    //-     <label class="search">
+                    //-         <input type="text" placeholder="搜索关键字">
+                    //-         <a class="search-btn"><i class="icon icon-search"></i></a>
+                    //-     </label>
+                    //- </li>
+        
+    div.holder
+    div.mask
+    div.container
+        each val in data
+            - var small = 'https://static.ioliu.cn/bing/'+val.qiniu_url+'_800x600.jpg';
+            - var download = small+'?imageView2/1/w/8/h/6/q/100';
+            - var location = (val.country && val.city) ? val.country + ', ' + val.city : false;
+            a.item(href="detail.html")
+                div.card.progressive
+                    //- img.progressive__img.progressive--not-loaded(src="https://static.ioliu.cn/bing/Hveravellir_ZH-CN12673758963_1920x1080.jpg?imageView2/1/w/43/h/24/q/100",data-progressive="https://static.ioliu.cn/bing/Hveravellir_ZH-CN12673758963_1920x1080.jpg?imageView2/1/w/760/h/480/q/100")
+                    img.progressive__img.progressive--not-loaded(data-progressive=small,src=download )
+                    div.mark
+                    div.description
+                        h3 #{val.copyright}
+                        p.calendar
+                            i.icon.icon-calendar
+                            em.t #{val.date}
+                        if location
+                            p.location
+                                i.icon.icon-location
+                                em.t #{location}
+                    div.options
+                        span.ctrl.heart(rid=val.id)
+                            i.icon.icon-heart
+                            em.t #{val.likes || 0}
 
-    - var prev = page.prev<=1?'/':'/?p='+page.prev;
-    - var next = '/?p='+page.next;
-    ul.actions.align-center
-        li
-            a.button.small(href=prev) &lt;&lt; 上页
-            a.button.small(href=next) 下页 &gt;&gt;
-    footer#footer
-        ul.icons
-            li
-                a.icon.fa-github(href='https://github.com/xCss/bing',target="_blank",rel="nofollow")
-                    span.label Github
-            li
-                a.icon.fa-weibo(href='http://weibo.com/BingPictures',target="_blank",rel="nofollow")
-                    span.label Weibo
-            li
-                a.icon.fa-envelope(href='mail:xioveliu@gmail.com',target="_blank")
-                    span.label Mail
-        ul.copyright
-            li 
-                span.copy 2016 - 2017
-                b &copy; 
-                a(href='/') Bing Pictures.
+                        span.ctrl.plus(rid=val.id)
+                            i.icon.icon-plus
+
+                        span.ctrl.download(rid=val.id)
+                            i.icon.icon-download
+    //- section#thumbnails
+    //-             article(rid=val.id)
+    //-                 a.thumbnail.progressive(href= original)
+    //-                     img.progressive__img.progressive--not-loaded(data-progressive=val.smallpic,src=val.thumbnail )
+    //-                 h2 ##{val.date}# #{val.copyright}
+    //-                 p #{val.description}
+    //-                 - var url = 'http://service.weibo.com/share/share.php?url='+encodeURIComponent('http://bing.ioliu.cn?id='+val.id)+'&title='+encodeURIComponent('#必应壁纸# '+ val.date + ' / '+ val.description) + '&appkey=1833831541';
+    //-                 ul.actions
+    //-                     li
+    //-                         a.button.small(href=url,target="_blank",rel="nofollow") 分享
+    //-                     li 
+    //-                         a.button.small(href=val.copyrightlink,target="_blank",rel="nofollow") 搜索
+    //-                     li 
+    //-                         a.button.small(href=download,target="_blank") 下载
+
+    script(src="/static/js/jquery-1.12.4.min.js")
+    script(src="/static/js/progressively.js")
+    script(src="/static/js/device.js")
+    script(src="/static/js/main.js")
+    script(src="/static/js/baidu-analysis.js")
