@@ -41,14 +41,12 @@ body
     div.mask
     div.container
         each val in data
-            - var small = 'https://static.ioliu.cn/bing/'+val.qiniu_url+'_800x600.jpg';
-            - var download = `https://bing.ioliu.cn/small/${val.qiniu_url}_800x600`;
             - var location = (val.country && val.city) ? val.country + ', ' + val.city : false;
-            a.item(href="detail.html")
+            div.item
                 div.card.progressive
                     //- img.progressive__img.progressive--not-loaded(src="https://static.ioliu.cn/bing/Hveravellir_ZH-CN12673758963_1920x1080.jpg?imageView2/1/w/43/h/24/q/100",data-progressive="https://static.ioliu.cn/bing/Hveravellir_ZH-CN12673758963_1920x1080.jpg?imageView2/1/w/760/h/480/q/100")
-                    img.progressive__img.progressive--not-loaded(data-progressive=small,src=download )
-                    div.mark
+                    img.progressive__img.progressive--not-loaded(data-progressive=val.thumbnail,src=val.smallpic )
+                    a.mark(href="detail.html")
                     div.description
                         h3 #{val.copyright}
                         p.calendar
@@ -66,22 +64,9 @@ body
                         span.ctrl.plus(rid=val.id)
                             i.icon.icon-plus
 
-                        span.ctrl.download(rid=val.id)
+                        a.ctrl.download(href=`/d/${val.photo}?force=index`,target="_blank")
                             i.icon.icon-download
-    //- section#thumbnails
-    //-             article(rid=val.id)
-    //-                 a.thumbnail.progressive(href= original)
-    //-                     img.progressive__img.progressive--not-loaded(data-progressive=val.smallpic,src=val.thumbnail )
-    //-                 h2 ##{val.date}# #{val.copyright}
-    //-                 p #{val.description}
-    //-                 - var url = 'http://service.weibo.com/share/share.php?url='+encodeURIComponent('http://bing.ioliu.cn?id='+val.id)+'&title='+encodeURIComponent('#必应壁纸# '+ val.date + ' / '+ val.description) + '&appkey=1833831541';
-    //-                 ul.actions
-    //-                     li
-    //-                         a.button.small(href=url,target="_blank",rel="nofollow") 分享
-    //-                     li 
-    //-                         a.button.small(href=val.copyrightlink,target="_blank",rel="nofollow") 搜索
-    //-                     li 
-    //-                         a.button.small(href=download,target="_blank") 下载
+
 
     script(src="/static/js/jquery-1.12.4.min.js")
     script(src="/static/js/progressively.js")

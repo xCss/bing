@@ -17,7 +17,5 @@ $(function(){
         $('.menu,.menu-btn').removeClass('active');
         $(document.body).removeClass('over');
         $(this).fadeOut(300);
-    }).on(click,'.ctrl',function(e){
-        e.preventDefault();
     });
 });

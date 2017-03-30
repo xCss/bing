@@ -134,7 +134,7 @@ module.exports = {
      * @callback
      */
     commonQuery: function(sql, callback) {
-        // console.log(sql);
+         console.log(sql);
         try {
             pool.getConnection(function(err, connection) {
                 connection.query(sql, function(err, rows) {

@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var request = require('superagent');
 var index = require('./routes/index');
+var download = require('./routes/download');
 var weibo = require('./routes/weibo');
 var v1 = require('./routes/v1');
 
@@ -128,6 +129,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', index);
+app.use('/d', download);
 app.use('/weibo', weibo);
 app.use('/v1', v1);
 
