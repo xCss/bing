@@ -42,7 +42,7 @@ body
     div.container
         each val in data
             - var small = 'https://static.ioliu.cn/bing/'+val.qiniu_url+'_800x600.jpg';
-            - var download = small+'?imageView2/1/w/8/h/6/q/100';
+            - var download = `https://bing.ioliu.cn/small/${val.qiniu_url}_800x600`;
             - var location = (val.country && val.city) ? val.country + ', ' + val.city : false;
             a.item(href="detail.html")
                 div.card.progressive
