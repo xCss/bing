@@ -4,6 +4,8 @@ var qiniuUtils = require('../utils/qiniuUtils');
 var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
+
+
     var no = req.query.p;
     var id = req.query.id;
     no = !!no && Number(no) > 0 ? Number(no) : 1;
@@ -62,9 +64,9 @@ var common = function(req, res, next, page, rows) {
                 thumbnail: `https://static.ioliu.cn/bing/${rows[i]['qiniu_url']}_800x600.jpg`,
                 smallpic: `https://bing.ioliu.cn/small/${rows[i]['qiniu_url']}_800x600`,
                 date: full,
-                likes:rows[i]['likes'],
-                views:rows[i]['views'],
-                downloads:rows[i]['downloads']
+                likes: rows[i]['likes'],
+                views: rows[i]['views'],
+                downloads: rows[i]['downloads']
             });
         }
         res.render('index', {

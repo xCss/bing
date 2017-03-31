@@ -5,26 +5,27 @@ var db = require('../utils/dbUtils');
 
 /* GET users listing. */
 router.get('/:photo', function(req, res, next) {
-    //console.log(1);
-    var photo = req.params.photo;
-    db.commonQuery(`select (downloads+1) as ds from bing where qiniu_url='${photo}'`,function(rows){
-        if(rows.length>0){
-            db.commonQuery(`update bing set downloads=${rows[0]['ds']} where qiniu_url='${photo}'`,function(rows){
-                console.log(rows);
-                if(rows.length>0){
-                    res.set({
-                        'Content-Type': 'application/octet-stream',
-                        'Content-Disposition': 'attachment; filename='+encodeURI(photo)
-                    });
-                    request.get(`https://static.ioliu.cn/bing/${photo}_1920x1080.jpg`).pipe(res);
-                }
+    var isAjax = req.headers['x-requested-with'] ? true : false;
+    if (!isAjax) {
+        var photo = req.params.photo;
+        var sql = `update bing as a join (select downloads,id from bing WHERE qiniu_url='${photo}') as b on a.id=b.id set a.downloads=(b.downloads+1)`;
+        db.commonQuery(sql, function(rows) {
+            res.set({
+                'Content-Type': 'application/octet-stream',
+                'Content-Disposition': 'attachment; filename=' + encodeURI(`${photo}_1920x1080.jpg`)
             });
-        }else{
-            console.log(1);
-            console.log(rows);
-        }
-    });
-    //res.send(photo);
+            request.get(`https://static.ioliu.cn/bing/${photo}_1920x1080.jpg`)
+                .set({
+                    'User-Agent': req.get('User-Agent')
+                })
+                .pipe(res);
+        });
+    } else {
+        res.json({
+            code: 200,
+            msg: 'bad request'
+        })
+    }
 });
 /**
  * 如果没有参数，则跳转到首页
