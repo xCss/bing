@@ -7,25 +7,6 @@ html(lang="en")
     link(rel='stylesheet',href="/static/css/progressively.css")
     link(rel='stylesheet', href='/static/css/common.css')
     link(rel='stylesheet', href='/static/css/main.css')
-    script(src="/static/js/jquery-1.12.4.min.js")
-    script(src="/static/js/progressively.js")
-    script(src="/static/js/device.js")
-    script(src="/static/js/baidu-analysis.js")
-    script(src="/static/js/like.js")
-    script(data-no-instant,src="/static/js/instantclick.min.js")
-    script(data-no-instant,src="/static/js/mine-instantclick.js")
-    script.
-        $(function() {
-            var i = 0;
-            var timer = setInterval(function(){
-                progressively.init();
-                if(i++ === 5) clearInterval(timer);
-            },1000/4);
-            var click = 'ontouchstart' in window ? 'touchstart' : 'click';
-            if (DEVICE.isMobile) {
-                $(document.body).addClass('mobile');
-            }
-        });
 body
     header
         div.container
@@ -97,3 +78,22 @@ body
         p 本站所有图片均来自<a href="http://cn.bing.com" target="_blank">必应搜索</a>
         p Copyright &copy; 2016 - 2017 <a href="http://ioliu.cn" target="_blank">云淡风轻</a>
 
+    script(src="/static/js/jquery-1.12.4.min.js")
+    script(src="/static/js/progressively.js")
+    script(src="/static/js/device.js")
+    script(src="/static/js/baidu-analysis.js")
+    script(src="/static/js/like.js")
+    script(data-no-instant,src="/static/js/instantclick.min.js")
+    script(data-no-instant,src="/static/js/mine-instantclick.js")
+    script.
+        $(function() {
+            var i = 0;
+            var timer = setInterval(function(){
+                progressively.init();
+                if(i++ === 5) clearInterval(timer);
+            },1000/4);
+            var click = 'ontouchstart' in window ? 'touchstart' : 'click';
+            if (DEVICE.isMobile) {
+                $(document.body).addClass('mobile');
+            }
+        });
