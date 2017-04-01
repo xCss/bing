@@ -35,7 +35,8 @@ router.get('/:photo', function(req, res, next) {
             return;
             break;
         case 'download':
-            if (!isAjax) {
+            var ua = req.get('User-Agent');
+            if (!isAjax && !/(spider|bot)/ig.test(ua)) {
                 var sql = `update bing as a join (select downloads,id from bing WHERE qiniu_url='${photo}') as b on a.id=b.id set a.downloads=(b.downloads+1)`;
                 db.commonQuery(sql, function(rows) {
                     res.set({
@@ -44,7 +45,7 @@ router.get('/:photo', function(req, res, next) {
                     });
                     request.get(`http://images.ioliu.cn/bing/${photo}_1920x1080.jpg`)
                         .set({
-                            'User-Agent': req.get('User-Agent')
+                            'User-Agent': ua
                         }).pipe(res);
                 });
             } else {
