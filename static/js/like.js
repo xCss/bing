@@ -6,7 +6,7 @@ $(function() {
         $(`.ctrl.heart[photo='${likes[i]}']`).addClass('active');
     }
     var click = 'ontouchstart' in window ? 'touchstart' : 'click';
-    $(document).on(click, '.ctrl.heart', function(e) {
+    $(document).off(click,'.ctrl.heart').on(click, '.ctrl.heart', function(e) {
         var _this = $(this);
         var num = Number(_this.attr('likes'));
         var rid = _this.attr('photo');
