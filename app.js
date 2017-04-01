@@ -7,8 +7,9 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var request = require('superagent');
 var index = require('./routes/index');
-var download = require('./routes/download');
+var photo = require('./routes/photo');
 var weibo = require('./routes/weibo');
+var ranking = require('./routes/ranking');
 var v1 = require('./routes/v1');
 
 // 定时器
@@ -128,12 +129,28 @@ app.use(function(req, res, next) {
     } else next();
 });
 
+// var images = [
+//     'MangroveRoots_ZH-CN10720576635',
+//     'IzmirFaceWall_ZH-CN8661261728',
+//     'CapeSebastian_ZH-CN9469145123',
+//     'FireEscapes_ZH-CN9251582421',
+//     'LaurelMoss_ZH-CN9578543974'
+// ];
+
+// var resolutions = require('./configs/config').resolutions;
+// for (var i in images) {
+//     var name = images[i];
+//     var link = `http://images.ioliu.cn/bing/${name}_1920x1080.jpg`;
+//     qiniuUtils.specialFetchToQiniu(link);
+// }
+
 app.use('/', index);
-app.use('/d', download);
+app.use('/photo', photo);
 app.use('/weibo', weibo);
+app.use('/ranking', ranking);
 app.use('/v1', v1);
 
-app.use('/about.html',function(req,res,next){
+app.use('/about.html', function(req, res, next) {
     res.render('about');
 });
 /**
@@ -158,9 +175,11 @@ app.get('/test', function(req, res, next) {
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('啊( ⊙ o ⊙ )，你发现了新大陆 ∑(っ °Д °;)っ');
-    err.status = 404;
-    next(err);
+    // var err = new Error('啊( ⊙ o ⊙ )，你发现了新大陆 ∑(っ °Д °;)っ');
+    // err.status = 404;
+    // next(err);
+
+    res.redirect('/');
 });
 // error handlers
 // development error handler

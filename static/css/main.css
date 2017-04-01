@@ -40,7 +40,7 @@
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0, transparent 40%, transparent 60%, rgba(0, 0, 0, 0.6));
     -webkit-filter: blur(15px);
     filter: blur(15px);
-    z-index: 1px;
+    z-index: 1;
     -webkit-transition: all .5s ease;
     transition: all .5s ease;
 }
@@ -56,6 +56,7 @@
     -webkit-transition: all .5s ease;
     transition: all .5s ease;
     opacity: 0;
+    z-index: 3;
 }
 
 .container .item .card .ctrl {
@@ -93,13 +94,16 @@
 .container .item .card .description {
     position: absolute;
     width: 100%;
-    left: .05rem;
-    top: .05rem;
+    left: 0;
+    top: 0;
+    padding: .05rem;
     display: block;
     color: #fff;
     opacity: 0;
     -webkit-transition: all .5s ease;
     transition: all .5s ease;
+    z-index: 1;
+    pointer-events: none;
 }
 
 .container .item .card .description h3 {
@@ -151,12 +155,43 @@
     }
 }
 
+.page {
+    text-align: center;
+    padding: .3rem;
+}
+
+.page a {
+    display: inline-block;
+    height: .32rem;
+    line-height: .31rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #dedede;
+    cursor: pointer;
+    -webkit-border-radius: .06rem;
+    border-radius: .06rem;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    text-align: center;
+    padding: 0 .1rem;
+}
+
+.page span {
+    display: inline-block;
+    padding: 0 .1rem;
+}
+
+.copyright {
+    padding-bottom: .3rem;
+    text-align: center;
+}
+
 
 /**********************Detail.css***********************/
 
 .detail {
     height: 100vh;
     position: relative;
+    background: rgba(1, 1, 1, .5);
 }
 
 .detail .mark {
@@ -168,10 +203,10 @@
     z-index: -1;
     background-size: cover;
     background-position: center;
-    -webkit-transition: all 1.5s ease;
-    transition: all 1.5s ease;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
     -webkit-filter: blur(30px);
-    filter: blur(30px);
+    filter: blur(20px);
 }
 
 .detail .preview img {

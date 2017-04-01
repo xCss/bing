@@ -153,7 +153,7 @@ var random = function(req, res, next) {
                     params += !!t ? '&t=' + t : '';
                     params += !!w ? '&w=' + w : '';
                     params += !!h ? '&h=' + h : '';
-                    params += !!callback ? '&&callback=' + callback : '';
+                    params += !!callback ? '&callback=' + callback : '';
                     res.redirect('/v1/rand' + params);
                 }
             });
@@ -162,7 +162,7 @@ var random = function(req, res, next) {
             params += !!t ? '&t=' + t : '';
             params += !!w ? '&w=' + w : '';
             params += !!h ? '&h=' + h : '';
-            params += !!callback ? '&&callback=' + callback : '';
+            params += !!callback ? '&callback=' + callback : '';
             res.redirect('/v1/rand' + params);
         }
     });
@@ -216,7 +216,7 @@ var blur = function(req, res, next) {
             request.get(qiniu_url)
                 .set(cookie)
                 .end(function(err, response) {
-                    res.header('content-type', 'image/jpg');
+                    res.header('content-type', 'image/jpeg');
                     res.send(response.body);
                 });
         } else {

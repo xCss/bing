@@ -54,5 +54,26 @@ module.exports = {
         url = /(http|https)\:\/\//.test(url) ? url : base + url;
         var imageView = new qiniu.fop.ImageView(mode, width, height, quality);
         return imageView.makeRequest(url);
+    },
+
+    specialFetchToQiniu(imgURL, name) {
+        var client = new qiniu.rs.Client();
+        for (var i = 0, len = resolutions.length; i < len; i++) {
+            var _temp = resolutions[i];
+            var remoteURL = imgURL + `?imageView2/1/w/${_temp.split('x')[0]}/h/${_temp.split('x')[1]}/q/100`;
+            console.log(1);
+            console.log(remoteURL);
+            var img = imgURL.split('?')[0].split('/bing/')[1];
+            var _tempName = 'bing/' + img;
+            var imgName = _tempName.replace('1920x1080', _temp);
+            client.fetch(remoteURL, bucket, imgName, function(err, ret) {
+                if (!err) {
+                    console.log(ret);
+                } else {
+                    console.log(err);
+                }
+            });
+        }
+        //callback && callback();
     }
 };

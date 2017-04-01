@@ -1,0 +1,61 @@
+doctype html
+html(lang="en")
+  head
+    include common_headers.pug
+    title #{doc.title} | 必应壁纸,必应每日壁纸,必应高清壁纸
+    - var location = (doc.country && doc.city) ? doc.country + ', ' + doc.city : false;
+    - location = doc.continent ? (location ? doc.continent + ', ' + location : doc.continent) : location;
+    meta(name="keywords",content=`${doc.copyright}, ${doc.title}, ${location}`)
+    meta(name="description",content=`${doc.description}`)
+    link(rel='stylesheet', href='/static/css/common.css')
+    link(rel='stylesheet', href='/static/css/main.css')
+
+body.detail
+    div.preview
+        - var small = doc.photo;
+        img.target(src=`https://static.ioliu.cn/bing/${small}_1920x1080.jpg?imageView2/1/w/19/h/11/q/100`,data-src=`https://static.ioliu.cn/bing/${small}_1920x1080.jpg`)
+        div.mark
+        div.options
+            a.ctrl.left(href=`${doc.back_url}`)
+                i.icon.icon-left
+                em.t BACK
+            span.ctrl.eye
+                i.icon.icon-eye
+                em.t #{doc.views}
+            span.ctrl.heart(photo=doc.id,likes=doc.likes)
+                i.icon.icon-heart
+                em.t #{doc.likes}
+            a.ctrl.download(href=`/photo/${doc.photo}?force=download`,target="_blank")
+                i.icon.icon-download
+                em.t #{doc.downloads}
+        div.description
+            p.title #{doc.copyright}
+            p.sub #{doc.description}
+            p.calendari.icon.icon-calendar
+                em.t #{doc.dt}
+            if location
+                p.location
+                    i.icon.icon-location
+                    em.t #{location}
+    script(src='/static/js/jquery-1.12.4.min.js')
+    script(src='/static/js/baidu-analysis.js')
+    script(src='/static/js/like.js')
+    script.
+        $(function() {
+            var img = $('.target');
+            var mini = img.attr('src');
+            var big = img.attr('data-src');
+            var mark = $('.mark');
+            mark.css({
+                'background-image': `url(${mini})`
+            });
+            img = img[0];
+            img.src = big;
+            img.onload = function() {
+                mark.css({
+                    backgroundImage: `url(${big})`,
+                    filter: 'blur(0)'
+                });
+                img.remove();
+            }
+        });
