@@ -1,7 +1,9 @@
 $(function() {
 
     var likes = Cookies.get('likes') || '';
-    likes = likes.split(',');
+    likes = likes.replace(/\_+/g,',').split(',');
+    Cookies.remove('likes');
+    Cookies.set('likes', likes.join(','),{ expires: 365 });
     for (var i = 0, len = likes.length; i < len; i++) {
         $(`.ctrl.heart[photo='${likes[i]}']`).addClass('active');
     }
