@@ -1,9 +1,9 @@
 $(function() {
 
     var likes = Cookies.get('likes') || '';
-    likes = likes.replace(/\_+/g,',').split(',');
+    likes = likes.replace(/\,+/g,'_').split('_');
     Cookies.remove('likes');
-    Cookies.set('likes', likes.join(','),{ expires: 365 });
+    Cookies.set('likes', likes.join('_'),{ expires: 730 });
     for (var i = 0, len = likes.length; i < len; i++) {
         $(`.ctrl.heart[photo='${likes[i]}']`).addClass('active');
     }
@@ -15,7 +15,7 @@ $(function() {
         if (_this.hasClass('active')) return;
         $.get(`/photo/${rid}?force=like`, function(data, state) {
             likes.push(rid);
-            Cookies.set('likes', likes.join(','),{ expires: 365 });
+            Cookies.set('likes', likes.join('_'),{ expires: 730 });
             _this.addClass('active').children('em').html(num + 1);
         });
     });
