@@ -12,7 +12,7 @@ router.get('/:photo', function(req, res, next) {
         case 'like':
             if (isAjax) {
                 var ck = req.cookies['likes'] || '';
-                ck = ck.split('_');
+                ck = ck.split(',');
                 if (ck.indexOf(photo) > -1) {
                     res.json({
                         msg: '',
