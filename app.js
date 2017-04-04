@@ -156,7 +156,7 @@ app.use('/about.html', function(req, res, next) {
 /**
  * Robots.txt
  */
-app.use('/robots.txt', function(req, res, next) {
+app.get('/robots.txt', function(req, res, next) {
     res.header('content-type', 'text/plain');
     res.send('User-Agent: * \nAllow: /');
 });
