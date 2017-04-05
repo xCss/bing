@@ -212,8 +212,11 @@
 .detail .preview img {
     width: 0;
     height: 0;
-    position: absolute;
     border: 0;
+}
+
+.detail .preview .progressive {
+    background: transparent;
 }
 
 .detail .preview .options {
@@ -224,6 +227,9 @@
     text-align: right;
     -webkit-transition: all .5s ease;
     transition: all .5s ease;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .detail .preview .ctrl {

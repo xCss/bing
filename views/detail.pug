@@ -7,13 +7,17 @@ html(lang="en")
     - location = doc.continent ? (location ? doc.continent + ', ' + location : doc.continent) : location;
     meta(name="keywords",content=`${doc.copyright}, ${doc.title}, ${location}`)
     meta(name="description",content=`${doc.description}`)
+    link(rel='stylesheet',href="/static/css/progressively.css")
     link(rel='stylesheet', href='/static/css/common.css')
     link(rel='stylesheet', href='/static/css/main.css')
+    style.
+        
 
 body.detail
     div.preview
         - var small = doc.photo;
-        img.target(src=`https://static.ioliu.cn/bing/${small}_1920x1080.jpg?imageView2/1/w/19/h/11/q/100`,data-src=`https://static.ioliu.cn/bing/${small}_1920x1080.jpg`)
+        div.progressive
+            img.target.progressive__img.progressive--not-loaded(src=`https://static.ioliu.cn/bing/${small}_1920x1080.jpg?imageView2/1/w/19/h/11/q/100`,data-progressive=`https://static.ioliu.cn/bing/${small}_1920x1080.jpg`)
         div.mark
         div.options
             a.ctrl.left(href=`${doc.back_url}`)
@@ -39,26 +43,36 @@ body.detail
                     em.t #{location}
 
     script(src='/static/js/jquery-1.12.4.min.js')
+    script(src='/static/js/progressively.js')
     script(src='/static/js/baidu-analysis.js')
     script(src='/static/js/like.js')
     //- script(data-no-instant,src="/static/js/instantclick.min.js")
     //- script(data-no-instant,src="/static/js/mine-instantclick.js")
     script.
         $(function() {
+            var i=0;
             var img = $('.target');
             var mini = img.attr('src');
-            var big = img.attr('data-src');
             var mark = $('.mark');
             mark.css({
                 'background-image': `url(${mini})`
             });
-            img = img[0];
-            img.src = big;
-            img.onload = function() {
-                mark.css({
-                    backgroundImage: `url(${big})`,
-                    filter: 'blur(0)'
-                });
-                img.remove();
-            }
+            progressively.init({
+                delay: 20,
+                throttle: 300,
+                onLoad: function(elem) {
+                },
+                onLoadComplete: function() {
+                    i++;
+                    if(i>=2){
+                        var big = img.attr('src');
+                        mark.css({
+                            backgroundImage: `url(${big})`,
+                            filter: 'blur(0)'
+                        });
+                        img.remove();
+                    }
+                }
+            });
+
         });

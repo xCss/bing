@@ -150,7 +150,7 @@ app.use('/weibo', weibo);
 app.use('/ranking', ranking);
 app.use('/v1', v1);
 
-app.use('/about.html', function(req, res, next) {
+app.get('/about.html', function(req, res, next) {
     res.render('about');
 });
 /**
