@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
             }
             var sql = `select id,title,attribute,description,copyright,qiniu_url as photo,city,country,continent,DATE_FORMAT(enddate, '%Y-%m-%d') as dt,likes,views,downloads,thumbnail_pic,original_pic from bing 
                         where !ISNULL(qiniu_url) || qiniu_url<>""
-                        order by likes desc
+                        order by downloads desc
                         limit ${(page.curr-1)*page.size},${page.size}`;
             dbUtils.commonQuery(sql, function(rs) {
                 if (rs.length > 0) {
