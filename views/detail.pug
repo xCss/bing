@@ -2,11 +2,12 @@ doctype html
 html(lang="en")
   head
     include common_headers.pug
-    title #{doc.title}-必应壁纸,必应每日壁纸,必应高清壁纸
+    title #{doc.title} - 必应壁纸，必应每日壁纸，高清壁纸下载，必应壁纸接口
     - var location = (doc.country && doc.city) ? doc.country + ', ' + doc.city : false;
     - location = doc.continent ? (location ? doc.continent + ', ' + location : doc.continent) : location;
     meta(name="keywords",content=`${doc.copyright}, ${doc.title}, ${location}`)
     meta(name="description",content=`${doc.description}`)
+    meta(name="author",content=`${doc.copyright}`)
     link(rel='stylesheet',href="/static/css/progressively.css")
     link(rel='stylesheet', href='/static/css/common.css')
     link(rel='stylesheet', href='/static/css/main.css')
