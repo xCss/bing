@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
             if (pageNo > page.curr && !isAjax) {
                 res.redirect(`/?p=${page.curr}`);
             }
-            var sql = `select id,title,attribute,description,copyright,qiniu_url as photo,city,country,continent,DATE_FORMAT(enddate, '%Y-%m-%d') as dt,likes,views,downloads from bing 
+            var sql = `select id,title,attribute,description,copyright,qiniu_url as photo,city,country,continent,DATE_FORMAT(enddate, '%Y-%m-%d') as dt,likes,views,downloads,thumbnail_pic,original_pic from bing 
                         where !ISNULL(qiniu_url) || qiniu_url<>""
                         order by id desc
                         limit ${(page.curr-1)*page.size},${page.size}`;
@@ -33,6 +33,12 @@ router.get('/', function(req, res, next) {
                     var data = [];
                     for (var i in rs) {
                         var temp = rs[i];
+                        /**
+                         * 1024x576
+                         * 120x67
+                         */
+                        var thumbnail = temp['original_pic'] ? temp['original_pic'].replace('http', 'https') : `https://static.ioliu.cn/bing/${temp['photo']}_1920x1080.jpg?imageView2/1/w/1024/h/576/q/100`;
+                        var smallpic = temp['thumbnail_pic'] ? temp['thumbnail_pic'].replace('http', 'https') : `https://static.ioliu.cn/bing/${temp['photo']}_1920x1080.jpg?imageView2/1/w/120/h/67/q/100`;
                         data.push({
                             id: temp['id'],
                             title: temp['title'],
@@ -43,8 +49,8 @@ router.get('/', function(req, res, next) {
                             city: temp['city'],
                             country: temp['country'],
                             continent: temp['continent'],
-                            thumbnail: `https://static.ioliu.cn/bing/${temp['photo']}_800x600.jpg`,
-                            smallpic: `https://static.ioliu.cn/bing/${temp['photo']}_800x600.jpg?imageView2/1/w/4/h/3/q/100`,
+                            thumbnail: thumbnail,
+                            smallpic: smallpic,
                             dt: temp['dt'],
                             likes: temp['likes'],
                             views: temp['views'],

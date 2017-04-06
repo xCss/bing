@@ -38,16 +38,15 @@ router.get('/:photo', function(req, res, next) {
             var ua = req.get('User-Agent');
             if (!isAjax && !/(spider|bot)/ig.test(ua)) {
                 var sql = `update bing as a join (select downloads,id from bing WHERE qiniu_url='${photo}') as b on a.id=b.id set a.downloads=(b.downloads+1)`;
-                db.commonQuery(sql, function(rows) {
-                    res.set({
-                        'Content-Type': 'application/octet-stream',
-                        'Content-Disposition': 'attachment; filename=' + encodeURI(`${photo}_1920x1080.jpg`)
-                    });
-                    request.get(`http://images.ioliu.cn/bing/${photo}_1920x1080.jpg`)
-                        .set({
-                            'User-Agent': ua
-                        }).pipe(res);
+                db.commonQuery(sql, function(rows) {});
+                res.set({
+                    'Content-Type': 'application/octet-stream',
+                    'Content-Disposition': 'attachment; filename=' + encodeURI(`${photo}_1920x1080.jpg`)
                 });
+                request.get(`https://static.ioliu.cn/bing/${photo}_1920x1080.jpg`)
+                    .set({
+                        'User-Agent': ua
+                    }).pipe(res);
             } else {
                 res.json({
                     code: 200,
