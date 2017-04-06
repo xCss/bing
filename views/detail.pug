@@ -2,7 +2,7 @@ doctype html
 html(lang="en")
   head
     include common_headers.pug
-    title #{doc.title} - 必应壁纸，必应每日壁纸，高清壁纸下载，必应壁纸接口
+    title #{doc.title} - 必应每日高清壁纸下载：精彩，从这里开始
     - var location = (doc.country && doc.city) ? doc.country + ', ' + doc.city : false;
     - location = doc.continent ? (location ? doc.continent + ', ' + location : doc.continent) : location;
     meta(name="keywords",content=`${doc.copyright}, ${doc.title}, ${location}`)
