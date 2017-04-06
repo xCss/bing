@@ -57,7 +57,7 @@ router.get('/:photo', function(req, res, next) {
             break;
     }
 
-    var sql = `select id,title,attribute,description,copyright,qiniu_url as photo,city,country,continent,DATE_FORMAT(enddate, '%Y-%m-%d') as dt,likes,views,downloads from bing 
+    var sql = `select id,title,attribute,description,copyright,qiniu_url as photo,city,country,continent,DATE_FORMAT(enddate, '%Y-%m-%d') as dt,likes,views,downloads,thumbnail_pic from bing 
             where qiniu_url='${photo}'`;
     if (isAjax) {
         res.send({
@@ -74,6 +74,8 @@ router.get('/:photo', function(req, res, next) {
                 if (force.indexOf('_') > -1) {
                     var rt = force.split('_');
                     doc['back_url'] = rt[0] === 'ranking' ? '/ranking?p=' + rt[1] : '/?p=' + rt[1];
+                } else {
+                    doc['back_url'] = '/';
                 }
                 res.render('detail', { doc: doc });
             } else {

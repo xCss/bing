@@ -17,7 +17,7 @@ body.detail
     div.preview
         - var small = doc.photo;
         div.progressive
-            img.target.progressive__img.progressive--not-loaded(src=`https://static.ioliu.cn/bing/${small}_1920x1080.jpg?imageView2/1/w/19/h/11/q/100`,data-progressive=`https://static.ioliu.cn/bing/${small}_1920x1080.jpg`)
+            img.target.progressive__img.progressive--not-loaded(src=doc.thumbnail_pic,data-progressive=`https://static.ioliu.cn/bing/${small}_1920x1080.jpg`)
         div.mark
         div.options
             a.ctrl.left(href=`${doc.back_url}`)
