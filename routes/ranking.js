@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
                 next: pageNo + 1 > Math.ceil(count / pageSize) ? Math.ceil(count / pageSize) : pageNo + 1,
                 prev: pageNo - 1 > 0 ? pageNo - 1 : 1,
                 curr: pageNo > Math.ceil(count / pageSize) ? Math.ceil(count / pageSize) : pageNo,
-                currText: pageNo === 1 ? '首页' : '第' + pageNo + '页',
+                currText: pageNo === 1 ? '下载榜' : '第' + pageNo + '页',
                 currPage: 'ranking'
             }
             if (pageNo > page.curr && !isAjax) {

@@ -1,99 +1,99 @@
 doctype html
 html(lang="en")
-  head
-    include common_headers.pug
-    title #{page.currText} - 必应每日高清壁纸下载：精彩，从这里开始
-    meta(name="keywords",content="必应壁纸,必应高清壁纸打包下载,必应壁纸合集,必应每日壁纸下载,必应壁纸接口,必应壁纸官方下载,Bing壁纸,微软bing每日壁纸,必应每日壁纸下载,Bing壁纸api,高清壁纸分享,bing壁纸官方下载,必应高清壁纸,必应壁纸打包下载")
-    link(rel='stylesheet',href="/static/css/progressively.css")
-    link(rel='stylesheet', href='/static/css/common.css')
-    link(rel='stylesheet', href='/static/css/main.css')
-body
-    header
+    head
+        include common_headers.pug
+        title #{page.currText} - 必应每日高清壁纸下载:精彩,从这里开始
+        meta(name="keywords",content="必应壁纸,必应高清壁纸打包下载,必应壁纸合集,必应每日壁纸下载,必应壁纸接口,必应壁纸官方下载,Bing壁纸,微软bing每日壁纸,必应每日壁纸下载,Bing壁纸api,高清壁纸分享,bing壁纸官方下载,必应高清壁纸,必应壁纸打包下载")
+        link(rel='stylesheet',href="/static/css/progressively.css")
+        link(rel='stylesheet', href='/static/css/common.css')
+        link(rel='stylesheet', href='/static/css/main.css')
+    body
+        header
+            div.container
+                a.logo(href="/")
+                    i.icon.icon-bing
+                    span 必应壁纸
+                nav
+                    ul.menu
+                        li(class=`${page.currPage === 'home' ? 'active' : ''}`)
+                            a(href="/")
+                                i.icon.icon-home
+                                p.text 首页
+                        li(class=`${page.currPage === 'ranking' ? 'active' : ''}`)
+                            a(href="/ranking")
+                                i.icon.icon-ranking
+                                p.text 下载榜
+                        li
+                            a(data-no-instant,href="/static/about.html")
+                                i.icon.icon-about
+                                p.text 关于
+
+                        //- <li class="search-wrap">
+                        //-     <label class="search">
+                        //-         <input type="text" placeholder="搜索关键字">
+                        //-         <a class="search-btn"><i class="icon icon-search"></i></a>
+                        //-     </label>
+                        //- </li>
+            
+        div.holder
+        div.mask
         div.container
-            a.logo(href="/")
-                i.icon.icon-bing
-                   span 必应壁纸
-            nav
-                ul.menu
-                    li(class=`${page.currPage === 'home' ? 'active' : ''}`)
-                        a(href="/")
-                            i.icon.icon-home
-                            p.text 首页
-                    li(class=`${page.currPage === 'ranking' ? 'active' : ''}`)
-                        a(href="/ranking")
-                            i.icon.icon-ranking
-                            p.text 下载榜
-                    li
-                        a(data-no-instant,href="/static/about.html")
-                            i.icon.icon-about
-                            p.text 关于
+            each val in doc
+                - var location = (val.country && val.city) ? val.country + ', ' + val.city : false;
+                - location = val.continent ? (location ? val.continent + ', ' + location : val.continent) : location;
+                div.item
+                    div.card.progressive
+                        img.progressive__img.progressive--not-loaded(data-progressive=val.thumbnail,src=val.smallpic )
+                        a.mark(href=`/photo/${val.photo}?force=${page.currPage}_${page.curr}`)
+                        div.description
+                            h3 #{val.copyright}
+                            p.calendar
+                                i.icon.icon-calendar
+                                em.t #{val.dt}
+                            if location
+                                p.location
+                                    i.icon.icon-location
+                                    em.t #{location}
+                        div.options
+                            span.ctrl.eye
+                                i.icon.icon-eye
+                                em.t #{val.views}
+                            span.ctrl.heart(photo=val.id,likes=val.likes)
+                                i.icon.icon-heart
+                                em.t #{val.likes}
 
-                    //- <li class="search-wrap">
-                    //-     <label class="search">
-                    //-         <input type="text" placeholder="搜索关键字">
-                    //-         <a class="search-btn"><i class="icon icon-search"></i></a>
-                    //-     </label>
-                    //- </li>
-        
-    div.holder
-    div.mask
-    div.container
-        each val in doc
-            - var location = (val.country && val.city) ? val.country + ', ' + val.city : false;
-            - location = val.continent ? (location ? val.continent + ', ' + location : val.continent) : location;
-            div.item
-                div.card.progressive
-                    img.progressive__img.progressive--not-loaded(data-progressive=val.thumbnail,src=val.smallpic )
-                    a.mark(href=`/photo/${val.photo}?force=${page.currPage}_${page.curr}`)
-                    div.description
-                        h3 #{val.copyright}
-                        p.calendar
-                            i.icon.icon-calendar
-                            em.t #{val.dt}
-                        if location
-                            p.location
-                                i.icon.icon-location
-                                em.t #{location}
-                    div.options
-                        span.ctrl.eye
-                            i.icon.icon-eye
-                            em.t #{val.views}
-                        span.ctrl.heart(photo=val.id,likes=val.likes)
-                            i.icon.icon-heart
-                            em.t #{val.likes}
+                            a.ctrl.download(href=`/photo/${val.photo}?force=download`,target="_blank")
+                                i.icon.icon-download
+                                em.t #{val.downloads}
+        div.page
+            - var url = page.currPage === 'home' ? '/' : `/${page.currPage}`
+            - var prev = page.prev === 1 ? `${url}` : `${url}?p=${page.prev}`;
+            - var next = `${url}?p=${page.next}`;
+            a(href=prev)
+                i.icon.icon-prev 上一页
+            span #{page.curr} / #{page.pageCount}
+            a(href=next) 下一页
+                i.icon.icon-next
+        div.copyright
+            p 本站所有图片均来自<a href="http://cn.bing.com" target="_blank">必应搜索</a>
+            p Copyright &copy; 2016 - 2017 <a href="http://ioliu.cn" target="_blank">云淡风轻</a>
 
-                        a.ctrl.download(href=`/photo/${val.photo}?force=download`,target="_blank")
-                            i.icon.icon-download
-                            em.t #{val.downloads}
-    div.page
-        - var url = page.currPage === 'home' ? '/' : `/${page.currPage}`
-        - var prev = page.prev === 1 ? `${url}` : `${url}?p=${page.prev}`;
-        - var next = `${url}?p=${page.next}`;
-        a(href=prev)
-            i.icon.icon-prev 上一页
-        span #{page.curr} / #{page.pageCount}
-        a(href=next) 下一页
-            i.icon.icon-next
-    div.copyright
-        p 本站所有图片均来自<a href="http://cn.bing.com" target="_blank">必应搜索</a>
-        p Copyright &copy; 2016 - 2017 <a href="http://ioliu.cn" target="_blank">云淡风轻</a>
-
-    script(src="/static/js/jquery-1.12.4.min.js")
-    script(src="/static/js/progressively.js")
-    script(src="/static/js/device.js")
-    script(src="/static/js/baidu-analysis.js")
-    script(src="/static/js/like.js")
-    //- script(data-no-instant,src="/static/js/instantclick.min.js")
-    //- script(data-no-instant,src="/static/js/mine-instantclick.js")
-    script.
-        $(function() {
-            var i = 0;
-            var timer = setInterval(function(){
-                progressively.init();
-                if(i++ === 5) clearInterval(timer);
-            },1000/4);
-            var click = 'ontouchstart' in window ? 'touchstart' : 'click';
-            if (DEVICE.isMobile) {
-                $(document.body).addClass('mobile');
-            }
-        });
+        script(src="/static/js/jquery-1.12.4.min.js")
+        script(src="/static/js/progressively.js")
+        script(src="/static/js/device.js")
+        script(src="/static/js/baidu-analysis.js")
+        script(src="/static/js/like.js")
+        //- script(data-no-instant,src="/static/js/instantclick.min.js")
+        //- script(data-no-instant,src="/static/js/mine-instantclick.js")
+        script.
+            $(function() {
+                var i = 0;
+                var timer = setInterval(function(){
+                    progressively.init();
+                    if(i++ === 5) clearInterval(timer);
+                },1000/4);
+                var click = 'ontouchstart' in window ? 'touchstart' : 'click';
+                if (DEVICE.isMobile) {
+                    $(document.body).addClass('mobile');
+                }
+            });
