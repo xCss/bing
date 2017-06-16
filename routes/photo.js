@@ -8,6 +8,7 @@ router.get('/:photo', function(req, res, next) {
     var force = req.query.force || '';
     var photo = req.params.photo;
     var isAjax = !!req.headers['x-requested-with'];
+    var link = Math.random() < 0.5 ? 'https://static.ioliu.cn' : 'https://bing-images.bitmoe.cn';
     switch (force) {
         case 'like':
             if (isAjax) {
@@ -43,7 +44,7 @@ router.get('/:photo', function(req, res, next) {
                     'Content-Type': 'application/octet-stream',
                     'Content-Disposition': 'attachment; filename=' + encodeURI(`${photo}_1920x1080.jpg`)
                 });
-                request.get(`https://static.ioliu.cn/bing/${photo}_1920x1080.jpg`)
+                request.get(`${link}/bing/${photo}_1920x1080.jpg`)
                     .set({
                         'User-Agent': ua
                     }).pipe(res);
@@ -71,7 +72,7 @@ router.get('/:photo', function(req, res, next) {
         db.commonQuery(sql, function(rows) {
             if (rows.length > 0) {
                 var doc = rows[0];
-                doc['thumbnail'] = doc['thumbnail_pic'] ? doc['thumbnail_pic'].replace('http', 'https') : `https://static.ioliu.cn/bing/${photo}_800x480.jpg`;
+                doc['thumbnail'] = doc['thumbnail_pic'] ? doc['thumbnail_pic'].replace('http', 'https') : `${link}/bing/${photo}_800x480.jpg`;
                 if (force.indexOf('_') > -1) {
                     var rt = force.split('_');
                     doc['back_url'] = rt[0] === 'ranking' ? '/ranking?p=' + rt[1] : '/?p=' + rt[1];
