@@ -33,12 +33,13 @@ router.get('/', function(req, res, next) {
                     var data = [];
                     for (var i in rs) {
                         var temp = rs[i];
-                        /**
-                         * 1024x576
-                         * 120x67
-                         */
-                        var thumbnail = temp['original_pic'] ? temp['original_pic'].replace('http', 'https') : `https://static.ioliu.cn/bing/${temp['photo']}_1920x1080.jpg?imageView2/1/w/1024/h/576/q/100`;
-                        var smallpic = temp['thumbnail_pic'] ? temp['thumbnail_pic'].replace('http', 'https') : `https://static.ioliu.cn/bing/${temp['photo']}_1920x1080.jpg?imageView2/1/w/120/h/67/q/100`;
+                        var link = Math.random() < 0.5 ? 'https://static.ioliu.cn' : 'https://bing-images.bitmoe.cn'
+                            /**
+                             * 1024x576
+                             * 120x67
+                             */
+                        var thumbnail = temp['original_pic'] ? temp['original_pic'].replace('http', 'https') : `${link}/bing/${temp['photo']}_1920x1080.jpg?imageView2/1/w/1024/h/576/q/100`;
+                        var smallpic = temp['thumbnail_pic'] ? temp['thumbnail_pic'].replace('http', 'https') : `${link}/bing/${temp['photo']}_1920x1080.jpg?imageView2/1/w/120/h/67/q/100`;
                         data.push({
                             id: temp['id'],
                             title: temp['title'],
@@ -83,6 +84,7 @@ var common = function(req, res, next, page, rows) {
             var m = date.substr(4, 2);
             var d = date.substr(6, 2);
             var full = y + '-' + m + '-' + d;
+            var link = Math.random() < 0.5 ? 'https://static.ioliu.cn' : 'https://bing-images.bitmoe.cn'
             data.push({
                 id: rows[i]['id'],
                 title: rows[i]['title'],
@@ -93,7 +95,7 @@ var common = function(req, res, next, page, rows) {
                 city: rows[i]['city'],
                 country: rows[i]['country'],
                 continent: rows[i]['continent'],
-                thumbnail: `https://static.ioliu.cn/bing/${rows[i]['qiniu_url']}_800x600.jpg`,
+                thumbnail: `${link}/bing/${rows[i]['qiniu_url']}_800x600.jpg`,
                 smallpic: `https://bing.ioliu.cn/small/${rows[i]['qiniu_url']}_800x600`,
                 date: full,
                 likes: rows[i]['likes'],
