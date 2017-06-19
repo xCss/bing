@@ -17,7 +17,8 @@ html(lang="en")
         div.preview
             - var small = doc.photo;
             div.progressive
-                img.target.progressive__img.progressive--not-loaded(src=doc.thumbnail,data-progressive=`https://static.ioliu.cn/bing/${small}_1920x1080.jpg`)
+                - var link = Math.random() < 0.2 ? 'https://static.ioliu.cn' : 'https://bing-images.bitmoe.cn';
+                img.target.progressive__img.progressive--not-loaded(src=doc.thumbnail,data-progressive=`${link}/bing/${small}_1920x1080.jpg`)
             div.mark
             div.options
                 a.ctrl.left(href=`${doc.back_url}`)
