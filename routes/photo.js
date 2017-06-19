@@ -8,7 +8,7 @@ router.get('/:photo', function(req, res, next) {
     var force = req.query.force || '';
     var photo = req.params.photo;
     var isAjax = !!req.headers['x-requested-with'];
-    var link = Math.random() < 0.5 ? 'https://static.ioliu.cn' : 'https://bing-images.bitmoe.cn';
+    var link = Math.random() < 0.2 ? 'https://static.ioliu.cn' : 'https://bing-images.bitmoe.cn';
     switch (force) {
         case 'like':
             if (isAjax) {
