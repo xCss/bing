@@ -50,32 +50,32 @@ app.use(logger('combined', {
 }));
 
 // 每天 00:00,00:10,00:20 检测bing数据
-schedule.scheduleJob('0 0,5,10,20,25,30 0 * * *', function() {
-    var date = new Date();
-    var year = date.getFullYear();
-    var month = date.getMonth() + 1;
-    var day = date.getDate();
-    var now = year + '' + (month < 10 ? '0' + month : month) + '' + (day < 10 ? '0' + day : day);
-    // 查询是否已经抓取并插入数据库，如果已插入就不重复抓取
-    dbUtils.get('bing', {
-        body: {
-            enddate: now
-        }
-    }, function(rows) {
-        if (rows.length === 0) {
-            bingUtils.fetchPicture({}, function(data) {
-                dbUtils.set('bing', data, function(rows) {
-                    data.id = rows.insertId || 0;
-                    mailUtils.send({
-                        message: '从Bing抓取成功',
-                        title: '从Bing抓取成功',
-                        stack: JSON.stringify(data, '', 4)
-                    });
-                })
-            });
-        }
-    });
-});
+// schedule.scheduleJob('0 0,5,10,20,25,30 0 * * *', function() {
+//     var date = new Date();
+//     var year = date.getFullYear();
+//     var month = date.getMonth() + 1;
+//     var day = date.getDate();
+//     var now = year + '' + (month < 10 ? '0' + month : month) + '' + (day < 10 ? '0' + day : day);
+//     // 查询是否已经抓取并插入数据库，如果已插入就不重复抓取
+//     dbUtils.get('bing', {
+//         body: {
+//             enddate: now
+//         }
+//     }, function(rows) {
+//         if (rows.length === 0) {
+//             bingUtils.fetchPicture({}, function(data) {
+//                 dbUtils.set('bing', data, function(rows) {
+//                     data.id = rows.insertId || 0;
+//                     mailUtils.send({
+//                         message: '从Bing抓取成功',
+//                         title: '从Bing抓取成功',
+//                         stack: JSON.stringify(data, '', 4)
+//                     });
+//                 })
+//             });
+//         }
+//     });
+// });
 // 每天 08:30,12:30,15:30,18:30,21:30 定时发送微博
 schedule.scheduleJob('0 30 8,12,15,18,21 * * *', function() {
     weiboUtils.update(function(data) {
@@ -96,7 +96,7 @@ schedule.scheduleJob('0 30 8,12,15,18,21 * * *', function() {
 });
 
 // 每隔五分钟检查数据库中是否存在未上传到骑牛的图片，如果存在则上传图片到骑牛
-schedule.scheduleJob('0 1,6,11,16,21,26,31 0 * * *', function() {
+schedule.scheduleJob('*/1 * * * *', function() {
     dbUtils.get('bing', 'ISNULL(qiniu_url) || qiniu_url=""', function(rows) {
         if (rows.length > 0) {
             var data = rows[0];
