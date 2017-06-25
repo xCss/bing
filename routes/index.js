@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
                     var data = [];
                     for (var i in rs) {
                         var temp = rs[i];
-                        var link = Math.random() < 0.2 ? 'https://static.ioliu.cn' : 'https://bing-images.bitmoe.cn';
+                        var link = Math.random() < 0 ? 'https://static.ioliu.cn' : 'https://bing-images.bitmoe.cn';
                         /**
                          * 1024x576
                          * 120x67
@@ -84,7 +84,7 @@ var common = function(req, res, next, page, rows) {
             var m = date.substr(4, 2);
             var d = date.substr(6, 2);
             var full = y + '-' + m + '-' + d;
-            var link = Math.random() < 0.5 ? 'https://static.ioliu.cn' : 'https://bing-images.bitmoe.cn';
+            var link = Math.random() < 0 ? 'https://static.ioliu.cn' : 'https://bing-images.bitmoe.cn';
             data.push({
                 id: rows[i]['id'],
                 title: rows[i]['title'],

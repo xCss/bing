@@ -25,7 +25,6 @@
     "readme": "./readme.md",
     "homepage": "https://github.com/xCss/bing#readme",
     "dependencies": {
-        "bluebird": "^3.4.6",
         "body-parser": "~1.15.1",
         "cookie-parser": "~1.4.3",
         "debug": "~2.2.0",
