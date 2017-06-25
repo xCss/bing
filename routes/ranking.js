@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
     var pageNo = req.query.p;
     pageNo = !!pageNo && Number(pageNo) > 0 ? Number(pageNo) : 1;
     var pageSize = 12; // pageSize
-    dbUtils.commonQuery(`select count(0) as sum from bing where (!ISNULL(qiniu_url) || qiniu_url<>"") and mkt='zh-cn'`, function(rows) {
+    dbUtils.commonQuery(`select count(0) as sum from bing where (!ISNULL(qiniu_url) || qiniu_url<>"")  and mkt like '%zh-cn%'`, function(rows) {
         var count = rows[0]['sum'] || 0;
         if (count > 0) {
             var page = {
@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
                 res.redirect(`/?p=${page.curr}`);
             }
             var sql = `select id,title,attribute,description,copyright,qiniu_url as photo,city,country,continent,DATE_FORMAT(enddate, '%Y-%m-%d') as dt,likes,views,downloads,thumbnail_pic,original_pic from bing 
-                        where (!ISNULL(qiniu_url) || qiniu_url<>"") and mkt='zh-cn'
+                        where (!ISNULL(qiniu_url) || qiniu_url<>"")  and mkt like '%zh-cn%'
                         order by downloads desc
                         limit ${(page.curr-1)*page.size},${page.size}`;
             dbUtils.commonQuery(sql, function(rs) {
