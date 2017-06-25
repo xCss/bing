@@ -58,7 +58,7 @@ module.exports = {
             var full = y + '-' + m + '-' + d;
             var post = {};
             if (data.title && data.description && data.mkt == 'zh-cn') {
-                var status = ('#必应壁纸# ' + full + ' / #' + data.title + '# ' + data.description).slice(0, 138) + '... http://bing.ioliu.cn?id=' + data.id;
+                var status = ('#必应壁纸# ' + full + ' / #' + data.title + '# ' + data.description).slice(0, 138) + `... http://bing.ioliu.cn/photo/${data.qiniu_url}?from=weibo`;
                 post = {
                     access_token: token,
                     status: status,
@@ -78,7 +78,7 @@ module.exports = {
                     }
                 };
             } else {
-                var status = '#Bing Picture# ' + full + ' / ' + data.copyright + ' http://bing.ioliu.cn?id=' + data.id;
+                var status = '#Bing Picture# ' + full + ' / ' + data.copyright + ` from ${data.mkt} http://bing.ioliu.cn/photo/${data.qiniu_url}?from=weibo`;
                 post = {
                     access_token: token,
                     status: status,
