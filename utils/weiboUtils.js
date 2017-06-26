@@ -57,7 +57,7 @@ module.exports = {
             var d = date.substr(6, 2);
             var full = y + '-' + m + '-' + d;
             var post = {};
-            if (data.title && data.description && data.mkt == 'zh-cn') {
+            if (data.title && data.description && data.mkt.indexOf('zh-cn') > -1) {
                 var status = ('#必应壁纸# ' + full + ' / #' + data.title + '# ' + data.description).slice(0, 138) + `... http://bing.ioliu.cn/photo/${data.qiniu_url}?from=weibo`;
                 post = {
                     access_token: token,
