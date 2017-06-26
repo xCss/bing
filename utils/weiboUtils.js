@@ -1,4 +1,5 @@
 var request = require('superagent');
+var moment = require('moment');
 var bingUtils = require('./bingUtils');
 var commonUtils = require('./commonUtils');
 var dbUtils = require('./dbUtils');
@@ -15,7 +16,8 @@ module.exports = {
     update: function(callback, isAuto) {
         // 查询数据库中是否存在今天的新数据
         dbUtils.get('bing', {
-            weibo: 0
+            weibo: 0,
+            enddate: moment().format('YYYYMMDD')
         }, function(rows) {
             if (rows.length === 0) {} else {
                 // 如果存在，但没有发送微博

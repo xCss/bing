@@ -1,45 +1,46 @@
 {
-    "name": "bing",
-    "version": "1.0.0",
-    "private": true,
-    "scripts": {
-        "start": "supervisor node ./bin/www"
-    },
-    "author": {
-        "name": "xCss",
-        "mail": "xioveliu@gmail.com"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/xCss/bing.git"
-    },
-    "keywords": [
-        "Bing",
-        "BingPicture API",
-        "必应图片",
-        "必应壁纸接口"
-    ],
-    "bugs": {
-        "url": "https://github.com/xCss/bing/issues"
-    },
-    "readme": "./readme.md",
-    "homepage": "https://github.com/xCss/bing#readme",
-    "dependencies": {
-        "body-parser": "~1.15.1",
-        "cookie-parser": "~1.4.3",
-        "debug": "~2.2.0",
-        "express": "~4.13.4",
-        "express-flash": "0.0.2",
-        "express-session": "^1.14.1",
-        "helmet": "^2.3.0",
-        "morgan": "~1.7.0",
-        "mysql": "^2.11.1",
-        "node-schedule": "^1.2.0",
-        "nodemailer": "^0.7.1",
-        "object-assign": "^4.1.0",
-        "pug": "^2.0.0-beta6",
-        "qiniu": "^6.1.13",
-        "serve-favicon": "~2.3.0",
-        "superagent": "^2.3.0"
-    }
+  "name": "bing",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "supervisor node ./bin/www"
+  },
+  "author": {
+    "name": "xCss",
+    "mail": "xioveliu@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xCss/bing.git"
+  },
+  "keywords": [
+    "Bing",
+    "BingPicture API",
+    "必应图片",
+    "必应壁纸接口"
+  ],
+  "bugs": {
+    "url": "https://github.com/xCss/bing/issues"
+  },
+  "readme": "./readme.md",
+  "homepage": "https://github.com/xCss/bing#readme",
+  "dependencies": {
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "express": "~4.13.4",
+    "express-flash": "0.0.2",
+    "express-session": "^1.14.1",
+    "helmet": "^2.3.0",
+    "moment": "^2.18.1",
+    "morgan": "~1.7.0",
+    "mysql": "^2.11.1",
+    "node-schedule": "^1.2.0",
+    "nodemailer": "^0.7.1",
+    "object-assign": "^4.1.0",
+    "pug": "^2.0.0-beta6",
+    "qiniu": "^6.1.13",
+    "serve-favicon": "~2.3.0",
+    "superagent": "^2.3.0"
+  }
 }
