@@ -141,6 +141,7 @@ var random = function(req, res, next) {
                         }
                     } else {
                         var qiniu_url = /^(http|https)/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
+                        console.log(qiniu_url)
                         request.get(qiniu_url)
                             .set(cookie)
                             .end(function(err, response) {
