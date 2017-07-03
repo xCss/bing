@@ -77,7 +77,7 @@ app.use(logger('combined', {
 //     });
 // });
 // 每天 08:30,12:30,15:30,18:30,21:30 定时发送微博
-schedule.scheduleJob('0 30 8,9,10,11,13,14,15,16,17,18,19,20,21 * * *', function() {
+schedule.scheduleJob('*/30 8-21 * * *', function() {
     weiboUtils.update(function(data) {
         if (data && data.id) {
             mailUtils.send({

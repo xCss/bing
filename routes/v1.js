@@ -2,7 +2,7 @@ var express = require('express');
 var request = require('superagent');
 var dbUtils = require('../utils/dbUtils');
 var qiniuUtils = require('../utils/qiniuUtils');
-var resolutions = require('../configs/config').resolutions;
+var config = require('../configs/config');
 var cookie = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36' };
 
 var router = express.Router();
@@ -58,10 +58,10 @@ var v1 = function(req, res, next) {
         if (rows.length > 0) {
             var data = rows[0];
             if (!!w || !!h) {
-                if (resolutions.indexOf(size) > -1) {
-                    data['url'] = 'http://bing-images.bitmoe.cn/bing/' + data.qiniu_url + '_' + size + '.jpg';
+                if (config.resolutions.indexOf(size) > -1) {
+                    data['url'] = config.global_link + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
                 }
-                var qiniu_url = /static\.ioliu\.cn/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
+                var qiniu_url = /^(http|https)/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
                 request.get(qiniu_url)
                     .set(cookie)
                     .end(function(err, response) {
@@ -122,8 +122,8 @@ var random = function(req, res, next) {
             }, function(rs) {
                 if (rs.length > 0) {
                     var data = rs[0];
-                    if (resolutions.indexOf(size) > -1) {
-                        data['url'] = 'https://bing-images.bitmoe.cn/bing/' + data.qiniu_url + '_' + size + '.jpg';
+                    if (config.resolutions.indexOf(size) > -1) {
+                        data['url'] = config.global_link + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
                     }
                     if (t === 'json' || !!callback) {
                         //console.log(callback);
@@ -140,7 +140,7 @@ var random = function(req, res, next) {
                             res.json(output);
                         }
                     } else {
-                        var qiniu_url = /bing\-images\.bitmoe\.cn/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
+                        var qiniu_url = /^(http|https)/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
                         request.get(qiniu_url)
                             .set(cookie)
                             .end(function(err, response) {
@@ -207,11 +207,11 @@ var blur = function(req, res, next) {
     dbUtils.get('bing', params, function(rows) {
         if (rows.length > 0) {
             var data = rows[0];
-            var base = 'https://bing-images.bitmoe.cn/bing/';
-            if (resolutions.indexOf(size) > -1) {
+            var base = config.global_link + '/bing/';
+            if (config.resolutions.indexOf(size) > -1) {
                 data['url'] = base + data.qiniu_url + '_' + size + '.jpg';
             }
-            var qiniu_url = /bing\-images\.bitmoe\.bing/.test(data.url) ? data.url : base + data.qiniu_url + '_1920x1080.jpg';
+            var qiniu_url = /^(http|https)/.test(data.url) ? data.url : base + data.qiniu_url + '_1920x1080.jpg';
             qiniu_url += '?imageMogr2/blur/' + r + 'x50'
             request.get(qiniu_url)
                 .set(cookie)

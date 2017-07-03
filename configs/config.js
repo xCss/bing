@@ -45,7 +45,11 @@ module.exports = {
         '240x240',
         '200x200',
         '150x150'
-    ]
+    ],
+
+    global_link: function() {
+        return Math.random() > 0.5 ? 'https://static.ioliu.cn/' : 'https://bing-images.bitmoe.cn';
+    }
 
 
 }

@@ -1,5 +1,5 @@
 var qiniu = require('qiniu');
-var resolutions = require('../configs/config').resolutions;
+var config = require('../configs/config');
 // access_key and secret_key
 qiniu.conf.ACCESS_KEY = process.env.qiniu_access_key;
 qiniu.conf.SECRET_KEY = process.env.qiniu_secret_key;
@@ -15,8 +15,8 @@ module.exports = {
      */
     fetchToQiniu: function(imgURL, callback) {
         var client = new qiniu.rs.Client();
-        for (var i = 0, len = resolutions.length; i < len; i++) {
-            var _temp = resolutions[i];
+        for (var i = 0, len = config.resolutions.length; i < len; i++) {
+            var _temp = config.resolutions[i];
             var remoteURL = imgURL.replace('1920x1080', _temp);
             var _tempName = 'bing/' + imgURL.substr(imgURL.lastIndexOf('/') + 1, imgURL.length);
             var imgName = _tempName.replace('1920x1080', _temp);
@@ -49,7 +49,7 @@ module.exports = {
         height = height || 1080;
         quality = quality || 100;
         mode = mode || 1;
-        var base = 'https://bing-images.bitmoe.cn/bing/';
+        var base = `${config.global_link}/bing/`;
         url = url.indexOf('1920x1080') == -1 ? url + '_1920x1080.jpg' : url;
         url = /(http|https)\:\/\//.test(url) ? url : base + url;
         var imageView = new qiniu.fop.ImageView(mode, width, height, quality);
@@ -58,8 +58,8 @@ module.exports = {
 
     specialFetchToQiniu(imgURL, name) {
         var client = new qiniu.rs.Client();
-        for (var i = 0, len = resolutions.length; i < len; i++) {
-            var _temp = resolutions[i];
+        for (var i = 0, len = config.resolutions.length; i < len; i++) {
+            var _temp = config.resolutions[i];
             var remoteURL = imgURL + `?imageView2/1/w/${_temp.split('x')[0]}/h/${_temp.split('x')[1]}/q/100`;
             console.log(1);
             console.log(remoteURL);
