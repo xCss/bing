@@ -38,8 +38,8 @@ router.get('/', function(req, res, next) {
                          * 1024x576
                          * 120x67
                          */
-                        var thumbnail = temp['original_pic'] ? temp['original_pic'].replace('http', 'https') : `${config.global_link}/bing/${temp['photo']}_1920x1080.jpg?imageView2/1/w/1024/h/576/q/100`;
-                        var smallpic = temp['thumbnail_pic'] ? temp['thumbnail_pic'].replace('http', 'https') : `${config.global_link}/bing/${temp['photo']}_1920x1080.jpg?imageView2/1/w/120/h/67/q/100`;
+                        var thumbnail = temp['original_pic'] ? temp['original_pic'].replace('http', 'https') : `${config.global_link()}/bing/${temp['photo']}_1920x1080.jpg?imageView2/1/w/1024/h/576/q/100`;
+                        var smallpic = temp['thumbnail_pic'] ? temp['thumbnail_pic'].replace('http', 'https') : `${config.global_link()}/bing/${temp['photo']}_1920x1080.jpg?imageView2/1/w/120/h/67/q/100`;
                         data.push({
                             id: temp['id'],
                             title: temp['title'],
@@ -94,8 +94,8 @@ var common = function(req, res, next, page, rows) {
                 city: rows[i]['city'],
                 country: rows[i]['country'],
                 continent: rows[i]['continent'],
-                thumbnail: `${config.global_link}/bing/${rows[i]['qiniu_url']}_800x600.jpg`,
-                smallpic: `${config.global_link}/small/${rows[i]['qiniu_url']}_800x600.jpg`,
+                thumbnail: `${config.global_link()}/bing/${rows[i]['qiniu_url']}_800x600.jpg`,
+                smallpic: `${config.global_link()}/small/${rows[i]['qiniu_url']}_800x600.jpg`,
                 date: full,
                 likes: rows[i]['likes'],
                 views: rows[i]['views'],

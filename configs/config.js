@@ -48,7 +48,7 @@ module.exports = {
     ],
 
     global_link: function() {
-        return Math.random() > 0.5 ? 'https://static.ioliu.cn/' : 'https://bing-images.bitmoe.cn';
+        return Math.random() > 0.5 ? 'https://static.ioliu.cn' : 'https://bing-images.bitmoe.cn';
     }
 
 

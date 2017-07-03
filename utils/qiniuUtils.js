@@ -49,9 +49,9 @@ module.exports = {
         height = height || 1080;
         quality = quality || 100;
         mode = mode || 1;
-        var base = `${config.global_link}/bing/`;
+        var base = `${config.global_link()}/bing/`;
         url = url.indexOf('1920x1080') == -1 ? url + '_1920x1080.jpg' : url;
-        url = /(http|https)\:\/\//.test(url) ? url : base + url;
+        url = /^(http|https)/.test(url) ? url : base + url;
         var imageView = new qiniu.fop.ImageView(mode, width, height, quality);
         return imageView.makeRequest(url);
     },
