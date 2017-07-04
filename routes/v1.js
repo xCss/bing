@@ -62,6 +62,7 @@ var v1 = function(req, res, next) {
                     data['url'] = config.global_link() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
                 }
                 var qiniu_url = /^(http|https)/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
+                console.log(qiniu_url)
                 request.get(qiniu_url)
                     .set(cookie)
                     .end(function(err, response) {
