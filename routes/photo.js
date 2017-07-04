@@ -47,7 +47,8 @@ router.get('/:photo', function(req, res, next) {
                 // request.get(`${config.global_link()}/bing/${photo}_1920x1080.jpg`)
                 request.get(`https://bing-images.bitmoe.cn/bing/${photo}_1920x1080.jpg`)
                     .set({
-                        'User-Agent': ua
+                        'User-Agent': ua,
+                        referer: 'ioliu.cn'
                     }).pipe(res);
             } else {
                 res.json({
