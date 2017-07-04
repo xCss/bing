@@ -21,8 +21,6 @@ var v1 = function(req, res, next) {
     var d = req.query.d || req.body.d;
     var w = req.query.w || req.body.w;
     var h = req.query.h || req.body.h;
-    var p = req.query.p || req.body.p;
-    var num = req.query.size || req.body.size;
     var t = req.query.type || req.body.type;
     var size = w + 'x' + h;
     var enddate = 0;
@@ -39,19 +37,8 @@ var v1 = function(req, res, next) {
         body: {}
     };
     if (!!enddate) {
-        params.body = {
+        params['body'] = {
             enddate: enddate
-        }
-    }
-    if (!!p && !isNaN(p)) {
-        p = +p < 1 ? 1 : p;
-        params.page = {
-            no: p,
-            size: 10
-        }
-        if (!!num && !isNaN(num)) {
-            num = +num < 1 ? 1 : num;
-            params.page.size = num;
         }
     }
     dbUtils.get('bing', params, function(rows) {
