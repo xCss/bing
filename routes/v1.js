@@ -66,8 +66,13 @@ var v1 = function(req, res, next) {
                 request.get(qiniu_url)
                     .set(cookie)
                     .end(function(err, response) {
-                        res.header('content-type', 'image/jpg');
-                        res.send(response.body);
+                        if (error) {
+                            res.send(error)
+                        } else {
+
+                            res.header('content-type', 'image/jpg');
+                            res.send(response.body);
+                        }
                     });
             } else {
                 if (+num > 0) {
@@ -146,8 +151,13 @@ var random = function(req, res, next) {
                         request.get(qiniu_url)
                             .set(cookie)
                             .end(function(err, response) {
-                                res.header('content-type', 'image/jpg');
-                                res.send(response.body);
+                                if (error) {
+                                    res.send(error)
+                                } else {
+
+                                    res.header('content-type', 'image/jpg');
+                                    res.send(response.body);
+                                }
                             });
                     }
                 } else {
