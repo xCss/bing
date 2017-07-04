@@ -61,9 +61,9 @@ var v1 = function(req, res, next) {
                         }
                     });
             } else {
-                if (+num > 0) {
-                    data = rows;
-                }
+                // if (+num > 0) {
+                //     data = rows;
+                // }
                 var output = {
                     data: data,
                     status: {
