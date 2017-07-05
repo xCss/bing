@@ -18,6 +18,7 @@ module.exports = {
         multipleStatements: true,
         insecureAuth: true
     },
+    disabled: [process.env.disabled.split(',')],
     /**
      * 已知分辨率
      */

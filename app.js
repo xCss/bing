@@ -21,6 +21,7 @@ var bingUtils = require('./utils/bingUtils');
 var mailUtils = require('./utils/mailUtils');
 var qiniuUtils = require('./utils/qiniuUtils');
 var weiboUtils = require('./utils/weiboUtils');
+var config = require('./configs/config');
 
 var app = express();
 app.disable('x-powered-by');
@@ -123,6 +124,10 @@ schedule.scheduleJob('*/30 8-21 * * *', function() {
  * 处理OPTIONS请求
  */
 app.use(function(req, res, next) {
+    console.log(req.headers['referer'])
+    if (config.disabled.indexOf(req.headers['referer']) > -1) {
+        res.sendStatus(400)
+    }
     // 
     if (req.method === 'OPTIONS') {
         res.sendStatus(200);
