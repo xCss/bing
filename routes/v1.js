@@ -214,10 +214,17 @@ var blur = function(req, res, next) {
             var qiniu_url = /^(http|https)/.test(data.url) ? data.url : base + data.qiniu_url + '_1920x1080.jpg';
             qiniu_url += '?imageMogr2/blur/' + r + 'x50'
             request.get(qiniu_url)
-                .set(cookie)
+                .set({
+                    'user-agent': req.headers['user-agent'],
+                    'referer': req.headers['host']
+                })
                 .end(function(err, response) {
-                    res.header('content-type', 'image/jpeg');
-                    res.send(response.body);
+                    if (err) {
+                        res.send(err)
+                    } else {
+                        res.header('content-type', 'image/jpg');
+                        res.send(response.body);
+                    }
                 });
         } else {
             res.json({
