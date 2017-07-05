@@ -124,7 +124,7 @@ schedule.scheduleJob('*/30 8-21 * * *', function() {
  * 处理OPTIONS请求
  */
 app.use(function(req, res, next) {
-    console.log(req.headers['Referer'])
+    console.log(req.headers['host'])
     if (config.disabled.indexOf(req.headers['Referer']) > -1) {
         res.sendStatus(400)
     }
