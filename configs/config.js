@@ -50,6 +50,9 @@ module.exports = {
 
     global_link: function() {
         return Math.random() > 0.5 ? 'https://static.ioliu.cn' : 'https://bing-images.bitmoe.cn';
+    },
+    global_http: function() {
+        return Math.random() > 0.5 ? 'http://static.ioliu.cn' : 'http://bing-images.bitmoe.cn';
     }
 
 

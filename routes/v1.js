@@ -46,7 +46,7 @@ var v1 = function(req, res, next) {
             var data = rows[0];
             if (!!w || !!h) {
                 if (config.resolutions.indexOf(size) > -1) {
-                    data['url'] = config.global_link() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
+                    data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
                 }
                 var qiniu_url = /^(http|https)/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
                 console.log(qiniu_url)
@@ -115,7 +115,7 @@ var random = function(req, res, next) {
                 if (rs.length > 0) {
                     var data = rs[0];
                     if (config.resolutions.indexOf(size) > -1) {
-                        data['url'] = config.global_link() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
+                        data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
                     }
                     if (t === 'json' || !!callback) {
                         //console.log(callback);
@@ -207,7 +207,7 @@ var blur = function(req, res, next) {
     dbUtils.get('bing', params, function(rows) {
         if (rows.length > 0) {
             var data = rows[0];
-            var base = config.global_link() + '/bing/';
+            var base = config.global_http() + '/bing/';
             if (config.resolutions.indexOf(size) > -1) {
                 data['url'] = base + data.qiniu_url + '_' + size + '.jpg';
             }
