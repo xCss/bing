@@ -49,7 +49,10 @@ var v1 = function(req, res, next) {
             }
             var qiniu_url = /^(http|https)/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
             request.get(qiniu_url)
-                .set(cookie)
+                .set({
+                    'user-agent': req.headers['user-agent'],
+                    'referer': req.headers['host']
+                })
                 .end(function(err, response) {
                     if (err) {
                         res.send(err)
