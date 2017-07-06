@@ -85,8 +85,8 @@ router.post('/rand', function(req, res, next) {
 
 var random = function(req, res, next) {
     //var t = req.query.type || req.body.type;
-    var w = req.query.w || req.body.w || '1920';
-    var h = req.query.h || req.body.h || '1080';
+    var w = req.query.w || req.body.w || '1366';
+    var h = req.query.h || req.body.h || '768';
     var size = w + 'x' + h;
     //var callback = req.query.callback || req.body.callback;
     dbUtils.getCount('bing', {}, function(rows) {
@@ -149,8 +149,8 @@ router.post('/blur', function(req, res, next) {
 
 var blur = function(req, res, next) {
     var d = req.query.d || req.body.d;
-    var w = req.query.w || req.body.w;
-    var h = req.query.h || req.body.h;
+    var w = req.query.w || req.body.w || 1366;
+    var h = req.query.h || req.body.h || 768;
     var r = req.query.r || req.body.r;
     r = isNaN(r) ? 10 : parseInt(r) > 50 ? 50 : parseInt(r) <= 0 ? 1 : r;
     var size = w + 'x' + h;
