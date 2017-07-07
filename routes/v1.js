@@ -67,9 +67,9 @@ var v1 = function(req, res, next) {
             } else {
 
                 if (config.resolutions.indexOf(size) === -1) {
-                    data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
-                } else {
                     data['url'] = qiniuUtils.imageView(data.qiniu_url, w, h);
+                } else {
+                    data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
                 }
                 request.get(data['url'])
                     .set({
@@ -144,9 +144,9 @@ var random = function(req, res, next) {
                     } else {
                         var data = rs[0];
                         if (config.resolutions.indexOf(size) === -1) {
-                            data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
-                        } else {
                             data['url'] = qiniuUtils.imageView(data.qiniu_url, w, h);
+                        } else {
+                            data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
                         }
                         request.get(data['url'])
                             .set({
