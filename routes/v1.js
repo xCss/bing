@@ -24,6 +24,7 @@ var v1 = function(req, res, next) {
     var t = req.query.type || req.body.type;
     var size = w + 'x' + h;
     var cb = req.query.callback;
+    console.log(size)
     var enddate = 0;
     if (!isNaN(d)) {
         var date = new Date().getTime() - parseInt(d) * 1000 * 60 * 60 * 24;
