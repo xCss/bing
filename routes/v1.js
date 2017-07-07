@@ -121,9 +121,6 @@ var random = function(req, res, next) {
             }, function(rs) {
                 if (rs.length > 0) {
                     var data = rs[0];
-                    if (config.resolutions.indexOf(size) > -1) {
-                        data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
-                    }
                     if (t === 'json' || !!callback) {
                         var output = {
                             data: {
@@ -144,7 +141,10 @@ var random = function(req, res, next) {
                             res.json(output);
                         }
                     } else {
-
+                        var data = rs[0];
+                        if (config.resolutions.indexOf(size) > -1) {
+                            data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
+                        }
                         var qiniu_url = /^(http|https)/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
                         //console.log(qiniu_url)
                         request.get(qiniu_url)
