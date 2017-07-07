@@ -21,8 +21,9 @@ var v1 = function(req, res, next) {
     var d = req.query.d || req.body.d;
     var w = req.query.w || req.body.w || '1366';
     var h = req.query.h || req.body.h || '768';
-    // var t = req.query.type || req.body.type;
+    var t = req.query.type || req.body.type;
     var size = w + 'x' + h;
+    var cb = req.query.callback;
     var enddate = 0;
     if (!isNaN(d)) {
         var date = new Date().getTime() - parseInt(d) * 1000 * 60 * 60 * 24;
@@ -44,23 +45,45 @@ var v1 = function(req, res, next) {
     dbUtils.get('bing', params, function(rows) {
         if (rows.length > 0) {
             var data = rows[0];
-            if (config.resolutions.indexOf(size) > -1) {
-                data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
-            }
-            var qiniu_url = /^(http|https)/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
-            request.get(qiniu_url)
-                .set({
-                    'user-agent': req.headers['user-agent'],
-                    'referer': req.headers['host']
-                })
-                .end(function(err, response) {
-                    if (err) {
-                        res.send(err)
-                    } else {
-                        res.header('content-type', 'image/jpg');
-                        res.send(response.body);
+            if (t === 'json' || !!cb) {
+                var output = {
+                    data: {
+                        enddate: data.enddate,
+                        url: data.url,
+                        bmiddle_pic: data.bmiddle_pic,
+                        original_pic: data.original_pic,
+                        thumbnail_pic: data.thumbnail_pic,
+                    },
+                    status: {
+                        code: 200,
+                        message: ''
                     }
-                });
+                };
+                if (callback) {
+                    res.jsonp(output);
+                } else {
+                    res.json(output);
+                }
+            } else {
+
+                if (config.resolutions.indexOf(size) > -1) {
+                    data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
+                }
+                var qiniu_url = /^(http|https)/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
+                request.get(qiniu_url)
+                    .set({
+                        'user-agent': req.headers['user-agent'],
+                        'referer': req.headers['host']
+                    })
+                    .end(function(err, response) {
+                        if (err) {
+                            res.send(err)
+                        } else {
+                            res.header('content-type', 'image/jpg');
+                            res.send(response.body);
+                        }
+                    });
+            }
         } else {
             res.json({
                 data: {},
@@ -84,11 +107,11 @@ router.post('/rand', function(req, res, next) {
 });
 
 var random = function(req, res, next) {
-    //var t = req.query.type || req.body.type;
+    var t = req.query.type || req.body.type;
     var w = req.query.w || req.body.w || '1366';
     var h = req.query.h || req.body.h || '768';
     var size = w + 'x' + h;
-    //var callback = req.query.callback || req.body.callback;
+    var callback = req.query.callback || req.body.callback;
     dbUtils.getCount('bing', {}, function(rows) {
         if (rows.length > 0) {
             var sum = Number(rows[0].sum);
@@ -101,27 +124,49 @@ var random = function(req, res, next) {
                     if (config.resolutions.indexOf(size) > -1) {
                         data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
                     }
-                    var qiniu_url = /^(http|https)/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
-                    //console.log(qiniu_url)
-                    request.get(qiniu_url)
-                        .set({
-                            'user-agent': req.headers['user-agent'],
-                            'referer': req.headers['host']
-                        })
-                        .end(function(err, response) {
-                            if (err) {
-                                res.send(err)
-                            } else {
-                                res.header('content-type', 'image/jpg');
-                                res.send(response.body);
+                    if (t === 'json' || !!callback) {
+                        var output = {
+                            data: {
+                                enddate: data.enddate,
+                                url: data.url,
+                                bmiddle_pic: data.bmiddle_pic,
+                                original_pic: data.original_pic,
+                                thumbnail_pic: data.thumbnail_pic,
+                            },
+                            status: {
+                                code: 200,
+                                message: ''
                             }
-                        });
+                        };
+                        if (callback) {
+                            res.jsonp(output);
+                        } else {
+                            res.json(output);
+                        }
+                    } else {
+
+                        var qiniu_url = /^(http|https)/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
+                        //console.log(qiniu_url)
+                        request.get(qiniu_url)
+                            .set({
+                                'user-agent': req.headers['user-agent'],
+                                'referer': req.headers['host']
+                            })
+                            .end(function(err, response) {
+                                if (err) {
+                                    res.send(err)
+                                } else {
+                                    res.header('content-type', 'image/jpeg');
+                                    res.send(response.body);
+                                }
+                            });
+                    }
                 } else {
                     var parmas = '?';
                     params += !!t ? '&t=' + t : '';
                     params += !!w ? '&w=' + w : '';
                     params += !!h ? '&h=' + h : '';
-                    // params += !!callback ? '&callback=' + callback : '';
+                    params += !!callback ? '&callback=' + callback : '';
                     res.redirect('/v1/rand' + params);
                 }
             });
@@ -130,7 +175,7 @@ var random = function(req, res, next) {
             params += !!t ? '&t=' + t : '';
             params += !!w ? '&w=' + w : '';
             params += !!h ? '&h=' + h : '';
-            // params += !!callback ? '&callback=' + callback : '';
+            params += !!callback ? '&callback=' + callback : '';
             res.redirect('/v1/rand' + params);
         }
     });
