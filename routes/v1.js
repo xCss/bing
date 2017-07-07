@@ -24,7 +24,6 @@ var v1 = function(req, res, next) {
     var t = req.query.type || req.body.type;
     var size = w + 'x' + h;
     var cb = req.query.callback;
-    console.log(size)
     var enddate = 0;
     if (!isNaN(d)) {
         var date = new Date().getTime() - parseInt(d) * 1000 * 60 * 60 * 24;
@@ -70,6 +69,7 @@ var v1 = function(req, res, next) {
                 if (config.resolutions.indexOf(size) > -1) {
                     data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
                 }
+                console.log(data)
                 var qiniu_url = /^(http|https)/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
                 request.get(qiniu_url)
                     .set({
