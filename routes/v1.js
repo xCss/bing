@@ -69,7 +69,7 @@ var v1 = function(req, res, next) {
                 if (config.resolutions.indexOf(size) > -1) {
                     data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
                 }
-                console.log(data)
+                console.log(`${size}---------------------${config.resolutions.indexOf(size)}`)
                 var qiniu_url = /^(http|https)/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
                 request.get(qiniu_url)
                     .set({
