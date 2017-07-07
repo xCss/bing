@@ -59,7 +59,7 @@ var v1 = function(req, res, next) {
                         message: ''
                     }
                 };
-                if (callback) {
+                if (cb) {
                     res.jsonp(output);
                 } else {
                     res.json(output);
