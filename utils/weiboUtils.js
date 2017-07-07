@@ -1,4 +1,5 @@
 var request = require('superagent');
+var moment = require('moment');
 var bingUtils = require('./bingUtils');
 var commonUtils = require('./commonUtils');
 var dbUtils = require('./dbUtils');
@@ -13,75 +14,15 @@ module.exports = {
      * @isAuto 是否自动发送(true,false)
      */
     update: function(callback, isAuto) {
-        var date = new Date();
-        var y = date.getFullYear();
-        var m = Number(date.getMonth()) + 1 < 10 ? '0' + (Number(date.getMonth()) + 1) : Number(date.getMonth()) + 1;
-        var d = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-        var full = y + '-' + m + '-' + d;
         // 查询数据库中是否存在今天的新数据
         dbUtils.get('bing', {
-            enddate: full.replace(/\-/g, '')
+            weibo: 0,
+            enddate: moment().format('YYYYMMDD')
         }, function(rows) {
-            if (rows.length === 0) {
-                // 如果不存在则抓取
-                bingUtils.fetchPicture({}, function(data) {
-                    dbUtils.set('bing', data, function(rows) {
-                        data.id = rows.insertId || 0;
-                        module.exports.commonSend(data, callback, isAuto);
-                    })
-                });
-            } else {
+            if (rows.length === 0) {} else {
                 // 如果存在，但没有发送微博
                 var data = rows[0];
-                if (data.weibo == 0) {
-                    // 如果少了某个字段
-                    if (!data.title || !data.attribute || !data.description || !data.thumbnail_pic) {
-                        bingUtils.fetchStory({
-                            enddate: data.enddate
-                        }, function(body) {
-                            data['title'] = body.title;
-                            data['attribute'] = body.attribute;
-                            data['description'] = body.description;
-                            data['country'] = body.country;
-                            data['city'] = body.city;
-                            data['longitude'] = body.longitude;
-                            data['latitude'] = body.latitude;
-                            data['continent'] = body.continent;
-                            module.exports.commonSend(data, callback, isAuto);
-                        });
-                    } else {
-                        module.exports.commonSend(data, callback, isAuto);
-                    }
-                } else {
-                    // 如果已发送则查询上一条是否已发送
-                    dbUtils.get('bing', {
-                        weibo: 0
-                    }, function(rs) {
-                        if (rs.length > 0) {
-                            var d = rs[0];
-                            // 如果少了某个字段
-                            if (!d.title || !d.attribute || !d.description || !d.thumbnail_pic) {
-                                bingUtils.fetchStory({
-                                    d: d.enddate
-                                }, function(body) {
-                                    d['url'] = !!d.qiniu_url && 'https://static.ioliu.cn/bing/' + d.qiniu_url + '_1920x1080.jpg' || d.url;
-                                    d['title'] = body.title;
-                                    d['attribute'] = body.attribute;
-                                    d['description'] = body.description;
-                                    d['country'] = body.country;
-                                    d['city'] = body.city;
-                                    d['longitude'] = body.longitude;
-                                    d['latitude'] = body.latitude;
-                                    d['continent'] = body.continent;
-                                    module.exports.commonSend(d, callback, isAuto);
-                                });
-                            } else {
-                                module.exports.commonSend(d, callback, isAuto);
-                            }
-                        }
-                    })
-
-                }
+                module.exports.commonSend(data, callback, isAuto);
             }
         });
 
@@ -117,25 +58,41 @@ module.exports = {
             var m = date.substr(4, 2);
             var d = date.substr(6, 2);
             var full = y + '-' + m + '-' + d;
-            var status = ('#必应壁纸# ' + full + ' / #' + data.title + '# ' + data.description).slice(0, 138) + '... http://bing.ioliu.cn?id=' + data.id;
-            var post = {
-                access_token: token,
-                status: status,
-                url: data.url,
-                lat: data.latitude,
-                long: data.longitude,
-                annotations: {
-                    place: {
-                        title: data.title,
-                        url: data.copyrightlink,
-                        locality: data.city,
-                        country_name: data.country,
-                        region: data.country,
-                        latitude: data.latitude,
-                        longitude: data.longitude
+            var post = {};
+            if (data.title && data.description && data.mkt.indexOf('zh-cn') > -1) {
+                var status = ('#必应壁纸# ' + full + ' / #' + data.title + '# ' + data.description).slice(0, 138) + `... http://bing.ioliu.cn/photo/${data.qiniu_url}?from=weibo`;
+                post = {
+                    access_token: token,
+                    status: status,
+                    url: data.url,
+                    lat: data.latitude,
+                    long: data.longitude,
+                    annotations: {
+                        place: {
+                            title: data.title,
+                            url: data.copyrightlink,
+                            locality: data.city,
+                            country_name: data.country,
+                            region: data.country,
+                            latitude: data.latitude,
+                            longitude: data.longitude
+                        }
                     }
-                }
-            };
+                };
+            } else {
+                var status = '#Bing Picture# ' + full + ' / ' + data.copyright + ` from ${data.mkt} http://bing.ioliu.cn/photo/${data.qiniu_url}?from=weibo`;
+                post = {
+                    access_token: token,
+                    status: status,
+                    url: data.url,
+                    annotations: {
+                        place: {
+                            title: data.copyright,
+                        }
+                    }
+                };
+            }
+
             request
                 .post(update_url_text)
                 .type('form')
@@ -149,14 +106,6 @@ module.exports = {
                         data['original_pic'] = body.original_pic;
                         dbUtils.update('bing', {
                             body: {
-                                title: data.title,
-                                description: data.description,
-                                attribute: data.attribute,
-                                country: data.country,
-                                city: data.city,
-                                longitude: data.longitude,
-                                latitude: data.latitude,
-                                continent: data.continent,
                                 weibo: 1,
                                 thumbnail_pic: data.thumbnail_pic,
                                 bmiddle_pic: data.bmiddle_pic,

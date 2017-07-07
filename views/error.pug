@@ -1,25 +1,17 @@
-extends error_layout
+doctype html
+html(lang="en")
+  head
+    include common_headers.pug
+    title 404 | 必应壁纸,必应每日壁纸,必应高清壁纸
+    meta(name="keywords",content="必应壁纸,必应高清壁纸打包下载,必应壁纸合集,必应每日壁纸下载,必应壁纸接口,必应壁纸官方下载,Bing壁纸,微软bing每日壁纸,必应每日壁纸下载,Bing壁纸api,高清壁纸分享,bing壁纸官方下载,必应高清壁纸,必应壁纸打包下载")
+    link(rel='stylesheet', href='/static/css/common.css')
+    link(rel='stylesheet', href='/static/css/main.css')
+body
 
-block content
-    div#help
-        h1=error.status
-        h2=message
-        a.button(href='/') 带我回家
-    div#stars
-    div#land
-        div#fire
-            div.flame
-            div.flame
-            div.flame
-            div.flame
-            div.flame
-            div#logs
-                div#logOne
-                div#logTwo
-                div#flicker
-        div#ground
-    //h1= error.status
-    //p= message
-    //a.button(href='/') Home
-      
-    //pre #{error.stack}
+    script(src="/static/js/elm.js")
+    script.
+        Elm.Main.fullscreen({
+            randomSeed: Date.now(),
+            imagesUrl: 'img',
+            devicePixelRatio: window.devicePixelRatio
+        });

@@ -1,62 +1,16 @@
 doctype html
 html
   head
-    //
-        BingPictrues by xCss
-        https://github.com/xCss/bing | xioveliu@gamil.com
-
+    include common_headers.pug
     - var desc = page.desc || '必应每日壁纸:风景, 这边独好。';
     title #{page.curr} - #{title}
-    meta('charset'="utf-8")
-    meta(name="google-site-verification",content="fto43W1-4i099gqlMImLOannS1KjzlC5A-a1dnT0iVs")
     meta(name="keywords",content="必应壁纸,必应高清壁纸打包下载,必应壁纸合集,必应每日壁纸下载,必应壁纸接口,必应壁纸官方下载,Bing壁纸,微软bing每日壁纸,必应每日壁纸下载,Bing壁纸api,高清壁纸分享,bing壁纸官方下载,必应高清壁纸,必应壁纸打包下载")
     meta(name="description",content=desc)
-    meta(name="viewport",content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1")
-    meta(name="author",content="xCss")
-    meta(http-equiv="X-UA-Compatible",content="IE=edge,chrome=1")
-    meta(name="renderer",content="webkit")
-    meta(property="wb:webmaster",content="4513019856d2091e")
-    <!--[if lte IE 8]>
-        script(src="/static/js/html5shiv.js")
-    <![endif]-->
-    <!--[if lte IE 8]>
-        link(rel="stylesheet",href="/static/css/skin/ie8.css")
-    <![endif]-->
-    <!--[if lte IE 9]>
-        link(rel="stylesheet",href="/static/css/skin/ie9.css")
-    <![endif]-->
-    noscript
-        link(rel="stylesheet",href="/static/css/skin/noscript.css")
-    link(rel='stylesheet', href='/static/css/skin/lens.css')
-    link(rel="icon",href="/static/images/bing.ico",sizes="32x32")
+    link(rel='stylesheet', href='/static/css/common.min.css')
+    link(rel='stylesheet', href='/static/css/main.min.css')
     link(rel='stylesheet',href="/static/css/progressively.min.css")
     
-  body.is-loading-0.is-loading-1.is-loading-2
+  body
     block content
-    script(src="/static/js/jquery.min.js")
-    script(src="/static/js/skel.min.js")
-    script(src="/static/js/progressively.min.js")
-    <!--[if lte IE 8]><script src="/static/js/respond.min.js"></script><![endif]-->
-    script(src="/static/js/main.js")
-    script.  
-        $(function() {
-            progressively.init();
-            
-            if (skel.vars.os == 'ios' && window.self !== window.top) {
-                var $body = $('html,body'), $window = $(window.top);
-                $body.css('-webkit-overflow-scrolling', 'touch');
-                $window.on('resize orientationchange', function() {
-                $body
-                    .css('width', $window.width())
-                    .css('height', $window.height());
-                }).trigger('resize');
-            }
-            if(!/^http:\/\/localhost/.test(location.href)){
-                var _hmt = _hmt || [];
-                var hm = document.createElement("script");
-                hm.src = "//hm.baidu.com/hm.js?667639aad0d4654c92786a241a486361";
-                var s = document.getElementsByTagName("script")[0]; 
-                s.parentNode.insertBefore(hm, s);
-            }
-        });
+
 

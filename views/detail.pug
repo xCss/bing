@@ -1,0 +1,80 @@
+doctype html
+html(lang="en")
+    head
+        include common_headers.pug
+        - var tt = doc.title ? doc.title+' - '+doc.copyright+' | 必应每日高清壁纸 - 精彩,从这里开始' : doc.copyright+' | 必应每日高清壁纸 - 精彩,从这里开始';
+        title #{tt}
+        - var location = (doc.country && doc.city) ? doc.country + ', ' + doc.city : false;
+        - location = doc.continent ? (location ? doc.continent + ', ' + location : doc.continent) : location;
+        meta(name="keywords",content=`${doc.copyright}, ${doc.title}, ${location}, ${doc.dt}`)
+        meta(name="description",content=`${doc.description}`)
+        meta(name="author",content=`${doc.copyright}`)
+        link(rel='stylesheet',href="/static/css/progressively.css")
+        link(rel='stylesheet', href='/static/css/common.css')
+        link(rel='stylesheet', href='/static/css/main.css')
+        
+
+    body.detail
+        div.preview
+            - var small = doc.photo;
+            div.progressive
+                - var link = Math.random() < 0.5 ? 'https://static.ioliu.cn' : 'https://bing-images.bitmoe.cn';
+                img.target.progressive__img.progressive--not-loaded(src=doc.thumbnail,data-progressive=`${link}/bing/${small}_1920x1080.jpg`)
+            div.mark
+            div.options
+                a.ctrl.left(href=`${doc.back_url}`)
+                    i.icon.icon-left
+                    em.t BACK
+                span.ctrl.eye
+                    i.icon.icon-eye
+                    em.t #{doc.views}
+                span.ctrl.heart(photo=doc.id,likes=doc.likes)
+                    i.icon.icon-heart
+                    em.t #{doc.likes}
+                a.ctrl.download(href=`/photo/${doc.photo}?force=download`,target="_blank")
+                    i.icon.icon-download
+                    em.t #{doc.downloads}
+            div.description
+                p.title #{doc.copyright}
+                p.sub #{doc.description}
+                p.calendari.icon.icon-calendar
+                    em.t #{doc.dt}
+                if location
+                    p.location
+                        i.icon.icon-location
+                        em.t #{location}
+
+        script(src='/static/js/jquery-1.12.4.min.js')
+        script(src='/static/js/progressively.js')
+        script(src='/static/js/baidu-analysis.js')
+        script(src='/static/js/like.js')
+        //- script(data-no-instant,src="/static/js/instantclick.min.js")
+        //- script(data-no-instant,src="/static/js/mine-instantclick.js")
+        script.
+            $(function() {
+                var i=0;
+                var img = $('.target');
+                var mini = img.attr('src');
+                var mark = $('.mark');
+                mark.css({
+                    'background-image': 'url('+mini+')'
+                });
+                progressively.init({
+                    delay: 20,
+                    throttle: 300,
+                    onLoad: function(elem) {
+                    },
+                    onLoadComplete: function() {
+                        i++;
+                        if(i>=2){
+                            var big = img.attr('src');
+                            mark.css({
+                                backgroundImage: 'url('+big+')',
+                                filter: 'blur(0)'
+                            });
+                            img.remove();
+                        }
+                    }
+                });
+
+            });

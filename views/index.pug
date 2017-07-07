@@ -1,51 +1,100 @@
-extends layout
-
-block content
-  div#main
-    header#header
-        a(href='/')
-            h1 #{title}
-        p #{description}
-        h2(style="color:red;font-weight:bold;") 
-            i.icon.fa-bullhorn 
-            a(href='/static/about.html',target="_blank") 号外！留言上线啦
-    section#thumbnails
-            each val in data
-                - var original = 'https://static.ioliu.cn/bing/'+val.qiniu_url+'_1920x1080.jpg';
-                - var download = 'https://static.ioliu.cn/bing/'+val.qiniu_url+'_1920x1080.jpg';
-                article(rid=val.id)
-                    a.thumbnail.progressive(href= original)
-                        img.progressive__img.progressive--not-loaded(data-progressive=val.smallpic,src=val.thumbnail )
-                    h2 ##{val.date}# #{val.copyright}
-                    p #{val.description}
-                    - var url = 'http://service.weibo.com/share/share.php?url='+encodeURIComponent('http://bing.ioliu.cn?id='+val.id)+'&title='+encodeURIComponent('#必应壁纸# '+ val.date + ' / '+ val.description) + '&appkey=1833831541';
-                    ul.actions
+doctype html
+html(lang="en")
+    head
+        include common_headers.pug
+        - var title = page.currText ? page.currText + ' | 必应每日高清壁纸 - 精彩，从这里开始' : '必应每日高清壁纸 - 精彩，从这里开始'
+        title #{title}
+        meta(name="keywords",content="必应壁纸,必应美图,必应每日壁纸,必应每日美图,必应壁纸下载,必应每日壁纸下载,必应每日壁纸接口,必应每日壁纸官方下载,Bing壁纸,微软bing每日壁纸")
+        link(rel='stylesheet',href="/static/css/progressively.css")
+        link(rel='stylesheet', href='/static/css/common.css')
+        link(rel='stylesheet', href='/static/css/main.css')
+    body
+        header
+            div.container
+                a.logo(href="/")
+                    i.icon.icon-bing
+                    span 必应壁纸
+                nav
+                    ul.menu
+                        li(class=`${page.currPage === 'home' ? 'active' : ''}`)
+                            a(href="/")
+                                i.icon.icon-home
+                                p.text 首页
+                        li(class=`${page.currPage === 'ranking' ? 'active' : ''}`)
+                            a(href="/ranking")
+                                i.icon.icon-ranking
+                                p.text 下载榜
                         li
-                            a.button.small(href=url,target="_blank",rel="nofollow") 分享
-                        li 
-                            a.button.small(href=val.copyrightlink,target="_blank",rel="nofollow") 搜索
-                        li 
-                            a.button.small(href=download,target="_blank") 下载
+                            a(data-no-instant,href="/static/about.html")
+                                i.icon.icon-about
+                                p.text 关于
 
-    - var prev = page.prev<=1?'/':'/?p='+page.prev;
-    - var next = '/?p='+page.next;
-    ul.actions.align-center
-        li
-            a.button.small(href=prev) &lt;&lt; 上页
-            a.button.small(href=next) 下页 &gt;&gt;
-    footer#footer
-        ul.icons
-            li
-                a.icon.fa-github(href='https://github.com/xCss/bing',target="_blank",rel="nofollow")
-                    span.label Github
-            li
-                a.icon.fa-weibo(href='http://weibo.com/BingPictures',target="_blank",rel="nofollow")
-                    span.label Weibo
-            li
-                a.icon.fa-envelope(href='mail:xioveliu@gmail.com',target="_blank")
-                    span.label Mail
-        ul.copyright
-            li 
-                span.copy 2016 - 2017
-                b &copy; 
-                a(href='/') Bing Pictures.
+                        //- <li class="search-wrap">
+                        //-     <label class="search">
+                        //-         <input type="text" placeholder="搜索关键字">
+                        //-         <a class="search-btn"><i class="icon icon-search"></i></a>
+                        //-     </label>
+                        //- </li>
+            
+        div.holder
+        div.mask
+        div.container
+            each val in doc
+                - var location = (val.country && val.city) ? val.country + ', ' + val.city : false;
+                - location = val.continent ? (location ? val.continent + ', ' + location : val.continent) : location;
+                div.item
+                    div.card.progressive
+                        img.progressive__img.progressive--not-loaded(data-progressive=val.thumbnail,src=val.smallpic )
+                        a.mark(href=`/photo/${val.photo}?force=${page.currPage}_${page.curr}`)
+                        div.description
+                            h3 #{val.copyright}
+                            p.calendar
+                                i.icon.icon-calendar
+                                em.t #{val.dt}
+                            if location
+                                p.location
+                                    i.icon.icon-location
+                                    em.t #{location}
+                        div.options
+                            span.ctrl.eye
+                                i.icon.icon-eye
+                                em.t #{val.views}
+                            span.ctrl.heart(photo=val.id,likes=val.likes)
+                                i.icon.icon-heart
+                                em.t #{val.likes}
+
+                            a.ctrl.download(href=`/photo/${val.photo}?force=download`,target="_blank",rel="nofollow")
+                                i.icon.icon-download
+                                em.t #{val.downloads}
+        div.page
+            - var url = page.currPage === 'home' ? '/' : `/${page.currPage}`
+            - var prev = page.prev === 1 ? `${url}` : `${url}?p=${page.prev}`;
+            - var next = `${url}?p=${page.next}`;
+            a(href=prev)
+                i.icon.icon-prev 上一页
+            span #{page.curr} / #{page.pageCount}
+            a(href=next) 下一页
+                i.icon.icon-next
+        div.copyright
+            p 本站所有图片均来自<a href="http://cn.bing.com" target="_blank">必应搜索</a>
+            p Copyright &copy; 2016 - 2017 <a href="http://ioliu.cn" target="_blank">云淡风轻</a>
+
+        script(src="/static/js/jquery-1.12.4.min.js")
+        script(src="/static/js/progressively.js")
+        script(src="/static/js/device.js")
+        script(src="/static/js/baidu-analysis.js")
+        script(src="/static/js/like.js")
+        //- script(data-no-instant,src="/static/js/instantclick.min.js")
+        //- script(data-no-instant,src="/static/js/mine-instantclick.js")
+        script.
+            $(function() {
+                var i = 0;
+                var timer = setInterval(function(){
+                    progressively.init();
+                    if(i++ === 5) clearInterval(timer);
+                },1000/4);
+                var click = 'ontouchstart' in window ? 'touchstart' : 'click';
+                if (DEVICE.isMobile) {
+                    $(document.body).addClass('mobile');
+                }
+            });

@@ -2,7 +2,7 @@ var express = require('express');
 var request = require('superagent');
 var dbUtils = require('../utils/dbUtils');
 var qiniuUtils = require('../utils/qiniuUtils');
-var resolutions = require('../configs/config').resolutions;
+var config = require('../configs/config');
 var cookie = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36' };
 
 var router = express.Router();
@@ -19,12 +19,11 @@ router.post('/', function(req, res, next) {
 
 var v1 = function(req, res, next) {
     var d = req.query.d || req.body.d;
-    var w = req.query.w || req.body.w;
-    var h = req.query.h || req.body.h;
-    var p = req.query.p || req.body.p;
-    var num = req.query.size || req.body.size;
+    var w = req.query.w || req.body.w || '1366';
+    var h = req.query.h || req.body.h || '768';
     var t = req.query.type || req.body.type;
     var size = w + 'x' + h;
+    var cb = req.query.callback;
     var enddate = 0;
     if (!isNaN(d)) {
         var date = new Date().getTime() - parseInt(d) * 1000 * 60 * 60 * 24;
@@ -39,51 +38,52 @@ var v1 = function(req, res, next) {
         body: {}
     };
     if (!!enddate) {
-        params.body = {
+        params['body'] = {
             enddate: enddate
-        }
-    }
-    if (!!p && !isNaN(p)) {
-        p = +p < 1 ? 1 : p;
-        params.page = {
-            no: p,
-            size: 10
-        }
-        if (!!num && !isNaN(num)) {
-            num = +num < 1 ? 1 : num;
-            params.page.size = num;
         }
     }
     dbUtils.get('bing', params, function(rows) {
         if (rows.length > 0) {
             var data = rows[0];
-            if (!!w || !!h) {
-                if (resolutions.indexOf(size) > -1) {
-                    data['url'] = 'http://static.ioliu.cn/bing/' + data.qiniu_url + '_' + size + '.jpg';
-                }
-                var qiniu_url = /static\.ioliu\.cn/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
-                request.get(qiniu_url)
-                    .set(cookie)
-                    .end(function(err, response) {
-                        res.header('content-type', 'image/jpg');
-                        res.send(response.body);
-                    });
-            } else {
-                if (+num > 0) {
-                    data = rows;
-                }
+            if (t === 'json' || !!cb) {
                 var output = {
-                    data: data,
+                    data: {
+                        enddate: data.enddate,
+                        url: data.url,
+                        bmiddle_pic: data.bmiddle_pic,
+                        original_pic: data.original_pic,
+                        thumbnail_pic: data.thumbnail_pic,
+                    },
                     status: {
                         code: 200,
                         message: ''
                     }
                 };
-                if (req.method === 'GET' && req.query.callback) {
+                if (cb) {
                     res.jsonp(output);
                 } else {
                     res.json(output);
                 }
+            } else {
+
+                if (config.resolutions.indexOf(size) === -1) {
+                    data['url'] = qiniuUtils.imageView(data.qiniu_url, w, h);
+                } else {
+                    data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
+                }
+                request.get(data['url'])
+                    .set({
+                        'user-agent': req.headers['user-agent'],
+                        'referer': req.headers['host']
+                    })
+                    .end(function(err, response) {
+                        if (err) {
+                            res.send(err)
+                        } else {
+                            res.header('content-type', 'image/jpeg');
+                            res.send(response.body);
+                        }
+                    });
             }
         } else {
             res.json({
@@ -109,8 +109,8 @@ router.post('/rand', function(req, res, next) {
 
 var random = function(req, res, next) {
     var t = req.query.type || req.body.type;
-    var w = req.query.w || req.body.w || '1920';
-    var h = req.query.h || req.body.h || '1080';
+    var w = req.query.w || req.body.w || '1366';
+    var h = req.query.h || req.body.h || '768';
     var size = w + 'x' + h;
     var callback = req.query.callback || req.body.callback;
     dbUtils.getCount('bing', {}, function(rows) {
@@ -122,13 +122,15 @@ var random = function(req, res, next) {
             }, function(rs) {
                 if (rs.length > 0) {
                     var data = rs[0];
-                    if (resolutions.indexOf(size) > -1) {
-                        data['url'] = 'https://static.ioliu.cn/bing/' + data.qiniu_url + '_' + size + '.jpg';
-                    }
                     if (t === 'json' || !!callback) {
-                        //console.log(callback);
                         var output = {
-                            data: data,
+                            data: {
+                                enddate: data.enddate,
+                                url: data.url,
+                                bmiddle_pic: data.bmiddle_pic,
+                                original_pic: data.original_pic,
+                                thumbnail_pic: data.thumbnail_pic,
+                            },
                             status: {
                                 code: 200,
                                 message: ''
@@ -140,12 +142,24 @@ var random = function(req, res, next) {
                             res.json(output);
                         }
                     } else {
-                        var qiniu_url = /static\.ioliu\.cn/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
-                        request.get(qiniu_url)
-                            .set(cookie)
+                        var data = rs[0];
+                        if (config.resolutions.indexOf(size) === -1) {
+                            data['url'] = qiniuUtils.imageView(data.qiniu_url, w, h);
+                        } else {
+                            data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
+                        }
+                        request.get(data['url'])
+                            .set({
+                                'user-agent': req.headers['user-agent'],
+                                'referer': req.headers['host']
+                            })
                             .end(function(err, response) {
-                                res.header('content-type', 'image/jpg');
-                                res.send(response.body);
+                                if (err) {
+                                    res.send(err)
+                                } else {
+                                    res.header('content-type', 'image/jpeg');
+                                    res.send(response.body);
+                                }
                             });
                     }
                 } else {
@@ -153,7 +167,7 @@ var random = function(req, res, next) {
                     params += !!t ? '&t=' + t : '';
                     params += !!w ? '&w=' + w : '';
                     params += !!h ? '&h=' + h : '';
-                    params += !!callback ? '&&callback=' + callback : '';
+                    params += !!callback ? '&callback=' + callback : '';
                     res.redirect('/v1/rand' + params);
                 }
             });
@@ -162,7 +176,7 @@ var random = function(req, res, next) {
             params += !!t ? '&t=' + t : '';
             params += !!w ? '&w=' + w : '';
             params += !!h ? '&h=' + h : '';
-            params += !!callback ? '&&callback=' + callback : '';
+            params += !!callback ? '&callback=' + callback : '';
             res.redirect('/v1/rand' + params);
         }
     });
@@ -181,8 +195,8 @@ router.post('/blur', function(req, res, next) {
 
 var blur = function(req, res, next) {
     var d = req.query.d || req.body.d;
-    var w = req.query.w || req.body.w;
-    var h = req.query.h || req.body.h;
+    var w = req.query.w || req.body.w || 1366;
+    var h = req.query.h || req.body.h || 768;
     var r = req.query.r || req.body.r;
     r = isNaN(r) ? 10 : parseInt(r) > 50 ? 50 : parseInt(r) <= 0 ? 1 : r;
     var size = w + 'x' + h;
@@ -207,17 +221,24 @@ var blur = function(req, res, next) {
     dbUtils.get('bing', params, function(rows) {
         if (rows.length > 0) {
             var data = rows[0];
-            var base = 'https://static.ioliu.cn/bing/';
-            if (resolutions.indexOf(size) > -1) {
+            var base = config.global_http() + '/bing/';
+            if (config.resolutions.indexOf(size) > -1) {
                 data['url'] = base + data.qiniu_url + '_' + size + '.jpg';
             }
-            var qiniu_url = /static\.ioliu\.cn/.test(data.url) ? data.url : base + data.qiniu_url + '_1920x1080.jpg';
+            var qiniu_url = /^(http|https)/.test(data.url) ? data.url : base + data.qiniu_url + '_1920x1080.jpg';
             qiniu_url += '?imageMogr2/blur/' + r + 'x50'
             request.get(qiniu_url)
-                .set(cookie)
+                .set({
+                    'user-agent': req.headers['user-agent'],
+                    'referer': req.headers['host']
+                })
                 .end(function(err, response) {
-                    res.header('content-type', 'image/jpg');
-                    res.send(response.body);
+                    if (err) {
+                        res.send(err)
+                    } else {
+                        res.header('content-type', 'image/jpg');
+                        res.send(response.body);
+                    }
                 });
         } else {
             res.json({

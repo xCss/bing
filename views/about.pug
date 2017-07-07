@@ -1,0 +1,56 @@
+doctype html
+html(lang="en")
+    head
+        include common_headers.pug
+        title 关于 - 必应每日高清壁纸下载:精彩,从这里开始
+        link(rel="stylesheet",type="text/css" href="/static/css/typo.css")
+        link(href="/static/css/about.css", rel="stylesheet")
+        meta(name="keywords",content="必应壁纸,必应高清壁纸打包下载,必应壁纸合集,必应每日壁纸下载,必应壁纸接口,必应壁纸官方下载,Bing壁纸,微软bing每日壁纸,必应每日壁纸下载,Bing壁纸api,高清壁纸分享,bing壁纸官方下载,必应高清壁纸,必应壁纸打包下载")
+
+    <body>
+        <div id="wrapper" class="typo typo-selection">
+            <h1 style="text-align: center;"><a href="/" class="logo"><i class="icon icon-bing"></i><span>必应壁纸</span></a></h1><br>
+            <p style="text-align: center;" id="tagline"><i class="serif">Bing</i> 每日壁纸，你值得拥有</p>
+            <div id="github">
+                <iframe src="https://ghbtns.com/github-btn.html?user=xCss&repo=bing&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="98" height="20"></iframe>
+                <iframe src="https://ghbtns.com/github-btn.html?user=xCss&type=follow&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="156" height="20"></iframe>
+            </div>
+
+            <p>最开始做 <i class="serif">Bing</i> 壁纸的目的很纯粹，就是看到必应搜索 <i class="serif">cn.bing.com</i> 官网的壁纸很赞，但是想找到之前的壁纸就有点困难，然后就自己用PHP语言开发了一个，每天同步<i class="serif">cn.bing.com</i> 官网的壁纸，同步抓取每日故事，存在自己的数据库里。源代码可以在<a target="_blank" href="https://github.com/xCss/bing/tree/v1.0.0">GitHub</a>上找到。当时主机是用的
+                <a target="_blank" href="https://bing.ioliu.cn/go/aliyun">阿里云</a>送的免费两年的云主机，可能大部分人都没见过。整体布局如下：</p>
+            <img src="https://ws1.sinaimg.cn/large/006qRazegy1fe2mc4zhryj31400n64h6.jpg" />
+            <p>由于我不是专业的 PHP工程师(前端攻城狮一枚)，PHP版本 到后期维护就越来越困难，每次花费在改问题的时间越来越长，于是后面干脆就用<i class="serif">Node.js</i> 重写了<i class="serif">Bing</i> 壁纸，将版本号升级到了<a href="https://github.com/xCss/bing/releases/tag/v2.0-beta-1">2.0版本</a>(哈哈，自己定义的，无需在意)，图片存储采用的<a target="_blank" href="https://bing.ioliu.cn/go/qiniu">七牛云存储</a>，毕竟早期的流量小，免费额度还是撑得住的。程序部署在<a target="_blank" href="https://www.daocloud.io/">DaoCloud</a>上，有兴趣的可以去看看<a href="https://github.com/xCss/bing/blob/afda80f5960c43e4d1ef8c70a4a57fb1b66fb0f9/Dockerfile" target="_blank">Dockerfile</a>。并且将域名由
+                <i class="serif">api.ioliu.cn</i> 换成了 <a href='/' class="serif">bing.ioliu.cn</a>，这个版本可能大家就更熟悉一些，应该是上线时间最长的版本了吧。
+            </p>
+            <p>后面由于 道客(DocCloud) 访问速度慢，最后干脆咬牙买了<a href="https://ioliu.cn/go/aliyun" target="_blank">阿里云主机(ECS)</a>，<i class="serif">1核/2G</i>，并更新了<i class="serif">SSL</i>证书，相信现在的你一定发现了本站的访问速度简直是超级快(哈哈，自我陶醉下)。</p>
+
+            <p>截止到 2017-03-05，Bing 壁纸 项目已经稳步运行了一年，相信在未来的日子里，Bing 壁纸 会越来越好，功能越来越完善。现在，Bing壁纸 开通了留言功能，大家有什么想说的可以在下面<b>留言</b>咯\(^o^)/YES!</p>
+            <p>为了把壁纸的美好带给大家，攻城狮小哥花费了很多个人时间和精力进行开发，甚至自己掏钱购买服务器，看攻城狮小哥这么可怜，快来打赏杯咖啡吧。≡ω≡</p>
+            <div id="QR">
+                <div id="wechat" style="display:inline-block">
+                    <img id="wechat_qr" src="https://ioliu.cn/images/wechatpay.png" alt="云淡风轻 WeChat Pay">
+                    <p>微信打赏</p>
+                </div>
+                <div id="alipay" style="display:inline-block">
+                    <img id="alipay_qr" src="https://ioliu.cn/images/alipay.png" alt="云淡风轻 Alipay">
+                    <p>支付宝打赏</p>
+                </div>
+            </div>
+            <p align='right'><a href="https://ioliu.cn">云淡风轻</a> <br>2017-03-28</p>
+            <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+            script.
+                var cloudTieConfig = {
+                    url: document.location.href,
+                    sourceId: "",
+                    productKey: "86c5aa95f7b240b5ae7e4f97bc08d5ff",
+                    target: "cloud-tie-wrapper"
+                };
+            script(src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js")
+        </div>
+
+        <a href="https://github.com/xCss/bing" id="fork">
+            img(src='https://ws1.sinaimg.cn/large/006qRazegy1fe4s9xlfauj3045045jrb.jpg')
+        </a>
+
+        script(src='/static/js/baidu-analysis.js')
+    </body>
