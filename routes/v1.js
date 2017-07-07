@@ -66,12 +66,12 @@ var v1 = function(req, res, next) {
                 }
             } else {
 
-                if (config.resolutions.indexOf(size) > -1) {
+                if (config.resolutions.indexOf(size) === -1) {
                     data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
+                } else {
+                    data['url'] = qiniuUtils.imageView(data.qiniu_url, w, h);
                 }
-                console.log(`${size}---------------------${config.resolutions.indexOf(size) > -1}-------------------------${data.url}`)
-                var qiniu_url = /^(http|https)/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
-                request.get(qiniu_url)
+                request.get(data['url'])
                     .set({
                         'user-agent': req.headers['user-agent'],
                         'referer': req.headers['host']
@@ -80,7 +80,7 @@ var v1 = function(req, res, next) {
                         if (err) {
                             res.send(err)
                         } else {
-                            res.header('content-type', 'image/jpg');
+                            res.header('content-type', 'image/jpeg');
                             res.send(response.body);
                         }
                     });
@@ -143,12 +143,12 @@ var random = function(req, res, next) {
                         }
                     } else {
                         var data = rs[0];
-                        if (config.resolutions.indexOf(size) > -1) {
+                        if (config.resolutions.indexOf(size) === -1) {
                             data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
+                        } else {
+                            data['url'] = qiniuUtils.imageView(data.qiniu_url, w, h);
                         }
-                        var qiniu_url = /^(http|https)/.test(data.url) ? data.url : qiniuUtils.imageView(data.qiniu_url, w, h);
-                        //console.log(qiniu_url)
-                        request.get(qiniu_url)
+                        request.get(data['url'])
                             .set({
                                 'user-agent': req.headers['user-agent'],
                                 'referer': req.headers['host']
