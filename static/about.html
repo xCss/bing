@@ -13,6 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="/static/css/iconfont.css">
     <link rel="stylesheet" type="text/css" href="/static/css/typo.css">
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="/static/js/Valine.min.js"></script>
     <style>
         code {
             color: #1abc9c;
@@ -161,16 +163,16 @@
                 <p>支付宝打赏</p>
             </div>
         </div>
-        <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+        <div class="comment"></div>
         <script>
-            var cloudTieConfig = {
-                url: document.location.href,
-                sourceId: "",
-                productKey: "86c5aa95f7b240b5ae7e4f97bc08d5ff",
-                target: "cloud-tie-wrapper"
-            };
+            new Valine({
+                av: AV,
+                el: '.comment',
+                app_id: 'WtilSm5XMI0IefpEJG6wXM0Q-gzGzoHsz',
+                app_key: 'LmVwout0NrMxTGttKW8b3kot',
+                placeholder: '新评论框，新起点(｡･ω･｡)-----------很抱歉，由于网易云跟帖突然下线，导致之前的评论数据拿不回来了。。。万分抱歉(╥╯^╰╥)'
+            });
         </script>
-        <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
     </div>
 
     <a href="https://github.com/xCss/bing" id="fork">
