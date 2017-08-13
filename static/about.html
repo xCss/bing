@@ -137,8 +137,8 @@
         <h1 style="text-align: center;"><a href="/" class="logo"><i class="icon icon-bing"></i><span>必应壁纸</span></a></h1><br>
         <p style="text-align: center;" id="tagline"><i class="serif">Bing</i> 每日壁纸，你值得拥有</p>
         <div id="github">
-            <iframe src="https://ghbtns.com/github-btn.html?user=xCss&repo=bing&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="98" height="20"></iframe>
-            <iframe src="https://ghbtns.com/github-btn.html?user=xCss&type=follow&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="156" height="20"></iframe>
+            <iframe allowtransparency="true" frameborder="0" scrolling="0" width="98" height="20"></iframe>
+            <iframe allowtransparency="true" frameborder="0" scrolling="0" width="156" height="20"></iframe>
         </div>
 
         <p>最开始做 <i class="serif">Bing</i> 壁纸的目的很纯粹，就是看到必应搜索 <i class="serif">cn.bing.com</i> 官网的壁纸很赞，但是想找到之前的壁纸就有点困难，然后就自己用PHP语言开发了一个，每天同步<i class="serif">cn.bing.com</i> 官网的壁纸，同步抓取每日故事，存在自己的数据库里。源代码可以在<a target="_blank" href="https://github.com/xCss/bing/tree/v1.0.0">GitHub</a>上找到。当时主机是用的
@@ -186,6 +186,11 @@
             hm.src = "//hm.baidu.com/hm.js?667639aad0d4654c92786a241a486361";
             var s = document.getElementsByTagName("script")[0];
             s.parentNode.insertBefore(hm, s);
+        }
+        window.onload = function() {
+            var iframes = document.querySelectorAll('iframe');
+            iframes[0].setAttribute('src', 'https://ghbtns.com/github-btn.html?user=xCss&repo=bing&type=watch&count=true');
+            iframes[1].setAttribute('src', 'https://ghbtns.com/github-btn.html?user=xCss&type=follow&count=true');
         }
     </script>
 </body>
