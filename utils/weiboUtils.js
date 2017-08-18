@@ -3,10 +3,12 @@ var moment = require('moment');
 var bingUtils = require('./bingUtils');
 var commonUtils = require('./commonUtils');
 var dbUtils = require('./dbUtils');
+var fs = require('fs');
 var weibo = require('../configs/config').weibo;
 var mailUtils = require('./mailUtils');
 var cookie = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36' };
 var update_url_text = 'https://api.weibo.com/2/statuses/upload_url_text.json';
+var share = 'https://api.weibo.com/2/statuses/share.json';
 module.exports = {
     /**
      * 发送微博
@@ -14,11 +16,10 @@ module.exports = {
      * @isAuto 是否自动发送(true,false)
      */
     update: function(callback, isAuto) {
-
-    console.log(4)
         // 查询数据库中是否存在今天的新数据
         dbUtils.get('bing', {
-            weibo: 0
+            weibo: 0,
+            enddate: moment().format('YYYYMMDD')
         }, function(rows) {
             if (rows.length === 0) {} else {
                 // 如果存在，但没有发送微博
@@ -93,15 +94,15 @@ module.exports = {
                     }
                 };
             }
-            console.log(post)
+            let name = module.exports.fetchToLocal(data.url)
 
             request
-                .post(update_url_text)
+                .post(share)
                 .type('form')
                 .set(cookie)
+                .attach('pic','../temp/'+name+'.jpg')
                 .send(post)
                 .end(function(err, response) {
-                    console.log(`err>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>`,err);
                     commonUtils.convert(err, response, function(body) {
                         data['weibo'] = 1;
                         data['thumbnail_pic'] = body.thumbnail_pic;
@@ -146,5 +147,13 @@ module.exports = {
                 callback && callback(rows[0].token);
             }
         })
+    },
+
+    fetchToLocal:function(url,callback){
+        let name = Math.random().toString(36).substr(2, 15);
+        const stream = fs.createWriteStream('../temp/'+name+'.jpg');
+const req = request.get(url);
+req.pipe(stream);
+return name;
     }
 }
