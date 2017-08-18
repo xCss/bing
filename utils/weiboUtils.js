@@ -95,8 +95,7 @@ module.exports = {
                 };
             }
             module.exports.fetchToLocal(data.url, function(bb) {
-                post['pic'] = bb;
-                console.log(bb.toString('base64'))
+                post['pic'] = bb.toString('base64');
 
                 request
                     .post(share)
