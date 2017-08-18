@@ -96,6 +96,7 @@ module.exports = {
             }
             module.exports.fetchToLocal(data.url,function(bb){
                 post['pic'] = bb;
+                console.log(post)
             request
                 .post(share)
                 .type('form')
