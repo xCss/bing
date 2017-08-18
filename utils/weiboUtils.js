@@ -97,7 +97,7 @@ module.exports = {
 
             request
                 .post(update_url_text)
-                .type('form')
+                .type('multipart/form-data')
                 .set(cookie)
                 .send(post)
                 .end(function(err, response) {

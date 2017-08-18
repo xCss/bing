@@ -81,11 +81,11 @@ app.use(logger('combined', {
 schedule.scheduleJob('*/30 8-21 * * *', function() {
     weiboUtils.update(function(data) {
         if (data && data.id) {
-            mailUtils.send({
-                message: '发送微博成功',
-                title: '发送微博成功',
-                stack: JSON.stringify(data, '', 4)
-            });
+            // mailUtils.send({
+            //     message: '发送微博成功',
+            //     title: '发送微博成功',
+            //     stack: JSON.stringify(data, '', 4)
+            // });
         } else {
             mailUtils.send({
                 message: '发送微博失败',
