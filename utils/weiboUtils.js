@@ -54,7 +54,6 @@ module.exports = {
      */
     commonSend: function(data, callback, isAuto) {
         module.exports.checkOauth(function(token) {
-            console.log('>>>>>>>>>------------------->',token);
             var date = data.enddate;
             var y = date.substr(0, 4);
             var m = date.substr(4, 2);
@@ -98,7 +97,7 @@ module.exports = {
 
             request
                 .post(update_url_text)
-                .type('multipart/form-data')
+                .type('form')
                 .set(cookie)
                 .send(post)
                 .end(function(err, response) {

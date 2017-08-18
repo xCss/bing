@@ -91,7 +91,7 @@ router.get('/send', function(req, res, next) {
     } else {
         weiboUtils.update(function() {
             res.redirect('/');
-        },true);
+        });
     }
 });
 /**
