@@ -68,12 +68,12 @@ router.get('/callback', function(req, res, next) {
                                 uid: text.uid
                             }
                         }, function(r) {
-                            if (data.uid === weibo.MASTER_UID && !weibo.MASTER_ACCESS_TOKEN) {
-                                weibo.MASTER_ACCESS_TOKEN = data.access_token;
-                                weibo.ACCESS_TOKEN = data.access_token;
+                            if (text.uid === weibo.MASTER_UID && !weibo.MASTER_ACCESS_TOKEN) {
+                                weibo.MASTER_ACCESS_TOKEN = text.access_token;
+                                weibo.ACCESS_TOKEN = text.access_token;
                             } else {
-                                weibo.ACCESS_TOKEN = data.access_token;
-                                weibo.USER_UID = data.uid;
+                                weibo.ACCESS_TOKEN = text.access_token;
+                                weibo.USER_UID = text.uid;
                             }
                             req.session['weibo'] = weibo;
                             res.redirect('/');
