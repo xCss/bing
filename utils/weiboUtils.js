@@ -140,6 +140,7 @@ module.exports = {
                 uid: uid
             }
         }, function(rows) {
+            console.log(rows);
             if (rows.length === 0) {
                 callback && callback(-1);
             } else {
