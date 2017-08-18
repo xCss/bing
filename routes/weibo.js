@@ -31,8 +31,10 @@ router.get('/callback', function(req, res, next) {
             redirect_uri: redirect_uri
         })
         .end(function(err, response) {
+            console.log('-------------------------------->',err);
             if (!err && response.status === 200) {
                 var text = JSON.parse(response.text);
+                console.log(text);
                 dbUtils.get('bing_session', {
                     uid: text.uid
                 }, function(rows) {
