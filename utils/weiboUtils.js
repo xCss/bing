@@ -95,7 +95,8 @@ module.exports = {
                 };
             }
             let name = module.exports.fetchToLocal(data.url)
-            return;
+            if(false){
+
             request
                 .post(share)
                 .type('form')
@@ -123,6 +124,7 @@ module.exports = {
                         });
                     });
                 });
+            }
         }, isAuto);
 
     },
