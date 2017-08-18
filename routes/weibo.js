@@ -9,8 +9,6 @@ var redirect_uri = 'http://bing.ioliu.cn/weibo/callback';
  * 微博认证
  */
 router.get('/', function(req, res) {
-    console.log(5)
-    console.log(weibo)
     res.redirect('https://api.weibo.com/oauth2/authorize?client_id=' + weibo.CLIENT_ID + '&redirect_uri=' + redirect_uri);
 });
 
@@ -31,10 +29,8 @@ router.get('/callback', function(req, res, next) {
             redirect_uri: redirect_uri
         })
         .end(function(err, response) {
-            console.log('-------------------------------->',err);
             if (!err && response.status === 200) {
                 var text = JSON.parse(response.text);
-                console.log(text);
                 dbUtils.get('bing_session', {
                     uid: text.uid
                 }, function(rows) {
@@ -87,15 +83,12 @@ router.get('/callback', function(req, res, next) {
  * 发送微博
  */
 router.get('/send', function(req, res, next) {
-    console.log(1)
     if (req.session && req.session['weibo']) {
         weibo = req.session['weibo'];
     }
     if (weibo.ACCESS_TOKEN === '') {
-    console.log(2)
         res.redirect('/weibo');
     } else {
-    console.log(3)
         weiboUtils.update(function() {
             res.redirect('/');
         });

@@ -18,8 +18,7 @@ module.exports = {
     console.log(4)
         // 查询数据库中是否存在今天的新数据
         dbUtils.get('bing', {
-            weibo: 0,
-            enddate: moment().format('YYYYMMDD')
+            weibo: 0
         }, function(rows) {
             if (rows.length === 0) {} else {
                 // 如果存在，但没有发送微博
@@ -94,7 +93,7 @@ module.exports = {
                     }
                 };
             }
-            console.log(update_url_text)
+            console.log(post)
 
             request
                 .post(update_url_text)
