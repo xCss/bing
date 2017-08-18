@@ -45,10 +45,10 @@ router.get('/:photo', function(req, res, next) {
                     'Content-Disposition': 'attachment; filename=' + encodeURI(`${photo}_1920x1080.jpg`)
                 });
 
-                console.log('-----------------------------')
-                console.log(req.headers['host'])
-                console.log(req.headers['referer'])
-                console.log('-----------------------------')
+                // console.log('-----------------------------')
+                // console.log(req.headers['host'])
+                // console.log(req.headers['referer'])
+                // console.log('-----------------------------')
                     // request.get(`https://bing-images.bitmoe.cn/bing/${photo}_1920x1080.jpg`)
                 request.get(`${config.global_http()}/bing/${photo}_1920x1080.jpg`)
                     .set({

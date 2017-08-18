@@ -152,7 +152,10 @@ module.exports = {
     fetchToLocal:function(url,callback){
         let name = Math.random().toString(36).substr(2, 15);
         const stream = fs.createWriteStream('../temp/'+name+'.jpg');
-const req = request.get(url);
-req.pipe(stream);
+        request.get(url)
+                    .set({
+                        'User-Agent': cookie['User-Agent'],
+                        referer: 'https://bing.ioliu.cn'
+                    }).pipe(stream);
     }
 }
