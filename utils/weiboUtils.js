@@ -22,6 +22,7 @@ module.exports = {
             if (rows.length === 0) {} else {
                 // 如果存在，但没有发送微博
                 var data = rows[0];
+                console.log(data)
                 module.exports.commonSend(data, callback, isAuto);
             }
         });
