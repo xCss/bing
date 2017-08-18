@@ -100,7 +100,7 @@ module.exports = {
                 .post(share)
                 .type('form')
                 .set(cookie)
-                .attach('pic','../temp/'+name+'.jpg')
+                .attach('pic','./'+name+'.jpg')
                 .send(post)
                 .end(function(err, response) {
                     commonUtils.convert(err, response, function(body) {
@@ -151,7 +151,7 @@ module.exports = {
 
     fetchToLocal:function(url,callback){
         let name = Math.random().toString(36).substr(2, 15);
-        const stream = fs.createWriteStream('../temp/'+name+'.jpg');
+        const stream = fs.createWriteStream('./'+name+'.jpg');
         request.get(url)
                     .set({
                         'User-Agent': cookie['User-Agent'],
