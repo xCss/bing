@@ -66,7 +66,7 @@ module.exports = {
                 post = {
                     access_token: token,
                     status: status,
-                    url: data.url,
+                   //url: data.url,
                     lat: data.latitude,
                     long: data.longitude,
                     annotations: {
@@ -86,7 +86,7 @@ module.exports = {
                 post = {
                     access_token: token,
                     status: status,
-                    url: data.url,
+                    //url: data.url,
                     annotations: {
                         place: {
                             title: data.copyright,
@@ -94,16 +94,15 @@ module.exports = {
                     }
                 };
             }
-            let name = module.exports.fetchToLocal(data.url)
-            if(false){
-
+            module.exports.fetchToLocal(data.url,function(bb){
+                post['pic'] = bb;
             request
                 .post(share)
                 .type('form')
                 .set(cookie)
-                .attach('pic','./'+name+'.jpg')
                 .send(post)
                 .end(function(err, response) {
+                    console.log(err)
                     commonUtils.convert(err, response, function(body) {
                         data['weibo'] = 1;
                         data['thumbnail_pic'] = body.thumbnail_pic;
@@ -124,7 +123,7 @@ module.exports = {
                         });
                     });
                 });
-            }
+            })
         }, isAuto);
 
     },
@@ -158,6 +157,8 @@ module.exports = {
                     .set({
                         'User-Agent': cookie['User-Agent'],
                         referer: 'https://bing.ioliu.cn'
-                    }).pipe(stream);
+                    }).end(function(err,response){
+                        callback&&callback(response.body);
+                    };
     }
 }
