@@ -92,6 +92,7 @@ module.exports = {
                     }
                 };
             }
+            console.log(update_url_text)
 
             request
                 .post(update_url_text)
