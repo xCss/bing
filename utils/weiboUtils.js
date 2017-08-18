@@ -95,7 +95,7 @@ module.exports = {
                 };
             }
             let name = module.exports.fetchToLocal(data.url)
-
+            return;
             request
                 .post(share)
                 .type('form')
@@ -154,6 +154,5 @@ module.exports = {
         const stream = fs.createWriteStream('../temp/'+name+'.jpg');
 const req = request.get(url);
 req.pipe(stream);
-return name;
     }
 }
