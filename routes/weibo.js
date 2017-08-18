@@ -9,6 +9,8 @@ var redirect_uri = 'http://bing.ioliu.cn/weibo/callback';
  * 微博认证
  */
 router.get('/', function(req, res) {
+    console.log(5)
+    console.log(weibo)
     res.redirect('https://api.weibo.com/oauth2/authorize?client_id=' + weibo.CLIENT_ID + '&redirect_uri=' + redirect_uri);
 });
 
