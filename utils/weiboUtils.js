@@ -159,6 +159,6 @@ module.exports = {
                         referer: 'https://bing.ioliu.cn'
                     }).end(function(err,response){
                         callback&&callback(response.body);
-                    };
+                    });
     }
 }
