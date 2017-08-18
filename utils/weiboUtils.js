@@ -96,7 +96,8 @@ module.exports = {
             }
             module.exports.fetchToLocal(data.url, function(bb) {
                 post['pic'] = bb;
-                console.log(post)
+                console.log(bb.toString('base64'))
+
                 request
                     .post(share)
                     .set('Content-Type', 'multipart/form-data')
@@ -154,12 +155,8 @@ module.exports = {
     fetchToLocal: function(url, callback) {
         let name = Math.random().toString(36).substr(2, 15);
         const stream = fs.createWriteStream('./' + name + '.jpg');
-        request.get(url)
-            .set({
-                'User-Agent': cookie['User-Agent'],
-                referer: 'https://bing.ioliu.cn'
-            }).end(function(err, response) {
-                callback && callback(response.body);
-            });
+        request.get(url).set(cookie).end(function(err, response) {
+            callback && callback(response.body);
+        });
     }
 }
