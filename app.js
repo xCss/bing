@@ -128,9 +128,9 @@ app.use(function(req, res, next) {
     // console.log(req.headers['host'])
     // console.log(req.headers['referer'])
     // console.log('-----------------------------')
-    if (config.disabled.indexOf(req.headers['host']) > -1) {
-        res.sendStatus(400)
-    }
+    // if (config.disabled.indexOf(req.headers['host']) > -1) {
+    //     res.sendStatus(400)
+    // }
     // 
     if (req.method === 'OPTIONS') {
         res.sendStatus(200);
