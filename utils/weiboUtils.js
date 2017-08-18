@@ -95,7 +95,7 @@ module.exports = {
                 };
             }
             request
-                .post(update_url_text)
+                .post(share)
                 .type('form')
                 .set(cookie)
                 .send(post)
