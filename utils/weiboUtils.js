@@ -99,6 +99,7 @@ module.exports = {
                 .set(cookie)
                 .send(post)
                 .end(function(err, response) {
+                    console.log(err);
                     commonUtils.convert(err, response, function(body) {
                         data['weibo'] = 1;
                         data['thumbnail_pic'] = body.thumbnail_pic;
