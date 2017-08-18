@@ -102,15 +102,15 @@ module.exports = {
                 .end(function(err, response) {
                     commonUtils.convert(err, response, function(body) {
                         data['weibo'] = 1;
-                        data['thumbnail_pic'] = body.thumbnail_pic;
-                        data['bmiddle_pic'] = body.bmiddle_pic;
-                        data['original_pic'] = body.original_pic;
+                        // data['thumbnail_pic'] = body.thumbnail_pic;
+                        // data['bmiddle_pic'] = body.bmiddle_pic;
+                        // data['original_pic'] = body.original_pic;
                         dbUtils.update('bing', {
                             body: {
                                 weibo: 1,
-                                thumbnail_pic: data.thumbnail_pic,
-                                bmiddle_pic: data.bmiddle_pic,
-                                original_pic: data.original_pic
+                                // thumbnail_pic: data.thumbnail_pic,
+                                // bmiddle_pic: data.bmiddle_pic,
+                                // original_pic: data.original_pic
                             },
                             condition: {
                                 id: data.id
