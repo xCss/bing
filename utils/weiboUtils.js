@@ -14,6 +14,8 @@ module.exports = {
      * @isAuto 是否自动发送(true,false)
      */
     update: function(callback, isAuto) {
+
+    console.log(4)
         // 查询数据库中是否存在今天的新数据
         dbUtils.get('bing', {
             weibo: 0,

@@ -83,12 +83,15 @@ router.get('/callback', function(req, res, next) {
  * 发送微博
  */
 router.get('/send', function(req, res, next) {
+    console.log(1)
     if (req.session && req.session['weibo']) {
         weibo = req.session['weibo'];
     }
     if (weibo.ACCESS_TOKEN === '') {
+    console.log(2)
         res.redirect('/weibo');
     } else {
+    console.log(3)
         weiboUtils.update(function() {
             res.redirect('/');
         });
