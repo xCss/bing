@@ -66,7 +66,7 @@ module.exports = {
                 post = {
                     access_token: token,
                     status: status,
-                   //url: data.url,
+                    //url: data.url,
                     lat: data.latitude,
                     long: data.longitude,
                     annotations: {
@@ -94,36 +94,36 @@ module.exports = {
                     }
                 };
             }
-            module.exports.fetchToLocal(data.url,function(bb){
+            module.exports.fetchToLocal(data.url, function(bb) {
                 post['pic'] = bb;
                 console.log(post)
-            request
-                .post(share)
-                .type('form')
-                .set(cookie)
-                .send(post)
-                .end(function(err, response) {
-                    console.log(err)
-                    commonUtils.convert(err, response, function(body) {
-                        data['weibo'] = 1;
-                        data['thumbnail_pic'] = body.thumbnail_pic;
-                        data['bmiddle_pic'] = body.bmiddle_pic;
-                        data['original_pic'] = body.original_pic;
-                        dbUtils.update('bing', {
-                            body: {
-                                weibo: 1,
-                                thumbnail_pic: data.thumbnail_pic,
-                                bmiddle_pic: data.bmiddle_pic,
-                                original_pic: data.original_pic
-                            },
-                            condition: {
-                                id: data.id
-                            }
-                        }, function(rows) {
-                            callback && callback(body);
+                request
+                    .post(share)
+                    .set('Content-Type', 'multipart/form-data')
+                    .set(cookie)
+                    .send(post)
+                    .end(function(err, response) {
+                        console.log(err)
+                        commonUtils.convert(err, response, function(body) {
+                            data['weibo'] = 1;
+                            data['thumbnail_pic'] = body.thumbnail_pic;
+                            data['bmiddle_pic'] = body.bmiddle_pic;
+                            data['original_pic'] = body.original_pic;
+                            dbUtils.update('bing', {
+                                body: {
+                                    weibo: 1,
+                                    thumbnail_pic: data.thumbnail_pic,
+                                    bmiddle_pic: data.bmiddle_pic,
+                                    original_pic: data.original_pic
+                                },
+                                condition: {
+                                    id: data.id
+                                }
+                            }, function(rows) {
+                                callback && callback(body);
+                            });
                         });
                     });
-                });
             })
         }, isAuto);
 
@@ -151,15 +151,15 @@ module.exports = {
         })
     },
 
-    fetchToLocal:function(url,callback){
+    fetchToLocal: function(url, callback) {
         let name = Math.random().toString(36).substr(2, 15);
-        const stream = fs.createWriteStream('./'+name+'.jpg');
+        const stream = fs.createWriteStream('./' + name + '.jpg');
         request.get(url)
-                    .set({
-                        'User-Agent': cookie['User-Agent'],
-                        referer: 'https://bing.ioliu.cn'
-                    }).end(function(err,response){
-                        callback&&callback(response.body);
-                    });
+            .set({
+                'User-Agent': cookie['User-Agent'],
+                referer: 'https://bing.ioliu.cn'
+            }).end(function(err, response) {
+                callback && callback(response.body);
+            });
     }
 }
