@@ -66,7 +66,7 @@ module.exports = {
                 post = {
                     access_token: token,
                     status: status,
-                    url: data.url,
+                    //url: data.url,
                     lat: data.latitude,
                     long: data.longitude,
                     annotations: {
@@ -86,7 +86,7 @@ module.exports = {
                 post = {
                     access_token: token,
                     status: status,
-                    url: data.url,
+                    //url: data.url,
                     annotations: {
                         place: {
                             title: data.copyright,
