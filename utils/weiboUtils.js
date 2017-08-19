@@ -96,6 +96,7 @@ module.exports = {
             }
             request
                 .post(share)
+                .set('Content-Type', 'application/json')
                 //.type('form')
                 .set(cookie)
                 .send(post)
