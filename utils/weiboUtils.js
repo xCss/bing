@@ -96,7 +96,7 @@ module.exports = {
             }
             request
                 .post(share)
-                .type('form')
+                //.type('form')
                 .set(cookie)
                 .send(post)
                 .end(function(err, response) {
