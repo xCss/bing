@@ -76,9 +76,15 @@ var v1 = function(req, res, next) {
                     })
                     .end(function(err, response) {
                         if (err) {
-                            res.send(err)
+                            res.send({
+                                data: {},
+                                status: {
+                                    code: err.status,
+                                    message: err.response.text
+                                }
+                            })
                         } else {
-                            res.header('content-type', 'image/jpeg');
+                            res.header('content-type', 'image/jpg');
                             res.send(response.body);
                         }
                     });
@@ -230,7 +236,13 @@ var blur = function(req, res, next) {
                 })
                 .end(function(err, response) {
                     if (err) {
-                        res.send(err)
+                        res.send({
+                            data: {},
+                            status: {
+                                code: err.status,
+                                message: err.response.text
+                            }
+                        })
                     } else {
                         res.header('content-type', 'image/jpg');
                         res.send(response.body);
