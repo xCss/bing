@@ -35,7 +35,7 @@ var v1 = function(req, res, next) {
             no: 1,
             size: 1
         },
-        body: {}
+        body: `mkt like '%zh-cn%'`
     };
     if (!!enddate) {
         params['body'] = `mkt like '%zh-cn%' and enddate='${enddate}'`
@@ -209,7 +209,7 @@ var blur = function(req, res, next) {
             no: 1,
             size: 1
         },
-        body: {}
+        body: `mkt like '%zh-cn%'`
     };
     if (!!enddate) {
         params['body'] = `mkt like '%zh-cn%' and enddate='${enddate}'`
