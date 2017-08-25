@@ -80,7 +80,7 @@ var v1 = function(req, res, next) {
                                 data: {},
                                 status: {
                                     code: err.status,
-                                    message: err.response.text
+                                    message: err.status == 404 ? 'Did not find this picture, please try another resolution' : err.resoponse.text
                                 }
                             })
                         } else {
@@ -163,7 +163,7 @@ var random = function(req, res, next) {
                                         data: {},
                                         status: {
                                             code: err.status,
-                                            message: err.response.text
+                                            message: err.status == 404 ? 'Did not find this picture, please try another resolution' : err.resoponse.text
                                         }
                                     })
                                 } else {
@@ -246,7 +246,7 @@ var blur = function(req, res, next) {
                             data: {},
                             status: {
                                 code: err.status,
-                                message: err.response.text
+                                message: err.status == 404 ? 'Did not find this picture, please try another resolution' : err.resoponse.text
                             }
                         })
                     } else {
