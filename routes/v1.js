@@ -38,9 +38,7 @@ var v1 = function(req, res, next) {
         body: {}
     };
     if (!!enddate) {
-        params['body'] = {
-            enddate: enddate
-        }
+        params['body'] = `mkt like '%zh-cn%' and enddate='${enddate}'`
     }
     dbUtils.get('bing', params, function(rows) {
         if (rows.length > 0) {
@@ -214,9 +212,7 @@ var blur = function(req, res, next) {
         body: {}
     };
     if (!!enddate) {
-        params.body = {
-            enddate: enddate
-        }
+        params['body'] = `mkt like '%zh-cn%' and enddate='${enddate}'`
     }
     dbUtils.get('bing', params, function(rows) {
         if (rows.length > 0) {
