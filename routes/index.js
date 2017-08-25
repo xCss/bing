@@ -4,9 +4,9 @@ var qiniuUtils = require('../utils/qiniuUtils');
 var config = require('../configs/config');
 var router = express.Router();
 const moment = require('moment');
-const today = moment().format('YYYYMMDD');
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    var today = moment().format('YYYYMMDD');
     var isAjax = !!req.headers['x-requested-with'];
     var pageNo = req.query.p;
     pageNo = !!pageNo && Number(pageNo) > 0 ? Number(pageNo) : 1;
