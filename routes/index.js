@@ -40,7 +40,7 @@ router.get('/', function(req, res, next) {
                          * 1024x576
                          * 120x67
                          */
-                        var thumbnail = `http://images.ioliu.cn/bing/${temp['photo']}_1280x768.jpg`;
+                        var thumbnail = `http://images.ioliu.cn/bing/${temp['photo']}_1024x768.jpg`;
                         var smallpic = `http://images.ioliu.cn/bing/${temp['photo']}_320x240.jpg`;
                         data.push({
                             id: temp['id'],
