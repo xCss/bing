@@ -39,8 +39,8 @@ router.get('/', function(req, res, next) {
                          * 1024x576
                          * 120x67
                          */
-                        var thumbnail = temp['original_pic'] ? temp['original_pic'].replace('http', 'https') : `${config.global_link()}/bing/${temp['photo']}_1920x1080.jpg?imageView2/1/w/1024/h/576/q/100`;
-                        var smallpic = temp['thumbnail_pic'] ? temp['thumbnail_pic'].replace('http', 'https') : `${config.global_link()}/bing/${temp['photo']}_1920x1080.jpg?imageView2/1/w/120/h/67/q/100`;
+                        var thumbnail = `http://images.ioliu.cn/bing/${temp['photo']}_1280x768.jpg`;
+                        var smallpic = `http://images.ioliu.cn/bing/${temp['photo']}_320x240.jpg`;
                         data.push({
                             id: temp['id'],
                             title: temp['title'],
