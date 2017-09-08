@@ -67,7 +67,7 @@ var v1 = function(req, res, next) {
                 if (config.resolutions.indexOf(size) === -1) {
                     data['url'] = qiniuUtils.imageView(data.qiniu_url, w, h);
                 } else {
-                    data['url'] = config.global_http() + '/bing/' + data.qiniu_url + '_' + size + '.jpg';
+                    data['url'] = 'http://images.ioliu.cn/bing/' + data.qiniu_url + '_' + size + '.jpg';
                 }
                 request.get(data['url'])
                     .set({
