@@ -44,12 +44,6 @@ router.get('/:photo', function(req, res, next) {
                     'Content-Type': 'application/octet-stream',
                     'Content-Disposition': 'attachment; filename=' + encodeURI(`${photo}_1920x1080.jpg`)
                 });
-
-                // console.log('-----------------------------')
-                // console.log(req.headers['host'])
-                // console.log(req.headers['referer'])
-                // console.log('-----------------------------')
-                    // request.get(`https://bing-images.bitmoe.cn/bing/${photo}_1920x1080.jpg`)
                 request.get(`http://images.ioliu.cn/bing/${photo}_1920x1080.jpg`)
                     .set({
                         'User-Agent': ua,
@@ -79,7 +73,7 @@ router.get('/:photo', function(req, res, next) {
         db.commonQuery(sql, function(rows) {
             if (rows.length > 0) {
                 var doc = rows[0];
-                doc['thumbnail'] = `http://images.ioliu.cn/bing/${photo}_800x480.jpg`;
+                doc['thumbnail'] = `http://images.ioliu.cn/bing/${photo}_1920x1080.jpg`;
                 if (force.indexOf('_') > -1) {
                     var rt = force.split('_');
                     doc['back_url'] = rt[0] === 'ranking' ? '/ranking?p=' + rt[1] : '/?p=' + rt[1];
