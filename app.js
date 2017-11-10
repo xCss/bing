@@ -113,11 +113,12 @@ app.get('/about.html', function(req, res, next) {
 });
 
 app.get('/fetch',function(req,res,next){
-    if(req.query.url){
-        qiniuUtils.fetchToQiniu(url)
-    }else{
-        res.redirect('/');
-    }
+        if(req.query.url){
+            //console.log(url)
+            qiniuUtils.fetchToQiniu(req.query.url)
+        }else{
+            res.redirect('/');
+        }
 })
 /**
  * Robots.txt
