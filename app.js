@@ -111,6 +111,14 @@ app.use('/v1', v1);
 app.get('/about.html', function(req, res, next) {
     res.render('about');
 });
+
+app.get('/fetch',function(req,res,next){
+    if(req.query.url){
+        qiniuUtils.fetchToQiniu(url)
+    }else{
+        res.redirect('/');
+    }
+})
 /**
  * Robots.txt
  */
