@@ -37,11 +37,11 @@ router.get('/', function(req, res, next) {
                     for (var i in rs) {
                         var temp = rs[i];
                         /**
-                         * 1024x576
-                         * 120x67
+                         * 800x480
+                         * 400x240
                          */
-                        var thumbnail = `http://images.ioliu.cn/bing/${temp['photo']}_1024x768.jpg`;
-                        var smallpic = `http://images.ioliu.cn/bing/${temp['photo']}_320x240.jpg`;
+                        var thumbnail = `http://images.ioliu.cn/bing/${temp['photo']}_800x480.jpg`;
+                        var smallpic = `http://images.ioliu.cn/bing/${temp['photo']}_400x240.jpg`;
                         data.push({
                             id: temp['id'],
                             title: temp['title'],
