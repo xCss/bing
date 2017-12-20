@@ -4,6 +4,7 @@ var qiniuUtils = require('../utils/qiniuUtils');
 var config = require('../configs/config');
 var router = express.Router();
 const moment = require('moment');
+const CDN = 'https://static.ioliu.cn/';
 /* GET home page. */
 router.get('/', function(req, res, next) {
     var today = moment().format('YYYYMMDD');
@@ -40,8 +41,8 @@ router.get('/', function(req, res, next) {
                          * 800x480
                          * 400x240
                          */
-                        var thumbnail = `http://images.ioliu.cn/bing/${temp['photo']}_800x480.jpg`;
-                        var smallpic = `http://images.ioliu.cn/bing/${temp['photo']}_400x240.jpg`;
+                        var thumbnail = `${CDN}bing/${temp['photo']}_800x480.jpg`;
+                        var smallpic = `${CDN}bing/${temp['photo']}_400x240.jpg`;
                         data.push({
                             id: temp['id'],
                             title: temp['title'],
