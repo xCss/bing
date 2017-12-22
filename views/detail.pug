@@ -31,9 +31,6 @@ html(lang="en")
                 a.ctrl.share(href=link + encodeURIComponent(desc),target="_blank",rel="nofollow",title="分享到微博")
                     i.icon.icon-share
                     em.t 分享
-                span.ctrl.eye
-                    i.icon.icon-eye
-                    em.t #{doc.views}
                 span.ctrl.heart(photo=doc.id,likes=doc.likes)
                     i.icon.icon-heart
                     em.t #{doc.likes}
@@ -49,7 +46,9 @@ html(lang="en")
                     p.location
                         i.icon.icon-location
                         em.t #{location}
-
+                p.view
+                    i.icon.icon-eye 
+                    em.t #{val.likes}
         script(src='/static/js/jquery-1.12.4.min.js')
         script(src='/static/js/progressively.js')
         script(src='/static/js/baidu-analysis.js')
