@@ -18,13 +18,18 @@ html(lang="en")
         div.preview
             - var small = doc.photo;
             div.progressive
-                - var link =  'https://static.ioliu.cn' ;
-                img.target.progressive__img.progressive--not-loaded(src=doc.thumbnail,data-progressive=`${link}/bing/${small}_1920x1080.jpg`)
+                - var root =  'https://static.ioliu.cn' ;
+                - var desc = `#${val.attribute}# 我在#必应壁纸#发现了一张高清壁纸，分享给你：${val.copyright.split('(')[0]}`.substring(0,140);
+                - var link = `http://service.weibo.com/share/share.php?url=${root}/photo/${val.photo}&appkey=1833831541&pic=${val.thumbnail}&title=`;
+                img.target.progressive__img.progressive--not-loaded(src=doc.thumbnail,data-progressive=`${root}/bing/${small}_1920x1080.jpg`)
             div.mark
             div.options
                 a.ctrl.left(href=`${doc.back_url}`)
                     i.icon.icon-left
                     em.t BACK
+                            a.ctrl.share(href=`${link}`+encodeURIComponent(desc),target="_blank",rel="nofollow")
+                                i.icon.icon-share
+                                em.t 分享
                 span.ctrl.eye
                     i.icon.icon-eye
                     em.t #{doc.views}
