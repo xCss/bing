@@ -2,6 +2,7 @@
     font-size: 0;
     margin: 0 auto;
     position: relative;
+    background:#222838;
 }
 
 .container .item {
@@ -10,7 +11,6 @@
     height: auto;
     position: relative;
     border: none;
-    background:#222838;
 }
 
 .container .item .card {
