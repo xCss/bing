@@ -43,7 +43,7 @@ html(lang="en")
                 - var location = (val.country && val.city) ? val.country + ', ' + val.city : false;
                 - location = val.continent ? (location ? val.continent + ', ' + location : val.continent) : location;                
                 - var root = 'https://bing.ioliu.cn/';
-                - var desc = `#${val.attribute}# 我在#必应壁纸#发现了一张高清壁纸：${val.description}`.substring(0,136) + '...';
+                - var desc = `#必应壁纸# ${val.dt} / #${val.attribute}# ${val.description}`;
                 - var link = `http://service.weibo.com/share/share.php?url=${root}/photo/${val.photo}&appkey=1833831541&pic=${val.thumbnail}&title=`;
                 div.item
                     div.card.progressive

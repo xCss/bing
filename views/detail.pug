@@ -20,7 +20,7 @@ html(lang="en")
             div.progressive
                 - var cdn = 'https://static.ioliu.cn';
                 - var root =  'https://bing.ioliu.cn' ;
-                - var desc = `#${doc.attribute}# 我在#必应壁纸#发现了一张高清壁纸：${doc.description}`.substring(0,136) + '...';
+                - var desc = `#必应壁纸# ${doc.dt} / #${doc.attribute}# ${doc.description}`;
                 - var link = `http://service.weibo.com/share/share.php?url=${root}/photo/${doc.photo}&appkey=1833831541&pic=${doc.thumbnail}&title=`;
                 img.target.progressive__img.progressive--not-loaded(src=doc.thumbnail,data-progressive=`${cdn}/bing/${small}_1920x1080.jpg`)
             div.mark
