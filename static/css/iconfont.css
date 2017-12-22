@@ -15,7 +15,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-see:before { content: "\e60a"; }
+.icon-eye:before { content: "\e60a"; }
 
 .icon-about:before { content: "\e604"; }
 
