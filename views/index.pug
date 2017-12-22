@@ -42,9 +42,9 @@ html(lang="en")
             each val in doc
                 - var location = (val.country && val.city) ? val.country + ', ' + val.city : false;
                 - location = val.continent ? (location ? val.continent + ', ' + location : val.continent) : location;                
-                //- - var root = 'https://bing.ioliu.cn/';
-                //- - var desc = `#${val.attribute}# 我在#必应壁纸#发现了一张高清壁纸，分享给你：${val.copyright.split('(')[0]}`.substring(0,140);
-                //- - var link = `http://service.weibo.com/share/share.php?url=${root}/photo/${val.photo}&appkey=1833831541&pic=${val.thumbnail}&title=${desc}`;
+                - var root = 'https://bing.ioliu.cn/';
+                - var desc = `#${val.attribute}# 我在#必应壁纸#发现了一张高清壁纸：${val.description}`.substring(0,136) + '...';
+                - var link = `http://service.weibo.com/share/share.php?url=${root}/photo/${val.photo}&appkey=1833831541&pic=${val.thumbnail}&title=`;
                 div.item
                     div.card.progressive
                         img.progressive__img.progressive--not-loaded(data-progressive=val.thumbnail,src=val.smallpic )
@@ -59,9 +59,9 @@ html(lang="en")
                                     i.icon.icon-location
                                     em.t #{location}
                         div.options
-                            //- a.ctrl.download(href=`${link}`,target="_blank",rel="nofollow")
-                            //-     i.icon.icon-download
-                            //-     em.t #{val.downloads}
+                            a.ctrl.share(href=link + encodeURIComponent(desc),target="_blank",rel="nofollow",title="分享到微博")
+                                i.icon.icon-share
+                                em.t 分享
                             span.ctrl.eye
                                 i.icon.icon-eye
                                 em.t #{val.views}
