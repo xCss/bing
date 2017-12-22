@@ -63,7 +63,7 @@ router.get('/', function(req, res, next) {
                             likes: temp['likes'],
                             views: temp['views'],
                             downloads: temp['downloads'],
-                            share:link
+                            share:share
                         });
                     }
                     if (isAjax) {
