@@ -10,6 +10,7 @@
     height: auto;
     position: relative;
     border: none;
+    background:#222838;
 }
 
 .container .item .card {
