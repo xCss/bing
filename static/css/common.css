@@ -3,6 +3,8 @@
     padding: 0;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    -webkit-transition: all .3s linear;
+    transition: all .3s linear;
 }
 
 body {
@@ -220,9 +222,6 @@ html {
     html nav .menu li.search-wrap input {
         width: 100%;
     }
-    html .item {
-        padding: .06rem !important;
-    }
 }
 
 @media only screen and (max-width: 640px) {
@@ -230,8 +229,6 @@ html {
         font-size: 110px;
     }
     html .item {
-        padding: .05rem 0 !important;
-        margin-bottom: .15rem;
         width: 100% !important;
     }
     html .item .card .mark,

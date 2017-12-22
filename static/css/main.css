@@ -1,6 +1,5 @@
 .container {
     font-size: 0;
-    max-width: 12rem;
     margin: 0 auto;
     position: relative;
 }
@@ -9,7 +8,6 @@
     display: inline-block;
     width: 33.33%;
     height: auto;
-    padding: .1rem;
     position: relative;
     border: none;
 }
@@ -150,7 +148,6 @@
 
 @media only screen and (max-width: 980px) {
     .item {
-        padding: .08rem !important;
         width: 50% !important;
     }
 }
