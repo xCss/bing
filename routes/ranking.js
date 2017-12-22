@@ -4,6 +4,8 @@ var request = require('superagent');
 var dbUtils = require('../utils/dbUtils');
 var config = require('../configs/config');
 
+const ROOT = 'https://bing.ioliu.cn/';
+const CDN = 'https://static.ioliu.cn/';
 /* GET ranking listing. */
 router.get('/', function(req, res, next) {
     var isAjax = !!req.headers['x-requested-with'];
@@ -39,8 +41,11 @@ router.get('/', function(req, res, next) {
                          * 1024x576
                          * 120x67
                          */
-                        var thumbnail = `http://images.ioliu.cn/bing/${temp['photo']}_1024x768.jpg`;
-                        var smallpic = `http://images.ioliu.cn/bing/${temp['photo']}_320x240.jpg`;
+                        var thumbnail = `${CDN}bing/${temp['photo']}_800x480.jpg`;
+                        var smallpic = `${CDN}bing/${temp['photo']}_400x240.jpg`;
+                        var desc = `#必应壁纸# ${temp['dt']} / #${temp['title']}# ${temp['description']}`;
+                        var share = `http://service.weibo.com/share/share.php?url=${ROOT}/photo/${thumbnail}&appkey=1833831541&pic=${temp['thumbnail']}&ralateUid=5893653736&title=${encodeURIComponent(desc.substring(0,128)+'...')}`;
+                        
                         data.push({
                             id: temp['id'],
                             title: temp['title'],
@@ -56,7 +61,8 @@ router.get('/', function(req, res, next) {
                             dt: temp['dt'],
                             likes: temp['likes'],
                             views: temp['views'],
-                            downloads: temp['downloads']
+                            downloads: temp['downloads'],
+                            share:share
                         });
                     }
                     if (isAjax) {
@@ -74,12 +80,6 @@ router.get('/', function(req, res, next) {
             });
         }
     });
-});
-/**
- * 如果没有参数，则跳转到首页
- */
-router.get('/', function(req, res, next) {
-    res.redirect('/');
 });
 
 module.exports = router;

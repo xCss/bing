@@ -5,6 +5,7 @@ var config = require('../configs/config');
 var router = express.Router();
 const moment = require('moment');
 const CDN = 'https://static.ioliu.cn/';
+const ROOT = 'https://bing.ioliu.cn/';
 /* GET home page. */
 router.get('/', function(req, res, next) {
     var today = moment().format('YYYYMMDD');
@@ -43,6 +44,9 @@ router.get('/', function(req, res, next) {
                          */
                         var thumbnail = `${CDN}bing/${temp['photo']}_800x480.jpg`;
                         var smallpic = `${CDN}bing/${temp['photo']}_400x240.jpg`;
+                        var desc = `#必应壁纸# ${temp['dt']} / #${temp['title']}# ${temp['description']}`;
+                        var share = `http://service.weibo.com/share/share.php?url=${ROOT}/photo/${thumbnail}&appkey=1833831541&pic=${temp['thumbnail']}&ralateUid=5893653736&title=${encodeURIComponent(desc.substring(0,128)+'...')}`;
+                        
                         data.push({
                             id: temp['id'],
                             title: temp['title'],
@@ -58,7 +62,8 @@ router.get('/', function(req, res, next) {
                             dt: temp['dt'],
                             likes: temp['likes'],
                             views: temp['views'],
-                            downloads: temp['downloads']
+                            downloads: temp['downloads'],
+                            share:link
                         });
                     }
                     if (isAjax) {

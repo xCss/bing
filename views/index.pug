@@ -42,9 +42,6 @@ html(lang="en")
             each val in doc
                 - var location = (val.country && val.city) ? val.country + ', ' + val.city : false;
                 - location = val.continent ? (location ? val.continent + ', ' + location : val.continent) : location;                
-                - var root = 'https://bing.ioliu.cn/';
-                - var desc = `#必应壁纸# ${val.dt} / #${val.title}# ${val.description}`;
-                - var link = `http://service.weibo.com/share/share.php?url=${root}/photo/${val.photo}&appkey=1833831541&pic=${val.thumbnail}&title=`;
                 div.item
                     div.card.progressive
                         img.progressive__img.progressive--not-loaded(data-progressive=val.thumbnail,src=val.smallpic )
@@ -62,7 +59,7 @@ html(lang="en")
                                 i.icon.icon-eye 
                                 em.t #{val.views}
                         div.options
-                            a.ctrl.share(href=link + encodeURIComponent(desc),target="_blank",rel="nofollow",title="分享到微博")
+                            a.ctrl.share(href=val.share,target="_blank",rel="nofollow",title="分享到微博")
                                 i.icon.icon-share
                                 em.t 分享
                             span.ctrl.heart(photo=val.id,likes=val.likes)
