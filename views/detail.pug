@@ -20,7 +20,7 @@ html(lang="en")
             div.progressive
                 - var cdn = 'https://static.ioliu.cn';
                 - var root =  'https://bing.ioliu.cn' ;
-                - var desc = `#${doc.attribute}# 我在#必应壁纸#发现了一张高清壁纸，分享给你：${doc.copyright.split('(')[0]}`.substring(0,140);
+                - var desc = `#${doc.attribute}# 我在#必应壁纸#发现了一张高清壁纸：${doc.description}`.substring(0,138) + '...';
                 - var link = `http://service.weibo.com/share/share.php?url=${root}/photo/${doc.photo}&appkey=1833831541&pic=${doc.thumbnail}&title=`;
                 img.target.progressive__img.progressive--not-loaded(src=doc.thumbnail,data-progressive=`${cdn}/bing/${small}_1920x1080.jpg`)
             div.mark
@@ -28,7 +28,7 @@ html(lang="en")
                 a.ctrl.left(href=`${doc.back_url}`)
                     i.icon.icon-left
                     em.t BACK
-                a.ctrl.share(href=link + encodeURIComponent(desc),target="_blank",rel="nofollow")
+                a.ctrl.share(href=link + encodeURIComponent(desc),target="_blank",rel="nofollow",title="分享到微博")
                     i.icon.icon-share
                     em.t 分享
                 span.ctrl.eye
