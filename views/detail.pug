@@ -21,14 +21,14 @@ html(lang="en")
                 - var cdn = 'https://static.ioliu.cn';
                 - var root =  'https://bing.ioliu.cn' ;
                 - var desc = `#必应壁纸# ${doc.dt} / #${doc.title}# ${doc.description}`;
-                - var link = `http://service.weibo.com/share/share.php?url=${root}/photo/${doc.photo}&appkey=1833831541&pic=${doc.thumbnail}&title=`;
+                - var link = `http://service.weibo.com/share/share.php?url=${root}/photo/${doc.photo}&appkey=1833831541&ralateUid=5893653736&pic=${doc.thumbnail}&title=`;
                 img.target.progressive__img.progressive--not-loaded(src=doc.thumbnail,data-progressive=`${cdn}/bing/${small}_1920x1080.jpg`)
             div.mark
             div.options
                 a.ctrl.left(href=`${doc.back_url}`)
                     i.icon.icon-left
                     em.t BACK
-                a.ctrl.share(href=link + encodeURIComponent(desc),target="_blank",rel="nofollow",title="分享到微博")
+                a.ctrl.share(href=link + encodeURIComponent(desc.substring(0,126+'...')),target="_blank",rel="nofollow",title="分享到微博")
                     i.icon.icon-share
                     em.t 分享
                 span.ctrl.heart(photo=doc.id,likes=doc.likes)
