@@ -44,7 +44,7 @@ router.get('/', function(req, res, next) {
                          */
                         var thumbnail = `${CDN}bing/${temp['photo']}_800x480.jpg`;
                         var smallpic = `${CDN}bing/${temp['photo']}_400x240.jpg`;
-                        var attr = (!!temp['title'] && !!temp['description']) ? `#${temp['title']}# ${temp['description']}` : `${temp['attribute']}`;
+                        var attr = (!!temp['title'] && !!temp['description']) ? `#${temp['title']}# ${temp['description']}` : `${temp['copyright']}`;
                         var desc = `#必应壁纸# ${temp['dt']} / ${attr}`;
                         var share = `http://service.weibo.com/share/share.php?url=${ROOT}photo/${temp['photo']}&appkey=1833831541&pic=${thumbnail}&ralateUid=5893653736&title=${encodeURIComponent(desc.substring(0,126)+'...')}`;
                         

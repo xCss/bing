@@ -20,7 +20,7 @@ html(lang="en")
             div.progressive
                 - var cdn = 'https://static.ioliu.cn';
                 - var root =  'https://bing.ioliu.cn' ;
-                - var attr = (!!doc['title'] && !!doc['description']) ? `#${doc['title']}# ${doc['description']}` : `${doc['attribute']}`;
+                - var attr = (!!doc['title'] && !!doc['description']) ? `#${doc['title']}# ${doc['description']}` : `${doc['copyright']}`;
                 - var desc = `#必应壁纸# ${doc.dt} / ${attr}`;
                 - var link = `http://service.weibo.com/share/share.php?url=${root}/photo/${doc.photo}&appkey=1833831541&ralateUid=5893653736&pic=${doc.thumbnail}&title=`+encodeURIComponent(desc.substring(0,126)+'...');
                 img.target.progressive__img.progressive--not-loaded(src=doc.thumbnail,data-progressive=`${cdn}/bing/${small}_1920x1080.jpg`)
@@ -83,7 +83,7 @@ html(lang="en")
                     }
                 });
 
-                $(body).on('keydown',function(e){
+                $(document).on('keydown',function(e){
                     e = e.event || window.event;
                     if(e.keyCode == 123 || (e.ctrlKey&&e.shiftKey&&e.keyCode==73) || (e.ctrlKey&&e.keyCode==85)) return false
                 })
