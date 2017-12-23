@@ -14,13 +14,14 @@ html(lang="en")
         link(rel='stylesheet', href='/static/css/main.css')
         
 
-    body.detail
+    body.detail(oncontextmenu='self.event.returnValue=false')
         div.preview
             - var small = doc.photo;
             div.progressive
                 - var cdn = 'https://static.ioliu.cn';
                 - var root =  'https://bing.ioliu.cn' ;
-                - var desc = `#必应壁纸# ${doc.dt} / #${doc.title}# ${doc.description}`;
+                - var attr = (!!doc['title'] && !!doc['description']) ? `#${doc['title']}# ${doc['description']}` : `${doc['attribute']}`;
+                - var desc = `#必应壁纸# ${doc.dt} / ${attr}`;
                 - var link = `http://service.weibo.com/share/share.php?url=${root}/photo/${doc.photo}&appkey=1833831541&ralateUid=5893653736&pic=${doc.thumbnail}&title=`+encodeURIComponent(desc.substring(0,126)+'...');
                 img.target.progressive__img.progressive--not-loaded(src=doc.thumbnail,data-progressive=`${cdn}/bing/${small}_1920x1080.jpg`)
             div.mark
@@ -82,4 +83,8 @@ html(lang="en")
                     }
                 });
 
+                $(body).on('keydown',function(e){
+                    e = e.event || window.event;
+                    if(e.keyCode == 123 || (e.ctrlKey&&e.shiftKey&&e.keyCode==73) || (e.ctrlKey&&e.keyCode==85)) return false
+                })
             });
