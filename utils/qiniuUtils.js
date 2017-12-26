@@ -1,5 +1,6 @@
 var qiniu = require('qiniu');
 var config = require('../configs/config');
+var CDN = 'https://static.ioliu.cn/bing/';
 // access_key and secret_key
 qiniu.conf.ACCESS_KEY = process.env.qiniu_access_key;
 qiniu.conf.SECRET_KEY = process.env.qiniu_secret_key;
@@ -49,9 +50,8 @@ module.exports = {
         height = height || 1080;
         quality = quality || 100;
         mode = mode || 1;
-        var base = `http://images.ioliu.cn/bing/`;
         url = url.indexOf('1920x1080') == -1 ? url + '_1920x1080.jpg' : url;
-        url = /^(http|https)/.test(url) ? url : base + url;
+        url = /^(http|https)/.test(url) ? url : CDN + url;
         var imageView = new qiniu.fop.ImageView(mode, width, height, quality);
         return imageView.makeRequest(url);
     },

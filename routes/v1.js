@@ -4,7 +4,7 @@ var dbUtils = require('../utils/dbUtils');
 var qiniuUtils = require('../utils/qiniuUtils');
 var config = require('../configs/config');
 var cookie = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36' };
-
+var CDN = 'https://static.ioliu.cn/bing/';
 var router = express.Router();
 
 /**
@@ -67,7 +67,7 @@ var v1 = function(req, res, next) {
                 if (config.resolutions.indexOf(size) === -1) {
                     data['url'] = qiniuUtils.imageView(data.qiniu_url, w, h);
                 } else {
-                    data['url'] = 'http://images.ioliu.cn/bing/' + data.qiniu_url + '_' + size + '.jpg';
+                    data['url'] = CDN + data.qiniu_url + '_' + size + '.jpg';
                 }
                 request.get(data['url'])
                     .set({
@@ -150,7 +150,7 @@ var random = function(req, res, next) {
                         if (config.resolutions.indexOf(size) === -1) {
                             data['url'] = qiniuUtils.imageView(data.qiniu_url, w, h);
                         } else {
-                            data['url'] =  'http://images.ioliu.cn/bing/' + data.qiniu_url + '_' + size + '.jpg';
+                            data['url'] =  CDN + data.qiniu_url + '_' + size + '.jpg';
                         }
                         request.get(data['url'])
                             .set({
@@ -229,11 +229,10 @@ var blur = function(req, res, next) {
     dbUtils.get('bing', params, function(rows) {
         if (rows.length > 0) {
             var data = rows[0];
-            var base = 'http://images.ioliu.cn/bing/';
             if (config.resolutions.indexOf(size) > -1) {
-                data['url'] = base + data.qiniu_url + '_' + size + '.jpg';
+                data['url'] = CDN + data.qiniu_url + '_' + size + '.jpg';
             }
-            var qiniu_url = /^(http|https)/.test(data.url) ? data.url : base + data.qiniu_url + '_1920x1080.jpg';
+            var qiniu_url = /^(http|https)/.test(data.url) ? data.url : CDN + data.qiniu_url + '_1920x1080.jpg';
             qiniu_url += '?imageMogr2/blur/' + r + 'x50'
             request.get(qiniu_url)
                 .set({
