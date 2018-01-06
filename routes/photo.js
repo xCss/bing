@@ -51,6 +51,7 @@ router.get('/:photo', function(req, res, next) {
                     //     referer: 'https://bing.ioliu.cn'
                     // })
                     .pipe(res);
+                console.log(`${CDN}bing/${photo}_1920x1080.jpg`)
             } else {
                 res.json({
                     code: 200,
