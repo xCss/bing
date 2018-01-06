@@ -4,7 +4,7 @@ var qiniuUtils = require('../utils/qiniuUtils');
 var config = require('../configs/config');
 var router = express.Router();
 const moment = require('moment');
-const CDN = 'https://static.ioliu.cn/';
+const CDN = 'https://static1.ioliu.cn/';
 const ROOT = 'https://bing.ioliu.cn/';
 /* GET home page. */
 router.get('/', function(req, res, next) {

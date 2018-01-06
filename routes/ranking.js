@@ -5,7 +5,7 @@ var dbUtils = require('../utils/dbUtils');
 var config = require('../configs/config');
 
 const ROOT = 'https://bing.ioliu.cn/';
-const CDN = 'https://static.ioliu.cn/';
+const CDN = 'https://static1.ioliu.cn/';
 /* GET ranking listing. */
 router.get('/', function(req, res, next) {
     var isAjax = !!req.headers['x-requested-with'];

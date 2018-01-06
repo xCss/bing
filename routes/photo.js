@@ -3,7 +3,7 @@ var router = express.Router();
 var request = require('superagent');
 var db = require('../utils/dbUtils');
 var config = require('../configs/config');
-const CDN = 'https://static.ioliu.cn/';
+const CDN = 'https://static1.ioliu.cn/';
 
 /* GET photo listing. */
 router.get('/:photo', function(req, res, next) {
