@@ -46,7 +46,7 @@ router.get('/:photo', function(req, res, next) {
                     'Content-Disposition': 'attachment; filename=' + encodeURI(`${photo}_1920x1080.jpg`)
                 });
                 try {
-                    res.redirect(200,`${CDN}bing/${photo}_1920x1080.jpg`)
+                    res.redirect(`${CDN}bing/${photo}_1920x1080.jpg`)
                 } catch (error) {
                     console.log(error)
                 }
