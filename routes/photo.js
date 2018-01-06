@@ -4,6 +4,7 @@ var request = require('superagent');
 var db = require('../utils/dbUtils');
 var config = require('../configs/config');
 const CDN = 'https://static1.ioliu.cn/';
+const CDN1 = 'http://static1.ioliu.cn/';
 
 /* GET photo listing. */
 router.get('/:photo', function(req, res, next) {
@@ -45,16 +46,12 @@ router.get('/:photo', function(req, res, next) {
                     'Content-Type': 'application/octet-stream',
                     'Content-Disposition': 'attachment; filename=' + encodeURI(`${photo}_1920x1080.jpg`)
                 });
-                try {
-                request.get(`${CDN}bing/${photo}_1920x1080.jpg`)
-                // .set({
-                //     'User-Agent': ua,
-                //     referer: 'https://bing.ioliu.cn'
-                // }).end()
+                request.get(`${CDN1}bing/${photo}_1920x1080.jpg`)
+                .set({
+                    'User-Agent': ua,
+                    referer: 'https://bing.ioliu.cn'
+                })
                 .pipe(res);
-                } catch (error) {
-                    consle.log(error)
-                }
                 //console.log(`${CDN}bing/${photo}_1920x1080.jpg`)
             } else {
                 res.json({
