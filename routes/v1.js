@@ -163,7 +163,7 @@ var random = function(req, res, next) {
                                         data: {},
                                         status: {
                                             code: err.status,
-                                            message: err.status == 404 ? 'Did not find this picture, please try another resolution' : response.text
+                                            message: err.status == 404 ? 'Did not find this picture, please try another resolution' : (response && response.text || '')
                                         }
                                     })
                                 } else {
@@ -245,7 +245,7 @@ var blur = function(req, res, next) {
                             data: {},
                             status: {
                                 code: err.status,
-                                message: err.status == 404 ? 'Did not find this picture, please try another resolution' : response.text
+                                message: err.status == 404 ? 'Did not find this picture, please try another resolution' : (response && response.text || '')
                             }
                         })
                     } else {
