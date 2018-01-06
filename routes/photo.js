@@ -46,16 +46,15 @@ router.get('/:photo', function(req, res, next) {
                     'Content-Disposition': 'attachment; filename=' + encodeURI(`${photo}_1920x1080.jpg`)
                 });
                 try {
-                    res.redirect(`${CDN}bing/${photo}_1920x1080.jpg`)
+                request.get(`${CDN}bing/${photo}_1920x1080.jpg`)
+                .set({
+                    'User-Agent': ua,
+                    referer: 'https://bing.ioliu.cn'
+                }).end()
+                .pipe(res);
                 } catch (error) {
-                    console.log(error)
+                    consle.log(error)
                 }
-                // request.get(`${CDN}bing/${photo}_1920x1080.jpg`)
-                //     // .set({
-                //     //     'User-Agent': ua,
-                //     //     referer: 'https://bing.ioliu.cn'
-                //     // })
-                //     .pipe(res);
                 //console.log(`${CDN}bing/${photo}_1920x1080.jpg`)
             } else {
                 res.json({
