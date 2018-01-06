@@ -47,10 +47,10 @@ router.get('/:photo', function(req, res, next) {
                 });
                 try {
                 request.get(`${CDN}bing/${photo}_1920x1080.jpg`)
-                .set({
-                    'User-Agent': ua,
-                    referer: 'https://bing.ioliu.cn'
-                }).end()
+                // .set({
+                //     'User-Agent': ua,
+                //     referer: 'https://bing.ioliu.cn'
+                // }).end()
                 .pipe(res);
                 } catch (error) {
                     consle.log(error)
