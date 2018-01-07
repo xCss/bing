@@ -19,10 +19,11 @@ html(lang="en")
             - var small = doc.photo;
             div.progressive
                 - var cdn = 'https://static1.ioliu.cn';
+                - var cdn1 = `http://static1.ioliu.cn/bing${doc.photo}_400x240.jpg`;
                 - var root =  'https://bing.ioliu.cn' ;
                 - var attr = (!!doc['title'] && !!doc['description']) ? `#${doc['title']}# ${doc['description']}` : `${doc['copyright']}`;
                 - var desc = `#必应壁纸# ${doc.dt} / ${attr}`;
-                - var link = `http://service.weibo.com/share/share.php?url=${root}/photo/${doc.photo}&appkey=1833831541&ralateUid=5893653736&pic=${doc.thumbnail}&title=`+encodeURIComponent(desc.substring(0,126)+'...');
+                - var link = `http://service.weibo.com/share/share.php?url=${root}/photo/${doc.photo}&appkey=1833831541&ralateUid=5893653736&pic=${cdn1}&title=`+encodeURIComponent(desc.substring(0,126)+'...');
                 img.target.progressive__img.progressive--not-loaded(src=doc.thumbnail,data-progressive=`${cdn}/bing/${small}_1920x1080.jpg`)
             div.mark
             div.options

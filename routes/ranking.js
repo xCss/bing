@@ -6,6 +6,7 @@ var config = require('../configs/config');
 
 const ROOT = 'https://bing.ioliu.cn/';
 const CDN = 'https://static1.ioliu.cn/';
+const CDN1 = 'http://static1.ioliu.cn/';
 /* GET ranking listing. */
 router.get('/', function(req, res, next) {
     var isAjax = !!req.headers['x-requested-with'];
@@ -43,8 +44,9 @@ router.get('/', function(req, res, next) {
                          */
                         var thumbnail = `${CDN}bing/${temp['photo']}_800x480.jpg`;
                         var smallpic = `${CDN}bing/${temp['photo']}_400x240.jpg`;
+                        var sharepic = `${CDN1}bing/${temp['photo']}_400x240.jpg`;
                         var desc = `#必应壁纸# ${temp['dt']} / #${temp['title']}# ${temp['description']}`;
-                        var share = `http://service.weibo.com/share/share.php?url=${ROOT}photo/${temp['photo']}&appkey=1833831541&pic=${thumbnail}&ralateUid=5893653736&title=${encodeURIComponent(desc.substring(0,126)+'...')}`;
+                        var share = `http://service.weibo.com/share/share.php?url=${ROOT}photo/${temp['photo']}&appkey=1833831541&pic=${sharepic}&ralateUid=5893653736&title=${encodeURIComponent(desc.substring(0,126)+'...')}`;
                         
                         data.push({
                             id: temp['id'],
