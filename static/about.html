@@ -73,18 +73,19 @@
         
         #QR {
             font-size: 0;
+            display:flex;
         }
         
-        #wechat,
-        #alipay {
+        .qr {
             font-size: 14px;
-            width: 50%;
+            flex:1;
             box-sizing: border-box;
             text-align: center;
         }
         
         #wechat_qr,
-        #alipay_qr {
+        #alipay_qr,
+        #alipay_hongbao_qr {
             display: inline-block;
             max-width: 150px;
         }
@@ -119,14 +120,20 @@
     
             <p>截止到 2017-03-05，Bing 壁纸 项目已经稳步运行了一年，相信在未来的日子里，Bing 壁纸 会越来越好，功能越来越完善。现在，Bing壁纸 开通了留言功能，大家有什么想说的可以在下面<b>留言</b>咯\(^o^)/YES!</p>
             <p>为了把壁纸的美好带给大家，攻城狮小哥花费了很多个人时间和精力进行开发，甚至自己掏钱购买服务器，看攻城狮小哥这么可怜，快来打赏杯咖啡吧。≡ω≡</p>
+            
+            <p>大家可以先扫一扫<b style="color:red;">支付宝红包码</b>，领红包再打赏，金额不多还不花钱~~</p>
             <div id="QR">
-                <div id="wechat" style="display:inline-block">
-                    <img id="wechat_qr" src="https://ws1.sinaimg.cn/large/6dcfd1b8gy1fmvo5dmoxmj20es0erabm.jpg" alt="云淡风轻 WeChat Pay">
-                    <p>微信打赏</p>
+                <div id="hongbao" class="qr">
+                    <img id="alipay_hongbao_qr" src="https://ws1.sinaimg.cn/large/6dcfd1b8gy1fn7y9sskibj20f10fedjb.jpg" alt="支付宝红包"/>
+                    <p style="color:red;">支付宝红包码</p>
                 </div>
-                <div id="alipay" style="display:inline-block">
+                <div id="alipay" class="qr">
                     <img id="alipay_qr" src="https://ws1.sinaimg.cn/large/6dcfd1b8gy1fmvo5cxocjj20ix0io0tt.jpg" alt="云淡风轻 Alipay">
                     <p>支付宝打赏</p>
+                </div>
+                <div id="wechat" class="qr">
+                    <img id="wechat_qr" src="https://ws1.sinaimg.cn/large/6dcfd1b8gy1fmvo5dmoxmj20es0erabm.jpg" alt="云淡风轻 WeChat Pay">
+                    <p>微信打赏</p>
                 </div>
             </div>
             <div class="comment"></div>
