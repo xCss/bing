@@ -4,7 +4,7 @@ var dbUtils = require('../utils/dbUtils');
 var qiniuUtils = require('../utils/qiniuUtils');
 var config = require('../configs/config');
 var cookie = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36' };
-var CDN = 'https://static1.ioliu.cn/bing/';
+var CDN = 'http://static1.ioliu.cn/bing/';
 var router = express.Router();
 
 /**
