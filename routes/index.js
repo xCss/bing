@@ -5,7 +5,7 @@ var config = require('../configs/config');
 var router = express.Router();
 const moment = require('moment');
 const CDN = 'https://static1.ioliu.cn/';
-const CDN1 = 'http://static1.ioliu.cn/';
+const CDN1 = 'http://h1.ioliu.cn/';
 const ROOT = 'https://bing.ioliu.cn/';
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -86,41 +86,4 @@ router.get('/', function(req, res, next) {
     });
 });
 
-var common = function(req, res, next, page, rows) {
-    if (rows.length > 0) {
-        var data = [];
-        for (var i in rows) {
-            var date = rows[i]['enddate'];
-            var y = date.substr(0, 4);
-            var m = date.substr(4, 2);
-            var d = date.substr(6, 2);
-            var full = y + '-' + m + '-' + d;
-            data.push({
-                id: rows[i]['id'],
-                title: rows[i]['title'],
-                attribute: rows[i]['attribute'],
-                description: rows[i]['description'],
-                copyright: rows[i]['copyright'],
-                photo: rows[i]['qiniu_url'],
-                city: rows[i]['city'],
-                country: rows[i]['country'],
-                continent: rows[i]['continent'],
-                thumbnail: `http://images.ioliu.cn/bing/${rows[i]['qiniu_url']}_1920x1080.jpg`,
-                smallpic: `http://images.ioliu.cn/bing/${rows[i]['qiniu_url']}_800x480.jpg`,
-                date: full,
-                likes: rows[i]['likes'],
-                views: rows[i]['views'],
-                downloads: rows[i]['downloads']
-            });
-        }
-        res.render('index', {
-            data: data,
-            page: page
-        });
-    } else {
-        var err = new Error('啊( ⊙ o ⊙ )，你发现了新大陆 ∑(っ °Д °;)っ');
-        err.status = 404;
-        next(err);
-    }
-}
 module.exports = router;
