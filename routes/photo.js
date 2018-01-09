@@ -4,7 +4,7 @@ var qiniuUtils = require('../utils/qiniuUtils');
 var request = require('superagent');
 var db = require('../utils/dbUtils');
 var config = require('../configs/config');
-const CDN = 'https://bs2.bitmoe.cn/';
+const CDN = 'https://s1.ioliu.cn';
 const CDN1 = 'http://h1.ioliu.cn/';
 
 /* GET photo listing. */
