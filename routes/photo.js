@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var qiniuUtils = require('../utils/qiniuUtils');
 var request = require('superagent');
 var db = require('../utils/dbUtils');
 var config = require('../configs/config');
@@ -77,7 +78,7 @@ router.get('/:photo', function(req, res, next) {
         db.commonQuery(sql, function(rows) {
             if (rows.length > 0) {
                 var doc = rows[0];
-                doc['thumbnail'] = `${CDN}bing/${photo}_1920x1080.jpg`;
+                doc['thumbnail'] = CDN + qiniuUtils.encryptURI(`bing/${photo}_1920x1080.jpg`);
                 if (force.indexOf('_') > -1) {
                     var rt = force.split('_');
                     doc['back_url'] = rt[0] === 'ranking' ? '/ranking?p=' + rt[1] : '/?p=' + rt[1];

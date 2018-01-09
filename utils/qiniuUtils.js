@@ -4,6 +4,7 @@ var CDN = 'https://static.ioliu.cn/bing/';
 // access_key and secret_key
 qiniu.conf.ACCESS_KEY = process.env.qiniu_access_key;
 qiniu.conf.SECRET_KEY = process.env.qiniu_secret_key;
+var encryptKey = process.env.qiniu_encrypt_key
 
 // 上传的空间
 var bucket = 'ioliu';
@@ -14,14 +15,14 @@ module.exports = {
      * @param imgUrl 远程图片地址
      * @param callback
      */
-    fetchToQiniu: function(imgURL, callback) {
+    fetchToQiniu: function (imgURL, callback) {
         var client = new qiniu.rs.Client();
         for (var i = 0, len = config.resolutions.length; i < len; i++) {
             var _temp = config.resolutions[i];
             var remoteURL = imgURL.replace('1920x1080', _temp);
             var _tempName = 'bing/' + imgURL.substr(imgURL.lastIndexOf('/') + 1, imgURL.length);
             var imgName = _tempName.replace('1920x1080', _temp);
-            client.fetch(remoteURL, bucket, imgName, function(err, ret) {
+            client.fetch(remoteURL, bucket, imgName, function (err, ret) {
                 if (!err) {
                     console.log(ret);
                 } else {
@@ -45,7 +46,7 @@ module.exports = {
      * @return {String} fullURL
      * 
      */
-    imageView: function(url, width, height, quality, mode) {
+    imageView: function (url, width, height, quality, mode) {
         width = width || 1920;
         height = height || 1080;
         quality = quality || 100;
@@ -66,7 +67,7 @@ module.exports = {
             var img = imgURL.split('?')[0].split('/bing/')[1];
             var _tempName = 'bing/' + img;
             var imgName = _tempName.replace('1920x1080', _temp);
-            client.fetch(remoteURL, bucket, imgName, function(err, ret) {
+            client.fetch(remoteURL, bucket, imgName, function (err, ret) {
                 if (!err) {
                     console.log(ret);
                 } else {
@@ -75,5 +76,11 @@ module.exports = {
             });
         }
         //callback && callback();
+    },
+
+    encryptURI : (file) => {
+        let deadline = parseInt(Date.now() / 1000) + 300
+        let cdnManager = new qiniu.cdn.CdnManager(null)
+        return cdnManager.createTimestampAntiLeechUrl(domain, '', null, encryptKey, deadline);
     }
 };
