@@ -3,6 +3,7 @@ var router = express.Router();
 var request = require('superagent');
 var dbUtils = require('../utils/dbUtils');
 var config = require('../configs/config');
+var qiniuUtils = require('../utils/qiniuUtils');
 
 const CDN = 'https://bs2.bitmoe.cn/';
 const CDN1 = 'http://h1.ioliu.cn/';
