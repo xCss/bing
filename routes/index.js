@@ -4,7 +4,7 @@ var qiniuUtils = require('../utils/qiniuUtils');
 var config = require('../configs/config');
 var router = express.Router();
 const moment = require('moment');
-const CDN = 'https://bs2.bitmoe.cn/';
+const CDN = 'https://bs2.bitmoe.cn';
 const CDN1 = 'http://h1.ioliu.cn/';
 const ROOT = 'https://bing.ioliu.cn/';
 /* GET home page. */
@@ -43,8 +43,8 @@ router.get('/', function(req, res, next) {
                          * 800x480
                          * 400x240
                          */
-                        var thumbnail = CDN + qiniuUtils.encryptURI(`bing/${temp['photo']}_800x480.jpg`);
-                        var smallpic = CDN + qiniuUtils.encryptURI(`bing/${temp['photo']}_400x240.jpg`);
+                        var middle = CDN + qiniuUtils.encryptURI(`bing/${temp['photo']}_800x480.jpg`);
+                        var smail = CDN + qiniuUtils.encryptURI(`bing/${temp['photo']}_400x240.jpg`);
                         var sharepic = `${CDN1}bing/${temp['photo']}_800x480.jpg`;
                         var attr = (!!temp['title'] && !!temp['description']) ? `#${temp['title']}# ${temp['description']}` : `${temp['copyright']}`;
                         var desc = `#必应壁纸# ${temp['dt']} / ${attr}`;
@@ -60,8 +60,8 @@ router.get('/', function(req, res, next) {
                             city: temp['city'],
                             country: temp['country'],
                             continent: temp['continent'],
-                            thumbnail: thumbnail,
-                            smallpic: smallpic,
+                            middle: middle,
+                            smail: smail,
                             dt: temp['dt'],
                             likes: temp['likes'],
                             views: temp['views'],
