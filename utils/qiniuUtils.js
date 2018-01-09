@@ -81,6 +81,6 @@ module.exports = {
     encryptURI : (file) => {
         let deadline = parseInt(Date.now() / 1000) + 300
         let cdnManager = new qiniu.cdn.CdnManager(null)
-        return cdnManager.createTimestampAntiLeechUrl(domain, '', null, encryptKey, deadline);
+        return cdnManager.createTimestampAntiLeechUrl('', file, null, encryptKey, deadline);
     }
 };
