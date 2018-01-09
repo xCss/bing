@@ -39,7 +39,7 @@
     "nodemailer": "^0.7.1",
     "object-assign": "^4.1.0",
     "pug": "^2.0.0-beta6",
-    "qiniu": "^6.1.13",
+    "qiniu": "^7.1.0",
     "serve-favicon": "~2.3.0",
     "superagent": "^2.3.0"
   }
