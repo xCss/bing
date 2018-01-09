@@ -44,7 +44,7 @@ html(lang="en")
                 - location = val.continent ? (location ? val.continent + ', ' + location : val.continent) : location;                
                 div.item
                     div.card.progressive
-                        img.progressive__img.progressive--not-loaded(data-progressive=val.thumbnail,src=val.smallpic )
+                        img.progressive__img.progressive--not-loaded(data-progressive=val.middle,src=val.small )
                         a.mark(href=`/photo/${val.photo}?force=${page.currPage}_${page.curr}`)
                         div.description
                             h3 #{val.copyright}
