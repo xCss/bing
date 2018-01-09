@@ -44,7 +44,7 @@ router.get('/', function(req, res, next) {
                          * 120x67
                          */
                         var middle = CDN + qiniuUtils.encryptURI(`bing/${temp['photo']}_800x480.jpg`);
-                        var smail = CDN + qiniuUtils.encryptURI(`bing/${temp['photo']}_400x240.jpg`);
+                        var small = CDN + qiniuUtils.encryptURI(`bing/${temp['photo']}_400x240.jpg`);
                         var sharepic = `${CDN1}bing/${temp['photo']}_800x480.jpg`;
                         var desc = `#必应壁纸# ${temp['dt']} / #${temp['title']}# ${temp['description']}`;
                         var share = `http://service.weibo.com/share/share.php?url=${ROOT}photo/${temp['photo']}&appkey=1833831541&pic=${sharepic}&ralateUid=5893653736&title=${encodeURIComponent(desc.substring(0,126)+'...')}`;
@@ -60,7 +60,7 @@ router.get('/', function(req, res, next) {
                             country: temp['country'],
                             continent: temp['continent'],
                             middle: middle,
-                            smail: smail,
+                            small: small,
                             dt: temp['dt'],
                             likes: temp['likes'],
                             views: temp['views'],

@@ -44,7 +44,7 @@ router.get('/', function(req, res, next) {
                          * 400x240
                          */
                         var middle = CDN + qiniuUtils.encryptURI(`bing/${temp['photo']}_800x480.jpg`);
-                        var smail = CDN + qiniuUtils.encryptURI(`bing/${temp['photo']}_400x240.jpg`);
+                        var small = CDN + qiniuUtils.encryptURI(`bing/${temp['photo']}_400x240.jpg`);
                         var sharepic = `${CDN1}bing/${temp['photo']}_800x480.jpg`;
                         var attr = (!!temp['title'] && !!temp['description']) ? `#${temp['title']}# ${temp['description']}` : `${temp['copyright']}`;
                         var desc = `#必应壁纸# ${temp['dt']} / ${attr}`;
@@ -61,7 +61,7 @@ router.get('/', function(req, res, next) {
                             country: temp['country'],
                             continent: temp['continent'],
                             middle: middle,
-                            smail: smail,
+                            small: small,
                             dt: temp['dt'],
                             likes: temp['likes'],
                             views: temp['views'],
