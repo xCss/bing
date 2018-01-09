@@ -23,7 +23,7 @@ html(lang="en")
                 - var attr = (!!doc['title'] && !!doc['description']) ? `#${doc['title']}# ${doc['description']}` : `${doc['copyright']}`;
                 - var desc = `#必应壁纸# ${doc.dt} / ${attr}`;
                 - var link = `http://service.weibo.com/share/share.php?url=${root}/photo/${doc.photo}&appkey=1833831541&ralateUid=5893653736&pic=${cdn1}&title=`+encodeURIComponent(desc.substring(0,126)+'...');
-                img.target.progressive__img.progressive--not-loaded(src=doc.thumbnail,data-progressive=doc.thumbnail)
+                img.target.progressive__img.progressive--not-loaded(src=doc.small,data-progressive=doc.large)
             div.mark
             div.options
                 a.ctrl.left(href=`${doc.back_url}`)
