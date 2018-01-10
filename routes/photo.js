@@ -4,7 +4,6 @@ var qiniuUtils = require('../utils/qiniuUtils');
 var request = require('superagent');
 var db = require('../utils/dbUtils');
 var config = require('../configs/config');
-const CDN = 'https://bs2.bitmoe.cn';
 const CDN1 = 'http://h1.ioliu.cn/';
 
 /* GET photo listing. */
@@ -78,8 +77,8 @@ router.get('/:photo', function(req, res, next) {
         db.commonQuery(sql, function(rows) {
             if (rows.length > 0) {
                 var doc = rows[0];
-                doc['large'] = CDN + qiniuUtils.encryptURI(`bing/${photo}_1920x1080.jpg`);
-                doc['small'] = CDN + qiniuUtils.encryptURI(`bing/${photo}_640x360.jpg`);
+                doc['large'] = `${CDN1}/bing/${photo}_1920x1080.jpg`;
+                doc['small'] = `${CDN1}/bing/${photo}_640x360.jpg`;
                 if (force.indexOf('_') > -1) {
                     var rt = force.split('_');
                     doc['back_url'] = rt[0] === 'ranking' ? '/ranking?p=' + rt[1] : '/?p=' + rt[1];
