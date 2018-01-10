@@ -5,7 +5,7 @@ var dbUtils = require('../utils/dbUtils');
 var config = require('../configs/config');
 var qiniuUtils = require('../utils/qiniuUtils');
 
-const CDN = 'https://s1.ioliu.cn';
+const CDN = 'https://bs2.bitmoe.cn';
 const CDN1 = 'http://h1.ioliu.cn/';
 const ROOT = 'https://bing.ioliu.cn/';
 /* GET ranking listing. */
