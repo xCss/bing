@@ -105,7 +105,6 @@ app.use(function(req, res, next) {
 app.use('/', index);
 app.use('/photo', photo);
 app.use('/weibo', weibo);
-app.use('/ranking', ranking);
 app.use('/v1', v1);
 
 app.get('/about.html', function(req, res, next) {
