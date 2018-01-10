@@ -9,7 +9,6 @@ var request = require('superagent');
 var index = require('./routes/index');
 var photo = require('./routes/photo');
 var weibo = require('./routes/weibo');
-var ranking = require('./routes/ranking');
 var v1 = require('./routes/v1');
 
 // 定时器
