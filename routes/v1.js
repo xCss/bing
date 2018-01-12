@@ -149,6 +149,7 @@ var random = function(req, res, next) {
                         var data = rs[0];
                         if (config.resolutions.indexOf(size) === -1) {
                             data['url'] = qiniuUtils.imageView(data.qiniu_url, w, h);
+                            console.log(data.url)
                         } else {
                             data['url'] =  CDN + data.qiniu_url + '_' + size + '.jpg';
                         }
