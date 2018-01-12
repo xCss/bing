@@ -53,8 +53,9 @@ module.exports = {
         mode = mode || 1;
         url = url.indexOf('1920x1080') == -1 ? url + '_1920x1080.jpg' : url;
         url = /^(http|https)/.test(url) ? url : CDN + url;
-        var imageView = new qiniu.fop.ImageView(mode, width, height, quality);
-        return imageView.makeRequest(url);
+        return `${url}?imageView2/${mode}/w/${width}/h/${height}/format/jpg/interlace/1/q/${quality}`
+        // var imageView = new qiniu.fop.ImageView(mode, width, height, quality);
+        // return imageView.makeRequest(url);
     },
 
     specialFetchToQiniu(imgURL, name) {
