@@ -1,6 +1,6 @@
 var qiniu = require('qiniu');
 var config = require('../configs/config');
-var CDN = 'https://static.ioliu.cn/bing/';
+var CDN = 'http://h1.ioliu.cn/bing/';
 // access_key and secret_key
 qiniu.conf.ACCESS_KEY = process.env.qiniu_access_key;
 qiniu.conf.SECRET_KEY = process.env.qiniu_secret_key;
