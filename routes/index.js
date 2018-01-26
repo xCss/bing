@@ -2,7 +2,7 @@ var express = require('express');
 var dbUtils = require('../utils/dbUtils');
 var router = express.Router();
 const moment = require('moment');
-const CDN1 = 'http://h1.ioliu.cn';
+const CDN1 = 'http://h1.ioliu.cn/';
 const ROOT = 'https://bing.ioliu.cn/';
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -92,9 +92,9 @@ function convert(rs){
          * 1024x576
          * 120x67
          */
-        var middle = `${CDN1}/bing/${temp['photo']}_800x480.jpg`;
-        var small = `${CDN1}/bing/${temp['photo']}_400x240.jpg`;
-        var sharepic = `${CDN1}/bing/${temp['photo']}_1366x768.jpg`;
+        var middle = `${CDN1}bing/${temp['photo']}_800x480.jpg`;
+        var small = `${CDN1}bing/${temp['photo']}_400x240.jpg`;
+        var sharepic = `${CDN1}bing/${temp['photo']}_1366x768.jpg`;
         var desc = `#必应壁纸# ${temp['dt']} / #${temp['title']}# ${temp['description']}`;
         var share = `http://service.weibo.com/share/share.php?url=${ROOT}photo/${temp['photo']}&appkey=1833831541&pic=${sharepic}&ralateUid=5893653736&title=${encodeURIComponent(desc.substring(0,126)+'...')}`;
         
