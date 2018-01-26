@@ -18,7 +18,7 @@ html(lang="en")
         div.preview
             - var small = doc.photo;
             div.progressive
-                - var cdn1 = `http://h1.ioliu.cn/bing/${doc.photo}_400x240.jpg`;
+                - var cdn1 = `http://h1.ioliu.cn/bing/${doc.photo}_1366x768.jpg`;
                 - var root =  'https://bing.ioliu.cn' ;
                 - var attr = (!!doc['title'] && !!doc['description']) ? `#${doc['title']}# ${doc['description']}` : `${doc['copyright']}`;
                 - var desc = `#必应壁纸# ${doc.dt} / ${attr}`;
